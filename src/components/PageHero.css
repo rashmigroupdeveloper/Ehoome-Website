@@ -38,11 +38,68 @@
   margin-bottom: 16px;
 }
 
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 24px;
+}
+
 .page-hero-subtitle {
   font-size: 18px;
   color: var(--muted-d);
   max-width: 600px;
   margin: 0 auto;
+}
+
+.page-hero-description {
+  font-size: 16px;
+  color: var(--muted-d);
+  max-width: 700px;
+  margin: 24px auto 0;
+  line-height: 1.6;
+}
+
+.page-hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.highlight-button {
+  background: var(--signal);
+  color: var(--ink);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.highlight-button:hover {
+  background: var(--signal-alt);
+}
+
+.outline-button {
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.outline-button:hover {
+  background: var(--signal);
+  color: var(--ink);
 }
 
 @media (max-width: 1080px) {
@@ -56,6 +113,14 @@
 
   .page-hero-subtitle {
     font-size: 16px;
+  }
+
+  .page-hero-description {
+    font-size: 15px;
+  }
+
+  .page-hero-buttons {
+    gap: 12px;
   }
 }
 
@@ -71,5 +136,21 @@
 
   .page-hero-subtitle {
     font-size: 14px;
+  }
+
+  .page-hero-description {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+
+  .page-hero-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .highlight-button,
+  .outline-button {
+    width: 100%;
+    text-align: center;
   }
 }
