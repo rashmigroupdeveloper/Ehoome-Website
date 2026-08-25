@@ -31,23 +31,6 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="header-utility">
-        <div className="wrap">
-          <div className="utility-content">
-            <div className="utility-left">
-              <span className="utility-text">PLI-approved electronics manufacturing · Made in India</span>
-            </div>
-            <div className="utility-right">
-              <span className="utility-text">ISO 9001 · 14001 · 45001</span>
-              <span className="utility-divider">·</span>
-              <a href="mailto:info@ehoome.in" className="utility-text">info@ehoome.in</a>
-              <span className="utility-divider">·</span>
-              <a href="tel:+911200000000" className="utility-text">+91 120 000 0000</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <nav className="header-nav">
         <div className="wrap">
           <div className="nav-content">
