@@ -16,8 +16,7 @@ export default function Home() {
         description="eHome IoT is a design-led EMS partner for telecom and networking OEMs. SMT, box build, testing and certification run under one 50,000 sq ft roof in Noida – approved under the Government of India PLI scheme, backed by the Rashmi Group."
         image="/assets/img/floor-smt.jpg"
         ctaButtons={[
-          { label: 'Start an enquiry', href: '/contact', variant: 'highlight' },
-          { label: 'See the line', href: '#traceability', variant: 'outline' }
+          { label: 'Start an enquiry', href: '/contact', variant: 'highlight' }
         ]}
       />
 

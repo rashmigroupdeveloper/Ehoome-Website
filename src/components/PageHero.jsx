@@ -15,7 +15,7 @@ export default function PageHero({
       <div className="page-hero-content">
         <div className="wrap">
           {breadcrumb && <div className="breadcrumb">{breadcrumb}</div>}
-          {eyebrow && <div className="eyebrow">{eyebrow}</div>}
+          {eyebrow && <div className="page-hero-eyebrow">{eyebrow}</div>}
           <h1 className="page-hero-title">
             {title}
             <span className="flourish-period">.</span>

@@ -85,7 +85,7 @@ export default function Header() {
               </div>
             )}
 
-            <Link to="/contact" className="cta-button">
+            <Link to="/contact" className="nav-cta-button">
               Start an Enquiry →
             </Link>
           </div>
