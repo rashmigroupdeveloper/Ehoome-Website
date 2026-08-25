@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --ink: #0B100D;
+  --ink-2: #131A16;
+  --ink-3: #1D2621;
+  --paper: #FFFFFF;
+  --paper-2: #F4F7F1;
+  --paper-3: #EAEFE6;
+  --signal: #92E812;
+  --signal-ink: #5E9C08;
+  --moss: #2F5D1C;
+  --amber: #FFF352;
+  --alert: #E0402A;
+  --alert-dim: #F6D9D3;
+  --rashmi: #EC1F26;
+  --rashmi-dim: #FCE3E1;
+  /* Rashmi red extracted from logo-rashmi-group.png: #EC1F26 **/
+  --text: #111814;
+  --muted: #5C6A60;
+  --muted-d: #96A79B;
+  --rule: #E2E8DE;
+  --rule-d: #2A342D;
+
+  /* Layout */
+  --wrap: 1280px;
+  --gut: 40px;
+  --radius: 3px;
+
+  /* Typography */
+  --font-display: 'IBM Plex Sans Condensed', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background-color: var(--paper);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--signal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--signal-ink);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+
+.wrap-menu {
+  max-width: 100%;
+  padding: 0 var(--gut);
+}

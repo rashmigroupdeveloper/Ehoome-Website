@@ -1,0 +1,49 @@
+.section {
+  padding: 112px 0;
+}
+
+.section-compact {
+  padding: 72px 0;
+}
+
+.section-default {
+  background-color: var(--paper);
+}
+
+.section-tint {
+  background-color: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-dark {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-top: 1px solid var(--rule-d);
+  border-bottom: 1px solid var(--rule-d);
+}
+
+.section-signal {
+  background-color: var(--signal);
+  color: var(--ink);
+}
+
+@media (max-width: 1080px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .section-compact {
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-compact {
+    padding: 40px 0;
+  }
+}

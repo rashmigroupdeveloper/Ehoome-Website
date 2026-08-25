@@ -1,0 +1,251 @@
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mega-menu {
+  position: relative;
+  background-color: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  animation: slideDownFade 0.3s ease-out forwards;
+}
+
+.mega-menu-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+  display: flex;
+  min-height: 400px;
+}
+
+.mega-menu-tabs {
+  width: 250px;
+  padding: 40px 0;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  text-align: left;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  border-left-color: var(--signal);
+  background-color: rgba(146, 232, 18, 0.05);
+}
+
+.tab-button.active {
+  border-left-color: var(--signal);
+  background-color: rgba(146, 232, 18, 0.1);
+}
+
+.tab-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.tab-caption {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--font-body);
+}
+
+.tabs-divider {
+  height: 1px;
+  background-color: var(--rule);
+  margin: 16px 20px;
+}
+
+.view-all-link {
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: auto;
+  color: var(--signal);
+}
+
+.view-all-link:hover {
+  color: var(--signal-ink);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mega-menu-grid {
+  flex: 1;
+  padding: 40px 0;
+  padding-left: 40px;
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.grid-wrapper {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+
+.grid-wrapper.col-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-wrapper.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.grid-item:hover {
+  opacity: 0.8;
+}
+
+.image-tile {
+  aspect-ratio: 1 / 1;
+  background-color: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.image-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon-tile {
+  justify-items: center;
+}
+
+.icon-placeholder {
+  aspect-ratio: 1 / 1;
+  background-color: var(--paper-3);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-placeholder svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grid-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text);
+}
+
+.grid-caption {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 1080px) {
+  .mega-menu-inner {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .mega-menu-tabs {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+    flex-direction: row;
+    gap: 8px;
+    max-height: 80px;
+    overflow-x: auto;
+  }
+
+  .tab-button {
+    padding: 8px 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .tabs-divider {
+    display: none;
+  }
+
+  .view-all-link {
+    display: none;
+  }
+
+  .mega-menu-grid {
+    padding: 20px 0;
+    padding-left: 0;
+  }
+
+  .grid-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .grid-label {
+    font-size: 9px;
+  }
+
+  .mega-menu-inner {
+    padding: 0 16px;
+  }
+
+  .mega-menu-grid {
+    padding: 16px 0;
+  }
+}

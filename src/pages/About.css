@@ -1,0 +1,179 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-left h2 {
+  margin-bottom: 8px;
+}
+
+.about-left p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #111814;
+}
+
+.about-right {
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.about-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rashmi-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rashmi-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rashmi-tag {
+  display: inline-block;
+  background-color: white;
+  color: #EC1F26;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.rashmi-logo {
+  flex-shrink: 0;
+}
+
+.rashmi-section h2 {
+  color: #111814;
+  margin-bottom: 12px;
+}
+
+.rashmi-section p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5C6A60;
+  margin-bottom: 32px;
+}
+
+.rashmi-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.stat {
+  padding: 24px;
+  border-top: 3px solid #EC1F26;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: #111814;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #5C6A60;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.value-card {
+  padding: 32px;
+  border: 1px solid #E2E8DE;
+  border-radius: 3px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.value-card h3 {
+  color: #111814;
+  margin-bottom: 4px;
+}
+
+.value-card p {
+  color: #5C6A60;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.location-card {
+  padding: 32px;
+  border: 1px solid #E2E8DE;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.location-card h3 {
+  margin-bottom: 16px;
+}
+
+.location-card p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5C6A60;
+}
+
+@media (max-width: 1080px) {
+  .about-grid,
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rashmi-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
