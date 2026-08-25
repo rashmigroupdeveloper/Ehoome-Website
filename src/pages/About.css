@@ -1,179 +1,397 @@
-.about-grid {
+/* Dark Hero Section */
+.about-hero-section {
+  background-color: var(--ink);
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.about-hero-content {
+  display: flex;
+  align-items: center;
+  min-height: 300px;
+}
+
+.about-hero-content h2 {
+  color: var(--paper);
+  font-size: 48px;
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 24px 0;
+}
+
+.about-hero-content p {
+  color: var(--muted-d);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.about-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-d);
+  font-weight: 600;
+}
+
+/* What We Are Section */
+.about-what-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: center;
+  margin-bottom: 64px;
+  align-items: flex-start;
 }
 
-.about-left {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.about-what-left h2 {
+  font-size: 42px;
+  color: var(--text);
+  max-width: 400px;
 }
 
-.about-left h2 {
-  margin-bottom: 8px;
-}
-
-.about-left p {
+.about-what-right {
   font-size: 16px;
-  line-height: 1.8;
-  color: #111814;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
-.about-right {
-  width: 100%;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.about-right img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.rashmi-section {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.rashmi-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.rashmi-tag {
-  display: inline-block;
-  background-color: white;
-  color: #EC1F26;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  font-weight: 600;
+.about-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.rashmi-logo {
-  flex-shrink: 0;
-}
-
-.rashmi-section h2 {
-  color: #111814;
+  color: var(--muted);
+  font-weight: 600;
+  display: block;
   margin-bottom: 12px;
 }
 
-.rashmi-section p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #5C6A60;
-  margin-bottom: 32px;
-}
-
-.rashmi-stats {
+.about-what-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
 }
 
-.stat {
+.about-stat-box {
   padding: 24px;
-  border-top: 3px solid #EC1F26;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
-  border-radius: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background-color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   text-align: center;
 }
 
-.stat-value {
-  font-size: 32px;
-  font-weight: 600;
-  color: #111814;
-  margin-bottom: 8px;
-}
-
-.stat-label {
-  font-size: 13px;
-  color: #5C6A60;
-  font-family: 'IBM Plex Mono', monospace;
+.about-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
 }
 
-.values-grid {
+.about-stat-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.about-stat-box p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.about-badge-box {
+  padding: 24px;
+  border: 1px solid var(--signal);
+  border-radius: var(--radius);
+  background-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+}
+
+.about-pli-badge {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--signal);
+}
+
+.about-badge-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.about-badge-box p {
+  font-size: 12px;
+  color: var(--muted-d);
+  line-height: 1.5;
+}
+
+/* Rashmi Group Section */
+.about-rashmi-section {
+  background-color: var(--paper-2);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.about-rashmi-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin-top: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: flex-start;
 }
 
-.value-card {
-  padding: 32px;
-  border: 1px solid #E2E8DE;
-  border-radius: 3px;
-  background-color: white;
+.about-rashmi-left h2 {
+  font-size: 42px;
+  color: var(--text);
+  max-width: 500px;
+}
+
+.about-rashmi-left p {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.about-rashmi-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.about-rashmi-stat {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border-bottom: 2px solid var(--signal);
+  padding-bottom: 20px;
 }
 
-.value-card h3 {
-  color: #111814;
-  margin-bottom: 4px;
+.about-rashmi-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: 600;
 }
 
-.value-card p {
-  color: #5C6A60;
-  font-size: 14px;
-  line-height: 1.6;
+.about-rashmi-value {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
 }
 
-.locations-grid {
+/* India Section */
+.about-india-section {
+  background-color: var(--ink);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.about-india-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+}
+
+.about-india-section h2 {
+  color: var(--paper);
+  font-size: 42px;
+  line-height: 1.3;
+}
+
+.about-india-section p {
+  color: var(--muted-d);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Two Addresses Section */
+.about-addresses-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 64px;
 }
 
-.location-card {
-  padding: 32px;
-  border: 1px solid #E2E8DE;
-  border-radius: 3px;
-  background-color: white;
+.about-address-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.location-card h3 {
-  margin-bottom: 16px;
+.about-address-image {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
-.location-card p {
+.about-address-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.about-address-card h3 {
+  font-size: 24px;
+  color: var(--text);
+}
+
+.about-address-card p {
   font-size: 15px;
-  line-height: 1.8;
-  color: #5C6A60;
+  color: var(--text);
+  line-height: 1.7;
 }
 
+.about-address-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
+  display: block;
+}
+
+/* Green CTA Section */
+.about-green-cta {
+  background-color: #a4d65e;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-green-cta .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+  align-items: center;
+}
+
+.about-green-cta h2 {
+  color: var(--ink);
+  font-size: 42px;
+  margin: 0;
+}
+
+.about-green-cta p {
+  color: var(--ink);
+  font-size: 16px;
+  margin: 0;
+  max-width: 600px;
+}
+
+.about-cta-button {
+  background-color: var(--ink);
+  color: #a4d65e;
+  padding: 14px 32px;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.about-cta-button:hover {
+  background-color: var(--ink-2);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
 @media (max-width: 1080px) {
-  .about-grid,
-  .locations-grid {
+  .about-what-header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-what-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-rashmi-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-addresses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-content h2 {
+    font-size: 36px;
+  }
+
+  .about-what-stats {
     grid-template-columns: 1fr;
   }
 
-  .values-grid {
-    grid-template-columns: 1fr 1fr;
+  .about-what-header h2 {
+    font-size: 32px;
   }
 
-  .rashmi-stats {
-    grid-template-columns: 1fr;
+  .about-rashmi-left h2 {
+    font-size: 32px;
   }
 }
 
 @media (max-width: 640px) {
-  .values-grid {
+  .about-hero-content h2 {
+    font-size: 28px;
+  }
+
+  .about-what-stats {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-stat-box {
+    padding: 16px;
+  }
+
+  .about-addresses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-what-header {
+    grid-template-columns: 1fr;
+  }
+
+  .about-green-cta h2 {
+    font-size: 32px;
+  }
+
+  .about-india-section h2 {
+    font-size: 32px;
   }
 }

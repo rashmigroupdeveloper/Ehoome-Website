@@ -6,94 +6,148 @@ import './About.css';
 export default function About() {
   return (
     <div>
-      <PageHero title="About eHoome" breadcrumb="Home / About" />
+      <PageHero title="About" breadcrumb="Home / About" />
 
+      {/* Dark Hero Section */}
+      <Section className="about-hero-section">
+        <div className="about-hero-content">
+          <div className="wrap">
+            <span className="about-eyebrow">CORE / ABOUT</span>
+            <h2>An electronics manufacturer built to make India's networks in India.</h2>
+            <p>eHoome IoT Pvt. Ltd. builds telecom devices, FTTH equipment, CPE, Wi-Fi access points and networking switches under the Government of India PLI scheme — part of Rashmi Group.</p>
+          </div>
+        </div>
+      </Section>
+
+      {/* What We Are Section */}
       <Section>
         <div className="wrap">
-          <div className="about-grid">
-            <div className="about-left">
-              <h2>Who We Are</h2>
-              <p>eHoome IoT is a leading electronics manufacturing services provider specializing in precision networking and telecommunications equipment. Based in Noida with operations in key technology hubs across India, we serve global OEMs with end-to-end manufacturing solutions.</p>
-              <p>Our commitment to quality, innovation, and customer success has made us the partner of choice for companies requiring reliable, scalable manufacturing services.</p>
+          <div className="about-what-header">
+            <div className="about-what-left">
+              <span className="about-section-label">THE COMPANY</span>
+              <h2>What we are.</h2>
             </div>
-            <div className="about-right">
-              <img src="https://placehold.co/400x300?text=Manufacturing+Facility" alt="Facility" />
+            <div className="about-what-right">
+              <p>We work as a manufacturing partner rather than a component supplier. We see problems before you commit to a layout, test development during the pre-run, and a programme rather than a shared rework.</p>
+              <p style={{ marginTop: '16px' }}>The plant sits in Sector 83, Noida. We've 300+ SKU across smt, 7-line semi-automatic final test, 60,000 sq ft packing from Kunj, and support 50 and 60 ons here-today.</p>
+            </div>
+          </div>
+
+          <div className="about-what-stats">
+            <div className="about-stat-box">
+              <div className="about-stat-label">Rashmi</div>
+              <div className="about-stat-value">Group</div>
+              <p>Parent company since 2018</p>
+            </div>
+            <div className="about-stat-box">
+              <div className="about-stat-label">Noida</div>
+              <div className="about-stat-value">UP</div>
+              <p>Noida 201301 Phase II</p>
+            </div>
+            <div className="about-stat-box">
+              <div className="about-stat-label">50,000</div>
+              <div className="about-stat-value">sq ft</div>
+              <p>Facility in Noida</p>
+            </div>
+            <div className="about-stat-box">
+              <div className="about-stat-label">350</div>
+              <div className="about-stat-value">ppm</div>
+              <p>Peak assembly rate</p>
+            </div>
+            <div className="about-badge-box">
+              <span className="about-pli-badge">PLI</span>
+              <span className="about-badge-label">Approved</span>
+              <p>DPIIT Manufacturing</p>
             </div>
           </div>
         </div>
       </Section>
 
-      <Section variant="tint">
+      {/* Rashmi Group Section */}
+      <Section className="about-rashmi-section">
         <div className="wrap">
-          <div className="rashmi-section">
-            <div className="rashmi-header">
-              <div className="rashmi-tag">● Rashmi Group company</div>
-              <svg className="rashmi-logo" viewBox="0 0 100 40" width="60" height="24">
-                <text x="10" y="25" fontSize="20" fontWeight="bold" fill="#EC1F26">Rashmi</text>
-              </svg>
+          <div className="about-rashmi-content">
+            <div className="about-rashmi-left">
+              <span className="about-section-label">PARENT COMPANY</span>
+              <h2>The Rashmi Group.</h2>
+              <p>Rashmi Group established and incorporated as a leader in Kolkata and it has grown over fifty years in India's largest sectors of steel casting, rail wheels, cable, the company has built industries across sectors, steel, cast, telecommunications, renewable, energy, e-mobility and more than 25 countries and analysis over 35,000 people across nations.</p>
+              <p style={{ marginTop: '16px' }}>RRG believes from evolution to another India, the group supplies customers in more than 25 countries and analysis over 25,000 people and analysis over 25,000 people across nations.</p>
             </div>
-            <h2>Part of the Rashmi Group</h2>
-            <p>eHoome is a subsidiary of Rashmi Group, a diversified conglomerate with 29 companies across sectors including electronics, telecommunications, and manufacturing. This heritage brings decades of experience, industry expertise, and financial stability to every project we undertake.</p>
-
-            <div className="rashmi-stats">
-              <div className="stat">
-                <div className="stat-value">29</div>
-                <div className="stat-label">Group Companies</div>
+            <div className="about-rashmi-right">
+              <div className="about-rashmi-stat">
+                <span className="about-rashmi-label">REVENUE</span>
+                <span className="about-rashmi-value">$4 bn</span>
               </div>
-              <div className="stat">
-                <div className="stat-value">50+</div>
-                <div className="stat-label">Years of Industry Experience</div>
+              <div className="about-rashmi-stat">
+                <span className="about-rashmi-label">INVESTMENT</span>
+                <span className="about-rashmi-value">$0.96 bn</span>
               </div>
-              <div className="stat">
-                <div className="stat-value">5000+</div>
-                <div className="stat-label">Employees Across Group</div>
+              <div className="about-rashmi-stat">
+                <span className="about-rashmi-label">EMPLOYEES</span>
+                <span className="about-rashmi-value">20,000+</span>
+              </div>
+              <div className="about-rashmi-stat">
+                <span className="about-rashmi-label">GROUP COMPANIES</span>
+                <span className="about-rashmi-value">29</span>
               </div>
             </div>
           </div>
         </div>
       </Section>
 
+      {/* Dark India Section */}
+      <Section className="about-india-section">
+        <div className="wrap">
+          <div className="about-india-content">
+            <div className="about-india-text">
+              <span className="about-section-label">WHY WE EXIST</span>
+              <h2>India designs its networks here. It should build them here too.</h2>
+              <p>We are committed to the Government of India's flagship programmes, Digital India and Make in India, and to the practical version of rural electrification. Telecom hardware manufactured domestically is a standard that global OEMs will accept without a discount for origin.</p>
+              <p style={{ marginTop: '16px' }}>India does compete with companies on the scale and can deliver at cost parity. India must command a 40-50% share in telecom equipment design.</p>
+              <p style={{ marginTop: '16px' }}>Approval manufacturing under the telecom and networking PLI.</p>
+              <p style={{ marginTop: '16px' }}>SMT, assembly, test and packing all performed in India.</p>
+              <p style={{ marginTop: '16px' }}>CE documentation for European bound product.</p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Two Addresses Section */}
       <Section>
         <div className="wrap">
-          <h2>Our Values</h2>
-          <div className="values-grid">
-            <div className="value-card">
-              <h3>Excellence</h3>
-              <p>We pursue the highest standards in every aspect of our operations.</p>
+          <span className="about-section-label">ACROSS INDIA</span>
+          <h2>Two addresses, one company.</h2>
+
+          <div className="about-addresses-grid">
+            <div className="about-address-card">
+              <div className="about-address-image" style={{ backgroundImage: 'url(/assets/img/floor-smt.jpg)' }}></div>
+              <span className="about-address-label">MANUFACTURING PLANT</span>
+              <h3>Noida, Uttar Pradesh</h3>
+              <p>A-13, Sector 83, Phase II, Noida, Uttar Pradesh, India 201301</p>
+              <span className="about-address-meta">86,800 SQ FT | 11+ LINES | ASSEMBLY & TEST</span>
             </div>
-            <div className="value-card">
-              <h3>Innovation</h3>
-              <p>We invest in technology and process improvements continuously.</p>
-            </div>
-            <div className="value-card">
-              <h3>Reliability</h3>
-              <p>Our customers can depend on us to deliver, consistently and on time.</p>
-            </div>
-            <div className="value-card">
-              <h3>Sustainability</h3>
-              <p>We operate with responsibility towards the environment and society.</p>
+
+            <div className="about-address-card">
+              <div className="about-address-image" style={{ backgroundImage: 'url(/assets/img/floor-wide.jpg)' }}></div>
+              <span className="about-address-label">REGISTERED OFFICE</span>
+              <h3>Kolkata, West Bengal</h3>
+              <p>9 AJC Bose Road, 1st Floor, Ideal Centre, Kolkata 700017, West Bengal, India</p>
+              <span className="about-address-meta">HEAD HEADQUARTERS · COMMERCIAL & FINANCE</span>
             </div>
           </div>
         </div>
       </Section>
 
-      <Section>
+      {/* Green CTA Section */}
+      <Section className="about-green-cta">
         <div className="wrap">
-          <h2>Locations</h2>
-          <div className="locations-grid">
-            <div className="location-card">
-              <h3>Noida Plant</h3>
-              <p>A-13, Sector 83, Phase II<br/>Noida 201301, UP<br/>India</p>
-            </div>
-            <div className="location-card">
-              <h3>Registered Office</h3>
-              <p>9 AJC Bose Road, 1st Floor<br/>Ideal Centre<br/>Kolkata 700017, India</p>
-            </div>
-          </div>
+          <h2>Come and see the floor.</h2>
+          <p>Plan ahead and connect with us on-site manufacturing lines in Noida, UP, India.</p>
+          <button className="about-cta-button">Arrange a visit</button>
         </div>
       </Section>
 
-      <CTABand heading="Let's Build Something Great Together" buttonText="Start Enquiry" />
+      <CTABand heading="Let's build electronics, in India, for the world" buttonText="Get in touch" />
     </div>
   );
 }
