@@ -12,28 +12,28 @@ export default function MegaMenu({ isOpen, onClose }) {
   ];
 
   const hardware = [
-    { label: 'UN-MANAGED', image: 'https://placehold.co/200x200?text=Un-Managed+Switch', link: '/products#switches' },
-    { label: 'MANAGED SWITCHES', image: 'https://placehold.co/200x200?text=Managed+Switches', link: '/products/managed-switches' },
-    { label: 'POE', image: 'https://placehold.co/200x200?text=PoE+Switch', link: '/products#switches' },
-    { label: 'SOTTO ROUTER', image: '/assets/img/prod-router.png', link: '/products#cpe' },
-    { label: 'IDU / ODU', image: 'https://placehold.co/200x200?text=IDU+ODU', link: '/products#ftth' },
-    { label: 'MOBILE PHONES', icon: true, link: '#' },
-    { label: 'DISPLAY', icon: true, link: '#' },
-    { label: 'HEARABLES', icon: true, link: '#' },
-    { label: 'PAYMENT SOUND BOX', icon: true, link: '#' },
-    { label: 'PD-QC CHARGERS', image: 'https://placehold.co/200x200?text=Charger', link: '/products#power' },
+    { label: 'UN-MANAGED', image: '/assets/ehome-iot-img/Products/Switch Series/MMS6710-P.jpeg', link: '/products#switches' },
+    { label: 'MANAGED SWITCHES', image: '/assets/ehome-iot-img/Products/Switch Series/MMS6728-P.jpeg', link: '/products/managed-switches' },
+    { label: 'POE', image: '/assets/ehome-iot-img/Products/Home Router Series/AX3000 Router (MWE1024X5).jpeg', link: '/products#switches' },
+    { label: 'SOTTO ROUTER', image: '/assets/ehome-iot-img/Products/Mi-Fi & LTE CPE Series/5G CPE (EC5E422Y).jpeg', link: '/products#cpe' },
+    { label: 'IDU / ODU', image: '/assets/ehome-iot-img/Products/Access Point Series/Wi-Fi6 AP (MAP-M901).jpeg', link: '/products#ftth' },
+    { label: 'MOBILE PHONES', image: '/assets/img/mobile_phone.jpg', link: '/products#phones' },
+    { label: 'DISPLAY', image: '/assets/img/Display.jpg', link: '/products#display' },
+    { label: 'HEARABLES', image: '/assets/img/hearables.jpeg', link: '/products#hearables' },
+    { label: 'PAYMENT SOUND BOX', image: '/assets/img/sound_box.webp', link: '/products#soundbox' },
+    { label: 'PD-QC CHARGERS', image: '/assets/img/prod-charger.png', link: '/products#power' },
   ];
 
   const cloud = [
-    { label: 'CRM', caption: 'Customer relationship mgmt' },
-    { label: 'EMS', caption: 'Expense management system' },
-    { label: 'VBMS', caption: 'Vendor billing mgmt system' },
-    { label: 'WEBSITE DEVELOPMENT', caption: 'Design & build' },
+    { label: 'CRM', caption: 'Customer relationship mgmt', image: '/assets/img/CRM.png', link: '/products#crm' },
+    { label: 'EMS', caption: 'Expense management system', image: '/assets/img/EMS.jpg', link: '/products#ems' },
+    { label: 'VBMS', caption: 'Vendor billing mgmt system', image: '/assets/img/VBMS.png', link: '/products#vbms' },
+    { label: 'WEBSITE DEVELOPMENT', caption: 'Design & build', image: '/assets/img/web-development.jpg', link: '/products#web' },
   ];
 
   const ems = [
-    { label: 'PCB ASSEMBLY', caption: 'SMT · SPI · AOI · X-ray', link: '/what-we-do/pcb-assembly' },
-    { label: 'PRODUCT ASSEMBLY', caption: 'Box build · FATP · packing', link: '/what-we-do' },
+    { label: 'PCB ASSEMBLY', caption: 'SMT · SPI · AOI · X-ray', image: '/assets/ehome-iot-img/Factory View/img_3.jpeg', link: '/what-we-do/pcb-assembly' },
+    { label: 'PRODUCT ASSEMBLY', caption: 'Box build · FATP · packing', image: '/assets/ehome-iot-img/Factory View/img_5.jpeg', link: '/what-we-do' },
   ];
 
   const getGridContent = () => {

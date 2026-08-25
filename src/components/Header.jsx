@@ -1,12 +1,31 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MegaMenu from './MegaMenu';
 import './Header.css';
 
 export default function Header() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const closeTimerRef = useRef(null);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 0;
+      setIsScrolled(scrolled);
+      if (scrolled) {
+        document.documentElement.style.paddingTop = '74px';
+      } else {
+        document.documentElement.style.paddingTop = '0';
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.documentElement.style.paddingTop = '0';
+    };
+  }, []);
 
   const isActive = (path) => location.pathname === path;
 
@@ -30,7 +49,7 @@ export default function Header() {
   };
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <nav className="header-nav">
         <div className="wrap">
           <div className="nav-content">
