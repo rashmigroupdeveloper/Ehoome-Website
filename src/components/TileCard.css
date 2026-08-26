@@ -1,161 +1,136 @@
+/* Tiles sit flush against each other, so no radius, border or outer spacing */
 .tile-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: flex-end;
+  padding: 24px;
+  overflow: hidden;
   text-decoration: none;
-  transition: all var(--transition-base);
-}
-
-.catalog-tile {
   cursor: pointer;
 }
 
-.catalog-tile:hover .tile-image {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--signal);
-}
-
-.tile-image {
-  aspect-ratio: 1 / 1;
-  background-color: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  transition: all var(--transition-base);
-}
-
-.tile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.photo-tile {
-  aspect-ratio: 1 / 1;
+.media-tile {
+  background-color: var(--ink-2);
   background-size: cover;
   background-position: center;
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 0;
-  padding: 24px;
-  transition: all var(--transition-base);
 }
 
-.photo-tile:hover {
-  transform: scale(1.02);
-  box-shadow: inset 0 0 30px rgba(11, 16, 13, 0.15);
-}
-
-.photo-tile:hover .tile-overlay {
-  opacity: 0.65;
+/* Cut-out product shots float on the dark ground rather than being cropped.
+   Sizing by height keeps tall and wide shots at a matching visual weight. */
+.media-tile.is-product {
+  background-color: var(--ink-3);
+  background-size: auto 52%;
+  background-position: center 32%;
+  background-repeat: no-repeat;
 }
 
 .tile-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 16, 13, 0) 0%, rgba(11, 16, 13, 0.7) 100%);
-  z-index: 1;
-  opacity: 0.5;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 16, 13, 0) 25%,
+    rgba(11, 16, 13, 0.55) 60%,
+    rgba(11, 16, 13, 0.92) 100%
+  );
   transition: opacity var(--transition-base);
 }
 
-.photo-tile .tile-footer {
-  position: relative;
-  z-index: 2;
-  gap: 8px;
+.media-tile:hover .tile-overlay {
+  opacity: 0.82;
 }
 
-.tile-footer {
+.tile-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 14px;
 }
 
 .tile-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text);
-}
-
-.photo-tile .tile-label {
+  letter-spacing: 0.05em;
   color: var(--paper);
 }
 
-.tile-link,
 .tile-explore {
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--signal);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--paper);
 }
 
-.photo-tile .tile-explore {
-  color: var(--paper);
+.tile-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 0;
+  transition: all var(--transition-base);
+}
+
+.tile-card:hover .tile-arrow {
+  background-color: var(--signal);
+  border-color: var(--signal);
+  color: var(--ink);
 }
 
 .accent-tile {
   background-color: var(--signal);
   color: var(--ink);
-  padding: 40px 24px;
-  border-radius: var(--radius);
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 200px;
-  cursor: pointer;
-  position: relative;
-  gap: 16px;
-  transition: all var(--transition-base);
-  box-shadow: 0 4px 20px rgba(146, 232, 18, 0.2);
-}
-
-.accent-tile:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(146, 232, 18, 0.3);
 }
 
 .accent-tile .tile-label {
-  font-family: var(--font-display);
   font-size: 18px;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
 .accent-tile .tile-explore {
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 14px;
+}
+
+.accent-tile .tile-arrow {
+  background-color: rgba(11, 16, 13, 0.12);
+  border-color: rgba(11, 16, 13, 0.32);
+}
+
+.accent-tile:hover .tile-arrow {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--signal);
 }
 
 @media (max-width: 640px) {
   .tile-card {
-    gap: 8px;
-  }
-
-  .photo-tile {
-    padding: 16px;
+    padding: 18px;
   }
 
   .tile-label {
-    font-size: 9px;
+    font-size: 13px;
   }
 
-  .tile-link,
-  .tile-explore {
-    font-size: 11px;
+  .tile-arrow {
+    width: 24px;
+    height: 24px;
   }
 }

@@ -57,31 +57,34 @@ export default function Home() {
       </Section>
 
       {/* Precision Grid Section */}
-      <Section>
-        <div className="wrap">
-          <div className="precision-grid">
-            <div className="precision-left">
+      <Section className="precision-section">
+        <div className="precision-grid">
+          <div className="precision-left">
+            <div className="precision-intro">
               <div className="eyebrow">Precision at scale</div>
               <h2>Precision and performance in every build<span className="flourish-period">.</span></h2>
               <p>We combine cutting-edge manufacturing techniques with rigorous quality control to deliver networking products and services that meet the highest standards. From PCB assembly to final product delivery, every step is optimized for precision and performance.</p>
-              <div className="button-group">
-                <Link to="/about" className="outline-button">Our story →</Link>
-                <Link to="/contact" className="outline-button">Contact us →</Link>
-              </div>
             </div>
+            <div className="button-group">
+              <Link to="/about" className="stack-button is-solid">
+                Our story
+                <span className="stack-arrow" aria-hidden="true">→</span>
+              </Link>
+              <Link to="/contact" className="stack-button">Contact us</Link>
+            </div>
+          </div>
 
-            <div className="precision-right">
-              <div className="tile-grid">
-                <TileCard variant="catalog" label="SWITCHES" image="/assets/img/prod-switch2.png" link="/products#switches" />
-                <TileCard variant="catalog" label="FTTH" image="/assets/img/prod-olt.png" link="/products#ftth" />
-                <TileCard variant="catalog" label="ROUTER & CPE" image="/assets/img/prod-router.png" link="/products#cpe" />
-                <TileCard variant="photo" label="PCB ASSEMBLY" image="/assets/img/mach-mounter.jpg" link="/what-we-do/pcb-assembly" />
-                <TileCard variant="catalog" label="ACCESS POINTS" image="/assets/img/prod-ap2.png" link="/products#ap" />
-                <TileCard variant="photo" label="PRODUCT ASSEMBLY" image="/assets/img/floor-assembly.jpg" link="/what-we-do" />
-                <TileCard variant="catalog" label="PD CHARGERS" image="/assets/img/prod-charger.png" link="/products#power" />
-                <TileCard variant="photo" label="QUALITY & TEST" image="/assets/img/mach-aoi.jpg" link="/quality" />
-                <TileCard variant="accent" label="What We Do" link="/what-we-do">View all</TileCard>
-              </div>
+          <div className="precision-right">
+            <div className="tile-grid">
+              <TileCard variant="product" label="SWITCHES" image="/assets/img/prod-switch2.png" link="/products#switches" />
+              <TileCard variant="product" label="FTTH" image="/assets/img/prod-olt.png" link="/products#ftth" />
+              <TileCard variant="product" label="ROUTER & CPE" image="/assets/img/prod-ont.png" link="/products#cpe" />
+              <TileCard label="PCB ASSEMBLY" image="/assets/img/mach-mounter.jpg" link="/what-we-do/pcb-assembly" />
+              <TileCard variant="product" label="ACCESS POINTS" image="/assets/img/prod-ap2.png" link="/products#ap" />
+              <TileCard label="PRODUCT ASSEMBLY" image="/assets/img/floor-assembly.jpg" link="/what-we-do" />
+              <TileCard variant="product" label="PD CHARGERS" image="/assets/img/prod-charger.png" link="/products#power" />
+              <TileCard label="QUALITY & TEST" image="/assets/img/mach-aoi.jpg" link="/quality" />
+              <TileCard variant="accent" label="What We Do" link="/what-we-do">View all</TileCard>
             </div>
           </div>
         </div>
