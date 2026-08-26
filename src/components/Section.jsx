@@ -1,8 +1,8 @@
 import './Section.css';
 
-export default function Section({ children, variant = 'default', className = '' }) {
+export default function Section({ children, variant = 'default', className = '', id }) {
   return (
-    <section className={`section section-${variant} ${className}`}>
+    <section id={id} className={`section section-${variant} ${className}`}>
       {children}
     </section>
   );
