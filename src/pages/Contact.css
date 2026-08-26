@@ -1,138 +1,280 @@
-.contact-grid {
+.enq-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal-ink);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Grid */
+.enq-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 64px;
   align-items: flex-start;
 }
 
-.contact-form-section h2,
-.contact-info-section h2 {
+/* Form column */
+.enq-form-col h2 {
+  font-size: 32px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.enq-form-intro {
+  font-size: 15px;
+  color: var(--muted);
   margin-bottom: 32px;
 }
 
-.info-cards {
+.enq-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 40px;
 }
 
-.info-card {
-  padding: 24px;
-  border: 1px solid #E2E8DE;
-  border-radius: 3px;
-  background-color: #F4F7F1;
+.enq-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
-.info-card h4 {
-  margin-bottom: 12px;
-  color: #111814;
+.enq-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.info-card p {
+.enq-field label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.enq-field input,
+.enq-field select,
+.enq-field textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
   font-size: 14px;
-  color: #5C6A60;
-  line-height: 1.6;
+  background-color: var(--paper);
+  color: var(--text);
+  transition: all var(--transition-base);
+}
+
+.enq-field input::placeholder,
+.enq-field textarea::placeholder {
+  color: var(--muted-d);
+}
+
+.enq-field input:focus,
+.enq-field select:focus,
+.enq-field textarea:focus {
+  outline: none;
+  border-color: var(--signal-ink);
+}
+
+.enq-field textarea {
+  resize: vertical;
+}
+
+.enq-attachments {
+  padding-top: 8px;
+}
+
+.enq-attachments-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  display: block;
   margin-bottom: 8px;
 }
 
-.info-card a {
-  color: #92E812;
-  text-decoration: none;
-  font-weight: 500;
+.enq-attachments p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 560px;
 }
 
-.info-card a:hover {
-  color: #5E9C08;
+.enq-submit {
+  background-color: var(--ink);
+  color: var(--paper);
+  padding: 16px 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  width: fit-content;
 }
 
-.what-happens {
-  padding-top: 32px;
-  border-top: 1px solid #E2E8DE;
+.enq-submit:hover {
+  background-color: var(--ink-2);
+  transform: translateY(-2px);
 }
 
-.what-happens h4 {
-  margin-bottom: 16px;
-  color: #111814;
-}
-
-.what-happens ol {
-  list-style: none;
-  counter-reset: step-counter;
+/* Side column */
+.enq-side-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-left: 0;
+  gap: 24px;
 }
 
-.what-happens li {
-  counter-increment: step-counter;
-  position: relative;
-  padding-left: 32px;
+.enq-side-card {
+  padding: 24px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.enq-side-card h4 {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.enq-side-card p {
   font-size: 14px;
-  color: #5C6A60;
+  color: var(--muted);
   line-height: 1.6;
 }
 
-.what-happens li::before {
-  content: counter(step-counter);
-  position: absolute;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  background-color: #92E812;
-  color: #111814;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
+.enq-side-card a {
+  font-family: var(--font-mono);
   font-size: 12px;
-}
-
-.secondary-contacts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.secondary-card {
-  padding: 32px;
-  background-color: white;
-  border: 1px solid #E2E8DE;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.secondary-card h3 {
-  color: #111814;
-  margin-bottom: 4px;
-}
-
-.secondary-card p {
-  font-size: 14px;
-  color: #5C6A60;
-}
-
-.secondary-card a {
-  color: #92E812;
+  letter-spacing: 0.04em;
+  color: var(--signal-ink);
   font-weight: 600;
   text-decoration: none;
 }
 
-.secondary-card a:hover {
-  color: #5E9C08;
+.enq-side-card a:hover {
+  color: var(--moss);
 }
 
+.enq-side-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal-ink);
+  font-weight: 600;
+}
+
+.enq-next-card {
+  padding: 24px;
+  background-color: var(--paper-2);
+  border-radius: var(--radius);
+}
+
+.enq-next-card h4 {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.enq-next-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.enq-next-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.enq-next-index {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.enq-next-index::after {
+  content: '—';
+  margin-left: 10px;
+  color: var(--muted-d);
+}
+
+/* Secondary contacts */
+.enq-secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+.enq-secondary-card h3 {
+  font-size: 26px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.enq-secondary-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 460px;
+  margin-bottom: 16px;
+}
+
+.enq-secondary-card a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--signal-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.enq-secondary-card a:hover {
+  color: var(--moss);
+}
+
+/* Responsive */
 @media (max-width: 1080px) {
-  .contact-grid,
-  .secondary-contacts {
+  .enq-grid {
     grid-template-columns: 1fr;
+    gap: 48px;
   }
 
-  .contact-grid {
+  .enq-secondary-grid {
+    grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .enq-form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .enq-form-col h2 {
+    font-size: 26px;
+  }
+
+  .enq-submit {
+    width: 100%;
+    text-align: center;
   }
 }
