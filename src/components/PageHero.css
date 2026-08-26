@@ -75,7 +75,7 @@
   background: var(--signal);
   color: var(--ink);
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -91,7 +91,7 @@
   border: 1px solid var(--signal);
   color: var(--signal);
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
