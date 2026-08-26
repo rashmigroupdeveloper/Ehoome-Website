@@ -12,16 +12,16 @@ export default function MegaMenu({ isOpen, onClose }) {
   ];
 
   const hardware = [
-    { label: 'UN-MANAGED', image: '/assets/ehome-iot-img/Products/Switch Series/MMS6710-P.jpeg', link: '/products#switches' },
+    { label: 'UN-MANAGED', image: '/assets/ehome-iot-img/Products/Switch Series/MMS6710-P.jpeg', link: '/products/un-managed' },
     { label: 'MANAGED SWITCHES', image: '/assets/ehome-iot-img/Products/Switch Series/MMS6728-P.jpeg', link: '/products/managed-switches' },
-    { label: 'POE', image: '/assets/ehome-iot-img/Products/Home Router Series/AX3000 Router (MWE1024X5).jpeg', link: '/products#switches' },
-    { label: 'SOTTO ROUTER', image: '/assets/ehome-iot-img/Products/Mi-Fi & LTE CPE Series/5G CPE (EC5E422Y).jpeg', link: '/products#cpe' },
-    { label: 'IDU / ODU', image: '/assets/ehome-iot-img/Products/Access Point Series/Wi-Fi6 AP (MAP-M901).jpeg', link: '/products#ftth' },
-    { label: 'MOBILE PHONES', image: '/assets/img/mobile_phone.jpg', link: '/products#phones' },
-    { label: 'DISPLAY', image: '/assets/img/Display.jpg', link: '/products#display' },
-    { label: 'HEARABLES', image: '/assets/img/hearables.jpeg', link: '/products#hearables' },
-    { label: 'PAYMENT SOUND BOX', image: '/assets/img/sound_box.webp', link: '/products#soundbox' },
-    { label: 'PD-QC CHARGERS', image: '/assets/img/prod-charger.png', link: '/products#power' },
+    { label: 'POE', image: '/assets/ehome-iot-img/Products/Home Router Series/AX3000 Router (MWE1024X5).jpeg', link: '/products/poe' },
+    { label: 'SOTTO ROUTER', image: '/assets/ehome-iot-img/Products/Mi-Fi & LTE CPE Series/5G CPE (EC5E422Y).jpeg', link: '/products/sotto-router' },
+    { label: 'IDU / ODU', image: '/assets/ehome-iot-img/Products/Access Point Series/Wi-Fi6 AP (MAP-M901).jpeg', link: '/products/idu-odu' },
+    { label: 'MOBILE PHONES', image: '/assets/img/mobile_phone.jpg', link: '/products/mobile-phones' },
+    { label: 'DISPLAY', image: '/assets/img/Display.jpg', link: '/products/display' },
+    { label: 'HEARABLES', image: '/assets/img/hearables.jpeg', link: '/products/hearables' },
+    { label: 'PAYMENT SOUND BOX', image: '/assets/img/sound_box.webp', link: '/products/payment-sound-box' },
+    { label: 'PD-QC CHARGERS', image: '/assets/img/prod-charger.png', link: '/products/pd-qc-chargers' },
   ];
 
   const cloud = [

@@ -6,7 +6,7 @@ import WhatWeDo from './pages/WhatWeDo';
 import PCBAssembly from './pages/PCBAssembly';
 import Capabilities from './pages/Capabilities';
 import Products from './pages/Products';
-import ManagedSwitches from './pages/ManagedSwitches';
+import ProductDetail from './pages/ProductDetail';
 import Quality from './pages/Quality';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -25,7 +25,7 @@ function App() {
             <Route path="/what-we-do/pcb-assembly" element={<PCBAssembly />} />
             <Route path="/capabilities" element={<Capabilities />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/managed-switches" element={<ManagedSwitches />} />
+            <Route path="/products/:slug" element={<ProductDetail />} />
             <Route path="/quality" element={<Quality />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

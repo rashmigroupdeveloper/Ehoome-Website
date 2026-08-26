@@ -27,7 +27,7 @@ export default function TileCard({
     <Element
       href={link || '#'}
       className={`tile-card media-tile${variant === 'product' ? ' is-product' : ''}`}
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url("${image}")` }}
     >
       <div className="tile-overlay"></div>
       <div className="tile-body">
