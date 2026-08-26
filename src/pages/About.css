@@ -344,7 +344,7 @@
   background-size: cover;
   background-position: center;
   background-color: var(--ink-2);
-  border-radius: 0 96px 0 0;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -465,7 +465,7 @@
   }
 
   .about-address-image {
-    border-radius: 0 56px 0 0;
+    border-radius: 0;
   }
 
   .about-green-cta h2 {

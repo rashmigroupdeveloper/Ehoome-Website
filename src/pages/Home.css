@@ -514,7 +514,7 @@
   color: var(--rashmi);
   font-weight: 600;
   border: 1px solid var(--rashmi);
-  border-radius: 20px;
+  border-radius: 0;
   padding: 6px 14px;
   display: inline-flex;
   align-items: center;
