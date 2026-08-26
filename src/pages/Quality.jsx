@@ -1,210 +1,229 @@
 import Section from '../components/Section';
 import PageHero from '../components/PageHero';
-import CTABand from '../components/CTABand';
 import './Quality.css';
+
+const TIMELINE = [
+  {
+    n: '01',
+    title: 'Supplier audit',
+    text: 'Vendors are audited and held to a material inspection standard agreed with you before the first shipment.',
+    owner: 'SQE',
+    output: 'approved vendor list',
+  },
+  {
+    n: '02',
+    title: 'Incoming inspection — IQC',
+    text: 'Material waits in a holding area until inspected. Passed stock moves to the OK warehouse; the rest follows the rejection flow.',
+    owner: 'IQC',
+    output: 'inspection record per lot',
+  },
+  {
+    n: '03',
+    title: 'Process control — PQC',
+    text: 'Critical control points at assembly and test, with in-line data captured by MES rather than a clipboard.',
+    owner: 'PQC',
+    output: 'CCP data per unit',
+  },
+  {
+    n: '04',
+    title: 'Final & outgoing — FQC / OQC',
+    text: 'Finished goods inspected against SOP and your requirement before packing, then again before dispatch.',
+    owner: 'CQE',
+    output: 'lot release report',
+  },
+  {
+    n: '05',
+    title: 'Customer inspection',
+    text: 'Your team or your agent inspects to the quality agreement. Findings run through an agreed handling flow chart.',
+    owner: 'Joint',
+    output: 'acceptance record',
+  },
+  {
+    n: '06',
+    title: 'Field returns',
+    text: 'Returns are analysed, repaired where economic, and the root cause fed back to the responsible stage.',
+    owner: 'PQE',
+    output: '8D / corrective action',
+  },
+];
+
+const GATES = [
+  {
+    n: '01',
+    title: 'IQC',
+    text: 'Incoming material against supplier standard and your requirement.',
+    checks: ['Waiting inspection area', 'Segregated OK warehouse', 'Documented rejection flow'],
+  },
+  {
+    n: '02',
+    title: 'In-process',
+    text: 'SPI, AOI and X-ray on the board; CCP checks at assembly and test.',
+    checks: ['3D SPI on every pad', 'AOI pre/post reflow', 'X-ray on hidden joints'],
+  },
+  {
+    n: '03',
+    title: 'FQC',
+    text: 'Finished unit inspected to SOP before the packing process.',
+    checks: ['Cosmetic and functional check', 'Label and artwork check', 'Accessory completeness'],
+  },
+  {
+    n: '04',
+    title: 'OQC',
+    text: 'Sampling on packed cartons before the lot is released for transport.',
+    checks: ['Sampling per agreed AQL', 'Serial data verified', 'Lot release report'],
+  },
+];
+
+const CERTS = [
+  { image: '/assets/img/cert-iso2.jpg', label: 'ISO 9001 : 2015', sub: 'quality management' },
+  { image: '/assets/img/cert-iso1.jpg', label: 'ISO 14001 : 2015', sub: 'environmental management' },
+  { image: '/assets/img/cert-iso3.jpg', label: 'ESD S20.20 : 2014', sub: 'electrostatic discharge control' },
+  { image: '/assets/img/cert-tec.jpg', label: 'TEC type approval', sub: 'Government of India' },
+  { image: '/assets/img/cert-ce.jpg', label: 'CE declaration', sub: 'conformity assessment' },
+  { image: '/assets/img/cert-pli.jpg', label: 'PLI scheme approval', sub: 'telecom & networking' },
+];
+
+const AFTER_SALES = [
+  { label: 'Repair', text: 'After-sales repair service for units in warranty' },
+  { label: 'Analysis', text: 'Rejection analysis traced to station and lot' },
+  { label: 'Corrective action', text: 'Fed back to the responsible process owner' },
+  { label: 'Reporting', text: 'Periodic field quality reporting to your team' },
+];
 
 export default function Quality() {
   return (
     <div>
-      <PageHero title="Quality & Certifications" breadcrumb="Home / Quality" />
+      <PageHero
+        breadcrumb="Home / Quality"
+        title="Four gates, one standard: the one written into your agreement."
+        subtitle="Quality here is a documented flow with named owners — SQE on the supply side, PQE in process, CQE facing the customer — not a slogan on the wall."
+      />
 
-      {/* Dark Hero Section */}
-      <Section className="qual-hero-section">
-        <div className="qual-hero-content">
-          <div className="wrap">
-            <h2>Four gates, one standard: the one written into your agreement.</h2>
-            <p>Quality here is a documented flow with internal records — SQA on the supply side, PQC in process, OQC handing the customer — and a trigger on the side.</p>
-          </div>
+      <nav className="qual-subnav">
+        <div className="wrap qual-subnav-inner">
+          <a href="#quality-flow">Quality Flow</a>
+          <a href="#four-gates">The Four Gates</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#after-sales">After-Sales</a>
         </div>
-      </Section>
+      </nav>
 
-      {/* Quality Gates Flow */}
-      <Section>
+      {/* Quality Flow */}
+      <Section id="quality-flow">
         <div className="wrap">
           <div className="qual-flow-header">
             <div>
-              <h2>From supplier audit to end user, in sequence.</h2>
+              <span className="qual-section-label">Quality Flow</span>
+              <h2>From supplier audit to end user, in one chain.</h2>
             </div>
             <div>
-              <p>Every single item an inspection standard, a inspection baseline flow chart, and a routed back to the person who can fix the same before the next production.</p>
+              <p>Every stage has an inspection standard, a rejection-handling flow chart, and a route back to the person who can fix the cause rather than the symptom.</p>
             </div>
           </div>
 
           <div className="qual-timeline">
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">01</div>
-              <div className="qual-timeline-content">
-                <h3>Supplier audit</h3>
-                <p>Validate supplier and verify to external inspection standard signed with you from the supplier.</p>
-                <span className="qual-timeline-meta">Scope: SQA</span>
-                <span className="qual-timeline-meta">Interval: Quarterly per SoA</span>
+            {TIMELINE.map((step) => (
+              <div className="qual-timeline-item" key={step.n}>
+                <div className="qual-timeline-marker">{step.n}</div>
+                <div className="qual-timeline-content">
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+                <div className="qual-timeline-meta">
+                  <span><strong>Owner:</strong> {step.owner}</span>
+                  <span><strong>Output:</strong> {step.output}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">02</div>
-              <div className="qual-timeline-content">
-                <h3>Incoming inspection — IQC</h3>
-                <p>Inspect a fixed n-value sample per shipment, reject if c &gt; 0 for critical, c &lt;= 1 for major.</p>
-                <span className="qual-timeline-meta">Scope: QA / supply</span>
-                <span className="qual-timeline-meta">Interval: Per-receipt, on arrival</span>
-              </div>
-            </div>
-
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">03</div>
-              <div className="qual-timeline-content">
-                <h3>Process control — PQC</h3>
-                <p>Sample from each run and sample per lot. Reject the run if c &gt; 0 on line and escalate to engineering.</p>
-                <span className="qual-timeline-meta">Scope: QA / line</span>
-                <span className="qual-timeline-meta">Interval: Per-run per each hour</span>
-              </div>
-            </div>
-
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">04</div>
-              <div className="qual-timeline-content">
-                <h3>Final & staging — FQC / OQC</h3>
-                <p>Functional and cosmetic audit at final test before carton seal, then 100% barcode on outgoing.</p>
-                <span className="qual-timeline-meta">Scope: QA / staging</span>
-                <span className="qual-timeline-meta">Interval: Per-stage, pre-shipment</span>
-              </div>
-            </div>
-
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">05</div>
-              <div className="qual-timeline-content">
-                <h3>Customer inspection</h3>
-                <p>Bring an agreed holding time to the sample and agreement. Findings go back to MES and to engineering log.</p>
-                <span className="qual-timeline-meta">Scope: Customer / field</span>
-                <span className="qual-timeline-meta">Interval: On receipt, agreed SLA</span>
-              </div>
-            </div>
-
-            <div className="qual-timeline-item">
-              <div className="qual-timeline-marker">06</div>
-              <div className="qual-timeline-content">
-                <h3>Field returns</h3>
-                <p>Track all RMA and return requests; feed data to NR trend analysis and corrective actions to the line.</p>
-                <span className="qual-timeline-meta">Scope: QA / field</span>
-                <span className="qual-timeline-meta">Interval: Post-warranty period</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Where Bad Units Get Stopped */}
-      <Section className="qual-stopped-section">
+      {/* The Four Gates */}
+      <Section id="four-gates" variant="tint">
         <div className="wrap">
+          <span className="qual-section-label">The Four Gates</span>
           <h2>Where a bad unit gets stopped.</h2>
 
-          <div className="qual-stopped-grid">
-            <div className="qual-stopped-item">
-              <div className="qual-stopped-label">DEFECTS IN</div>
-              <div className="qual-stopped-number">5572</div>
-              <div className="qual-stopped-unit">IQC</div>
-              <p>Supplier components and minor cosmetics shipped to rework staging.</p>
-            </div>
-
-            <div className="qual-stopped-item">
-              <div className="qual-stopped-label">IN-PROCESS</div>
-              <div className="qual-stopped-number">6574</div>
-              <div className="qual-stopped-unit">PQC</div>
-              <p>In-line rejects and scrap, routed to engineering for root-cause review.</p>
-            </div>
-
-            <div className="qual-stopped-item">
-              <div className="qual-stopped-label">FQC</div>
-              <div className="qual-stopped-number">2472</div>
-              <div className="qual-stopped-unit">PDC</div>
-              <p>Cosmetic and functional rejects before staging and shipment — rework run.</p>
-            </div>
-
-            <div className="qual-stopped-item">
-              <div className="qual-stopped-label">FIELD</div>
-              <div className="qual-stopped-number">347</div>
-              <div className="qual-stopped-unit">RMA</div>
-              <p>Warranty claims and customer field data returned to quality and engineering desk.</p>
-            </div>
+          <div className="qual-gates-grid">
+            {GATES.map((gate) => (
+              <div className="qual-gate-card" key={gate.n}>
+                <span className="qual-gate-tag">Gate {gate.n}</span>
+                <h3>{gate.title}</h3>
+                <p>{gate.text}</p>
+                <ul className="qual-gate-checks">
+                  {gate.checks.map((check) => (
+                    <li key={check}>{check}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Paperwork Section */}
-      <Section>
+      {/* Certifications */}
+      <Section id="certifications">
         <div className="wrap">
+          <span className="qual-section-label">Certifications</span>
           <h2>The paperwork, available on request.</h2>
-          <p className="qual-paperwork-intro">Management system certifications cover the plant. TCs and CoCs (as applicable) travel with each product. ITP and test reports available on demand and stored in MES.</p>
+          <p className="qual-paperwork-intro">Management-system certificates cover the plant; TEC and CE files are held per product. We will send current copies with an NDA in place.</p>
 
           <div className="qual-docs-grid">
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-iso1.jpg)' }}></div>
-              <span className="qual-doc-label">ISO 9001</span>
-            </div>
-
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-iso2.jpg)' }}></div>
-              <span className="qual-doc-label">ISO 14001</span>
-            </div>
-
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-iso3.jpg)' }}></div>
-              <span className="qual-doc-label">ISO 45001</span>
-            </div>
-
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-ce.jpg)' }}></div>
-              <span className="qual-doc-label">CE Mark</span>
-            </div>
-
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-tec.jpg)' }}></div>
-              <span className="qual-doc-label">TEC Cert</span>
-            </div>
-
-            <div className="qual-doc-card">
-              <span className="qual-doc-badge">On File</span>
-              <div className="qual-doc-image" style={{ backgroundImage: 'url(/assets/img/cert-pli.jpg)' }}></div>
-              <span className="qual-doc-label">PLI Approved</span>
-            </div>
+            {CERTS.map((cert) => (
+              <div className="qual-doc-card" key={cert.label}>
+                <span className="qual-doc-badge">On File</span>
+                <div className="qual-doc-image" style={{ backgroundImage: `url(${cert.image})` }}></div>
+                <div className="qual-doc-text">
+                  <span className="qual-doc-label">{cert.label}</span>
+                  <span className="qual-doc-sub">{cert.sub}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Dark Relationship Section */}
-      <Section className="qual-relationship-section">
+      {/* After-Sales */}
+      <Section id="after-sales" variant="dark">
         <div className="wrap">
           <div className="qual-relationship-content">
             <div className="qual-relationship-text">
+              <span className="qual-section-label is-dark">After-Sales</span>
               <h2>The relationship does not end at the loading bay.</h2>
-              <p>Plastic shipment has built up with us after boarding; there is active and two fold work getting the shipment and the load and pick is in the box and every unit is tagged for warranty.</p>
-              <p style={{ marginTop: '16px' }}>Field batch records are taken in phase and we capture in month of arrival. Problem possible routed to the facility to understand why, correct and confirm.</p>
-              <p style={{ marginTop: '16px' }}>Periodic audit reports are sent to vendors for visibility on assembly and test data.</p>
-              <p style={{ marginTop: '16px' }}>Periodic field support records by your team.</p>
+              <p>Repair, rejection analysis and corrective action are part of the service, and the MES record from the original build is what makes them quick.</p>
+
+              <dl className="qual-relationship-table">
+                {AFTER_SALES.map((row) => (
+                  <div className="qual-relationship-row" key={row.label}>
+                    <dt>{row.label}</dt>
+                    <dd>{row.text}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
             <div className="qual-relationship-image">
-              <div className="qual-relationship-visual"></div>
+              <div
+                className="qual-relationship-visual"
+                style={{ backgroundImage: 'url(/assets/ehome-iot-img/Factory View/img_11.jpeg)' }}
+              >
+                <span className="qual-relationship-tag">Test &amp; repair bench</span>
+              </div>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Green CTA Section */}
-      <Section className="qual-green-cta">
-        <div className="wrap">
-          <h2>Need our certificates for a vendor onboarding?</h2>
-          <p>Complete quality documentation and audit trails available for your compliance requirements.</p>
-          <button className="qual-cta-button">Request documents</button>
+      {/* Green CTA */}
+      <section className="qual-green-cta">
+        <div className="wrap qual-green-cta-inner">
+          <div>
+            <h2>Need our certificates for a vendor onboarding?</h2>
+            <p>Tell us which ones your procurement team needs and we will send the current copies.</p>
+          </div>
+          <a href="/contact" className="qual-cta-button">Request documents →</a>
         </div>
-      </Section>
-
-      <CTABand heading="Quality is Built In, Not Tested In" buttonText="Get in touch" />
+      </section>
     </div>
   );
 }

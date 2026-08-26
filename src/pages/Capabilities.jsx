@@ -1,220 +1,272 @@
 import Section from '../components/Section';
 import PageHero from '../components/PageHero';
-import CTABand from '../components/CTABand';
 import './Capabilities.css';
+
+const LINES = [
+  {
+    tag: 'SMT',
+    count: '2 lines',
+    text: 'Back-to-back with dual-lane conveyors, identically configured for programme portability.',
+    checks: ['13 mounter modules per line', 'Nitrogen reflow', 'SPI, AOI, X-ray'],
+  },
+  {
+    tag: 'MI / DIP',
+    count: '2 lines',
+    text: 'Through-hole insertion, wave soldering and manual touch-up for connectors and magnetics.',
+    checks: ['Wave solder', 'Selective touch-up', 'In-line TRC gate'],
+  },
+  {
+    tag: 'FATP',
+    count: '7 lines',
+    text: 'Final assembly, provisioning, ageing, testing and packing to retail or bulk.',
+    checks: ['Firmware & MAC write', 'Powered ageing', 'Retail packing'],
+  },
+  {
+    tag: 'QUALITY',
+    count: '4 gates',
+    text: 'IQC on incoming, PQC in process, FQC before packing, OQC before dispatch.',
+    checks: ['Supplier audit & SQE', 'Rejection flow charts', 'Customer inspection'],
+  },
+];
+
+const CAPACITY_COLUMNS = ['SMT', 'MI', 'Assembly', 'Switch testing', 'Packing'];
+const CAPACITY_ROWS = [
+  { label: 'Lines available', values: ['2', '2', '1', '1', '1'] },
+  { label: 'Production per day', values: ['4,500', '4,500', '3,000', '2,500', '2,500'] },
+  { label: 'Production per month', values: ['117,000', '117,000', '78,000', '65,000', '65,000'] },
+];
+
+const CAPACITY_STATS = [
+  { label: 'Floor area', value: '50,000', unit: 'sq ft', text: 'Single production building' },
+  { label: 'Workforce', value: '350', unit: '+', text: 'Across shifts' },
+  { label: 'Mixed capacity', value: '450K', unit: '/month', text: 'Units, all product families' },
+  { label: 'Components', value: '9M', unit: '/day', text: 'Placed at full utilisation' },
+  { label: 'Utilisation', value: '3', unit: 'shifts', text: 'Available for ramp periods', highlight: true },
+];
+
+const MACHINERY = [
+  { image: '/assets/img/mach-mounter.jpg', label: 'Fuji NXT III high-speed mounters' },
+  { image: '/assets/img/mach-printer.jpg', label: 'GKG PCB paste printer' },
+  { image: '/assets/img/mach-reflow.jpg', label: 'JT-1040 13-zone nitrogen reflow' },
+  { image: '/assets/img/mach-aoi.jpg', label: '3D AOI appearance inspection' },
+  { image: '/assets/img/mach-xray.jpg', label: 'X-ray inspection system' },
+  { image: '/assets/img/mach-router.jpg', label: 'PCB routing machine' },
+  { image: '/assets/img/floor-line.jpg', label: 'FATP assembly line' },
+  { image: '/assets/ehome-iot-img/Factory View/img_1.jpeg', label: 'Plant, Sector 83, Noida' },
+];
+
+const TESTING = [
+  {
+    title: 'Electrical & functional',
+    checks: ['Functional test benches', 'Intelligent first-piece test', 'PoE load testing, all ports', 'Throughput and traffic test'],
+    image: '/assets/img/test-rf.jpg',
+    caption: 'RF calibration bench',
+  },
+  {
+    title: 'RF & optical',
+    checks: ['Fully automated RF testing', 'RF calibration', 'BOSA calibration for PON', 'Two-dimensional detection'],
+    image: '/assets/img/test-bosa.jpg',
+    caption: 'BOSA calibration',
+  },
+  {
+    title: 'Environmental & structural',
+    checks: ['High and low temperature', 'Waterproof and airtight test', '2D/3D AOI, SPI, 3D X-ray', 'ROI/IS analysis'],
+    image: '/assets/img/test-poe.jpg',
+    caption: 'PoE load tester',
+  },
+];
+
+const MES_ROWS = [
+  { label: 'Order setup', text: 'Central planning creates orders across own and outsourced plants' },
+  { label: 'Identifiers', text: 'IMEI, MEID and MAC keyed and auto-assigned per order' },
+  { label: 'Routing', text: 'Shop orders bound to lines and workstations' },
+  { label: 'Poka-yoke', text: 'BOM-driven material checks at each station' },
+  { label: 'Release', text: 'QA verifies serial data before finished goods' },
+];
 
 export default function Capabilities() {
   return (
     <div>
-      <PageHero title="Capabilities & Infrastructure" subtitle="World-class manufacturing infrastructure" breadcrumb="Home / Capabilities" />
+      <PageHero
+        breadcrumb="Home / Capabilities"
+        title="50,000 sq ft in Noida, laid out for one job: telecom hardware at volume."
+        subtitle="Eleven production lines, an in-house MES, a full test laboratory and 350 people across shifts. Here is what is in the building and what it can produce."
+      />
 
-      {/* Hero Section */}
-      <Section className="cap-hero-section">
-        <div className="cap-hero-content">
-          <div className="wrap">
-            <div className="cap-hero-text">
-              <h2>50,000 sq ft in Noida, laid out for one job: telecom hardware at volume.</h2>
-              <p>Eighty production souls, six nations' best in class SMT-EMS, and 100 people across shifts: here is the building and what it can produce.</p>
-            </div>
-          </div>
+      <nav className="cap-subnav">
+        <div className="wrap cap-subnav-inner">
+          <a href="#lines">Lines</a>
+          <a href="#capacity">Capacity</a>
+          <a href="#equipment">Equipment</a>
+          <a href="#test-laboratory">Test Laboratory</a>
+          <a href="#mes">MES</a>
         </div>
-      </Section>
+      </nav>
 
-      {/* Eleven Lines Section */}
-      <Section>
+      {/* Lines */}
+      <Section id="lines">
         <div className="wrap">
-          <div className="cap-intro">
-            <h2>Eleven lines, three technologies, one flow.</h2>
-            <p>Integrated hardware engineering for networks and industrial automation, end-to-end.</p>
+          <div className="cap-flow-header">
+            <div>
+              <span className="cap-section-label">Lines</span>
+              <h2>Eleven lines, three technologies, one flow.</h2>
+            </div>
+            <div>
+              <p>SMT feeds MI, MI feeds final assembly. Nothing leaves the building between stages, which is the whole point of building it this way.</p>
+            </div>
           </div>
+
           <div className="cap-flow-grid">
-            <div className="cap-flow-card">
-              <div className="cap-flow-number">1</div>
-              <h3>LINES</h3>
-              <p>We distribute surface mount, manual insertion, and final test across 11 parallel tracks.</p>
-              <span className="cap-flow-stat">1.2M units/year</span>
-            </div>
-            <div className="cap-flow-card">
-              <div className="cap-flow-number">3</div>
-              <h3>TECH</h3>
-              <p>SMT (reflow), MI-DIP (wave solder), and FATP (test, assemble) all in-house, no hand-off.</p>
-              <span className="cap-flow-stat">Zero wait time</span>
-            </div>
-            <div className="cap-flow-card">
-              <div className="cap-flow-number">0</div>
-              <h3>LEAD TIME</h3>
-              <p>Scheduling and materials are built to one plan. Run the flow once, ship tomorrow.</p>
-              <span className="cap-flow-stat">48-hour turnaround</span>
-            </div>
-            <div className="cap-flow-card">
-              <div className="cap-flow-number">∞</div>
-              <h3>AGILE</h3>
-              <p>NRE and field changes happen in parallel. The factory sees one schedule, not fireworks.</p>
-              <span className="cap-flow-stat">Mid-run pivots</span>
-            </div>
+            {LINES.map((line) => (
+              <div className="cap-flow-card" key={line.tag}>
+                <span className="cap-flow-tag">{line.tag}</span>
+                <div className="cap-flow-count">{line.count}</div>
+                <p>{line.text}</p>
+                <ul className="cap-flow-checks">
+                  {line.checks.map((check) => (
+                    <li key={check}>{check}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Planning Numbers Section */}
-      <Section className="cap-planning-section">
+      {/* Capacity */}
+      <Section id="capacity" variant="tint">
         <div className="wrap">
           <div className="cap-planning-header">
-            <h2>Planning numbers, not marketing numbers.</h2>
-            <p>The real estate is calculated on a 3-shift manufacturing workweek, our demand carries precision-assembly-only products to higher-chance hits.</p>
+            <div>
+              <span className="cap-section-label">Capacity</span>
+              <h2>Planning numbers, not marketing numbers.</h2>
+            </div>
+            <div>
+              <p>The table below is calculated on L2 networking switches, our densest current product. Simpler products run higher; chassis products run lower.</p>
+            </div>
           </div>
 
+          <span className="cap-table-caption">Monthly capacity by area — basis: L2 networking switches</span>
           <div className="cap-table-container">
             <table className="cap-table">
               <thead>
                 <tr>
-                  <th>LINE AVAILABLE</th>
-                  <th>3</th>
-                  <th>1 + EMS</th>
-                  <th>1</th>
-                  <th>3</th>
-                  <th>5</th>
+                  <th>Area</th>
+                  {CAPACITY_COLUMNS.map((col) => (
+                    <th key={col}>{col}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Production per month</td>
-                  <td>2.4M</td>
-                  <td>1.4M</td>
-                  <td>15,000</td>
-                  <td>1.2M</td>
-                  <td>600,000</td>
-                </tr>
+                {CAPACITY_ROWS.map((row) => (
+                  <tr key={row.label}>
+                    <td>{row.label}</td>
+                    {row.values.map((v, i) => (
+                      <td key={i}>{v}</td>
+                    ))}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
           <div className="cap-stats-row">
-            <div className="cap-stat-item">
-              <span className="cap-stat-number">50,000</span>
-              <span className="cap-stat-unit">sq ft</span>
-              <span className="cap-stat-label">Facility footprint</span>
-            </div>
-            <div className="cap-stat-item">
-              <span className="cap-stat-number">350</span>
-              <span className="cap-stat-unit">ppm</span>
-              <span className="cap-stat-label">Peak throughput (avg)</span>
-            </div>
-            <div className="cap-stat-item">
-              <span className="cap-stat-number">450K</span>
-              <span className="cap-stat-unit">units</span>
-              <span className="cap-stat-label">Average production/month</span>
-            </div>
-            <div className="cap-stat-item">
-              <span className="cap-stat-number">994</span>
-              <span className="cap-stat-unit">ppms</span>
-              <span className="cap-stat-label">Fastest assembly time</span>
-            </div>
-            <div className="cap-stat-item cap-stat-highlight">
-              <span className="cap-stat-number">3</span>
-              <span className="cap-stat-unit">mm</span>
-              <span className="cap-stat-label">Smallest component</span>
-            </div>
+            {CAPACITY_STATS.map((stat) => (
+              <div className={`cap-stat-item${stat.highlight ? ' cap-stat-highlight' : ''}`} key={stat.label}>
+                <span className="cap-stat-label-top">{stat.label}</span>
+                <div className="cap-stat-value">
+                  {stat.value}<span className="cap-stat-unit">{stat.unit}</span>
+                </div>
+                <p>{stat.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Production Machinery Section */}
-      <Section>
+      {/* Equipment */}
+      <Section id="equipment">
         <div className="wrap">
+          <span className="cap-section-label">Equipment</span>
           <h2>Production machinery.</h2>
           <div className="cap-machinery-grid">
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-mounter.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Mounter</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-printer.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Printer</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-aoi.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">AOI</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-reflow.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Reflow</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-xray.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">X-Ray</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/mach-router.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Router</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/floor-assembly.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Assembly</span>
-            </div>
-            <div className="cap-machinery-card" style={{ backgroundImage: 'url(/assets/img/floor-line.jpg)' }}>
-              <div className="cap-machinery-overlay"></div>
-              <span className="cap-machinery-label">Production Line</span>
-            </div>
+            {MACHINERY.map((item) => (
+              <div className="cap-machinery-card" key={item.label}>
+                <div className="cap-machinery-image" style={{ backgroundImage: `url(${item.image})` }}></div>
+                <span className="cap-machinery-label">{item.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Testing Capability Section */}
-      <Section className="cap-testing-section">
+      {/* Test Laboratory */}
+      <Section id="test-laboratory" variant="dark">
         <div className="wrap">
           <div className="cap-testing-header">
-            <h2>Testing capability, station by station.</h2>
-            <p>End-development is part of the program once we see; it sits alongside build the piece work the piece test list is the blueprint and the feedback loop.</p>
+            <div>
+              <span className="cap-section-label is-dark">Test Laboratory</span>
+              <h2>Testing capability, station by station.</h2>
+            </div>
+            <div>
+              <p>Test development is part of the programme, not an afterthought. Jigs and sequences are built during the pilot run and locked before mass production starts.</p>
+            </div>
           </div>
 
           <div className="cap-testing-grid">
-            <div className="cap-testing-category">
-              <h3>Electrical & functional</h3>
-              <p>Complete power board validation, signal integrity, and functional test under load.</p>
-              <div className="cap-testing-image" style={{ backgroundImage: 'url(/assets/img/test-bosa.jpg)' }}></div>
+            {TESTING.map((cat) => (
+              <div className="cap-testing-category" key={cat.title}>
+                <h3>{cat.title}</h3>
+                <ul className="cap-testing-checks">
+                  {cat.checks.map((check) => (
+                    <li key={check}>{check}</li>
+                  ))}
+                </ul>
+                <div className="cap-testing-image" style={{ backgroundImage: `url(${cat.image})` }}></div>
+                <span className="cap-testing-caption">{cat.caption}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* MES */}
+      <Section id="mes">
+        <div className="wrap">
+          <div className="cap-mes-content">
+            <div className="cap-mes-image">
+              <div className="cap-mes-visual" style={{ backgroundImage: 'url(/assets/img/floor-assembly.jpg)' }}>
+                <span className="cap-mes-tag">In-house MES</span>
+              </div>
             </div>
-            <div className="cap-testing-category">
-              <h3>RF & optical</h3>
-              <p>Spectrum analysis, TX/RX validation, and light-path characterization for optical modules.</p>
-              <div className="cap-testing-image" style={{ backgroundImage: 'url(/assets/img/test-rf.jpg)' }}></div>
-            </div>
-            <div className="cap-testing-category">
-              <h3>Environmental & structural</h3>
-              <p>Temperature cycling, vibration testing, and mechanical stress validation.</p>
-              <div className="cap-testing-image" style={{ backgroundImage: 'url(/assets/img/test-poe.jpg)' }}></div>
+            <div className="cap-mes-text">
+              <span className="cap-section-label">Manufacturing Execution System</span>
+              <h2>Built in-house, because generic MES does not know what an ONT is.</h2>
+              <p>Planning creates orders, the system assigns serials, binds them to lines and stations, and refuses to let a station proceed if the material in front of it is wrong.</p>
+
+              <dl className="cap-mes-table">
+                {MES_ROWS.map((row) => (
+                  <div className="cap-mes-row" key={row.label}>
+                    <dt>{row.label}</dt>
+                    <dd>{row.text}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Built-in-house Section */}
-      <Section className="cap-builtin-section">
-        <div className="wrap">
-          <div className="cap-builtin-content">
-            <div className="cap-builtin-left">
-              <span className="cap-builtin-label">MANUFACTURING SYSTEMS</span>
-              <h2>Built-in-house, because MES does not know what an ONT is.</h2>
-              <p>Scheduler, tracking, and feedback come from one system built to handle the product and the process, not the other way round. You can see production live, redirect line assets, and run small-batch NRE without waiting for the software to catch up.</p>
-              <a href="#" className="cap-builtin-link">Tour the system →</a>
-            </div>
-            <div className="cap-builtin-right">
-              <div className="cap-builtin-image" style={{ backgroundImage: 'url(/assets/img/floor-wide.jpg)' }}></div>
-            </div>
+      {/* Green CTA */}
+      <section className="cap-green-cta">
+        <div className="wrap cap-green-cta-inner">
+          <div>
+            <h2>Want to see it in person?</h2>
+            <p>Customer audits and plant visits are arranged most weeks. Tell us when you are in Delhi NCR.</p>
           </div>
+          <a href="/contact" className="cap-cta-button">Request a plant visit →</a>
         </div>
-      </Section>
-
-      {/* Green CTA Section */}
-      <Section className="cap-green-cta">
-        <div className="wrap">
-          <h2>Want to see it in person?</h2>
-          <p>Connect with our manufacturing team for facility tours and detailed capability discussions.</p>
-          <button className="cap-cta-button">Request a tour</button>
-        </div>
-      </Section>
-
-      <CTABand heading="Let's talk about your next project" buttonText="Get in touch" />
+      </section>
     </div>
   );
 }
