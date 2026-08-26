@@ -73,7 +73,6 @@ export default function MegaMenu({ isOpen, onClose }) {
         </div>
         <div className="tile-footer">
           <span className="grid-label">{item.label}</span>
-          {item.caption && <span className="grid-caption">{item.caption}</span>}
         </div>
       </Link>
     );
@@ -96,13 +95,8 @@ export default function MegaMenu({ isOpen, onClose }) {
               onMouseEnter={() => setActiveTab(tab.id)}
             >
               <div className="tab-label">{tab.label}</div>
-              <div className="tab-caption">{tab.caption}</div>
             </button>
           ))}
-          <div className="tabs-divider"></div>
-          <Link to="/what-we-do" className="view-all-link">
-            View all services →
-          </Link>
         </div>
 
         <div className="mega-menu-grid">

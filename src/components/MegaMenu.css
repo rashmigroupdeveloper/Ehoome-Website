@@ -27,67 +27,38 @@
 }
 
 .mega-menu-tabs {
-  width: 250px;
-  padding: 40px 0;
-  border-right: 1px solid var(--rule);
+  width: 220px;
+  padding: 32px 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 4px;
 }
 
 .tab-button {
   background: none;
   border: none;
-  padding: 16px 20px;
+  padding: 10px 16px;
   text-align: left;
   cursor: pointer;
-  border-left: 2px solid transparent;
-  transition: all 0.2s ease;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .tab-button:hover {
-  border-left-color: var(--signal);
-  background-color: rgba(146, 232, 18, 0.05);
+  background-color: var(--paper-3);
 }
 
 .tab-button.active {
-  border-left-color: var(--signal);
-  background-color: rgba(146, 232, 18, 0.1);
+  background-color: var(--paper-3);
 }
 
 .tab-label {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.tab-caption {
-  font-size: 12px;
-  color: var(--muted);
-  font-family: var(--font-body);
-}
-
-.tabs-divider {
-  height: 1px;
-  background-color: var(--rule);
-  margin: 16px 20px;
-}
-
-.view-all-link {
-  padding: 16px 20px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: auto;
-  color: var(--signal);
-}
-
-.view-all-link:hover {
-  color: var(--signal-ink);
+  letter-spacing: 0.04em;
+  color: var(--text);
 }
 
 @keyframes fadeIn {
@@ -136,13 +107,10 @@
 .image-tile {
   aspect-ratio: 1 / 1;
   background-color: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
 }
 
 .image-tile img {
@@ -184,12 +152,6 @@
   color: var(--text);
 }
 
-.grid-caption {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--font-body);
-}
-
 @media (max-width: 1080px) {
   .mega-menu-inner {
     flex-direction: column;
@@ -211,14 +173,6 @@
     padding: 8px 16px;
     white-space: nowrap;
     flex-shrink: 0;
-  }
-
-  .tabs-divider {
-    display: none;
-  }
-
-  .view-all-link {
-    display: none;
   }
 
   .mega-menu-grid {
