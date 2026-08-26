@@ -261,22 +261,31 @@
 
 /* Traceability Section */
 .traceability-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: flex-start;
+  margin-bottom: 64px;
+}
+
+.traceability-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 64px;
 }
 
 .traceability-header h2 {
   color: var(--paper);
-  max-width: 600px;
+}
+
+.traceability-header .eyebrow {
+  color: var(--signal);
 }
 
 .traceability-intro {
   font-size: 16px;
   line-height: 1.7;
   color: var(--muted-d);
-  max-width: 600px;
 }
 
 .process-flow {
@@ -284,20 +293,26 @@
   margin-bottom: 56px;
 }
 
+/* Bright through the last node, then a muted tail to the edge */
 .flow-line {
   position: absolute;
-  top: 20px;
+  top: 5px;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--signal) 0%, var(--signal) 100%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--signal) 0%,
+    var(--signal) 85.714%,
+    var(--rule-d) 85.714%,
+    var(--rule-d) 100%
+  );
   z-index: 0;
 }
 
 .flow-stages {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 24px;
   position: relative;
   z-index: 1;
 }
@@ -305,45 +320,63 @@
 .flow-stage {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  padding-right: 32px;
 }
 
 .stage-circle {
-  width: 20px;
-  height: 20px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background-color: var(--signal);
+  background-color: var(--ink);
   border: 2px solid var(--signal);
+  box-sizing: border-box;
+  margin-bottom: 22px;
+}
+
+.stage-circle.is-gate {
+  background-color: var(--signal);
+}
+
+.stage-index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--signal);
+  margin-bottom: 14px;
 }
 
 .stage-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--paper);
-  text-align: center;
+  margin-bottom: 14px;
 }
 
 .stage-description {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--muted-d);
-  text-align: center;
-  line-height: 1.4;
+  line-height: 1.55;
 }
 
 .traceability-footer {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 32px;
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--muted-d);
   padding-top: 24px;
   border-top: 1px solid var(--rule-d);
+}
+
+.traceability-footer em {
+  font-style: normal;
+  color: var(--signal);
 }
 
 /* Quality Section */
@@ -365,6 +398,10 @@
   gap: 24px;
 }
 
+.quality-header .eyebrow {
+  color: var(--signal-ink);
+}
+
 .quality-left h2 {
   color: var(--text);
   max-width: 500px;
@@ -380,37 +417,41 @@
 .certifications-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .cert-card {
   border: 1px solid var(--rule);
-  padding: 24px;
-  border-radius: var(--radius);
+  padding: 28px 24px;
+  border-radius: var(--radius-xs);
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .cert-icon {
-  font-size: 32px;
-  height: 40px;
-  display: flex;
-  align-items: center;
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--signal-ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-bottom: 28px;
 }
 
 .cert-title {
   font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text);
+  margin-bottom: 12px;
 }
 
 .cert-description {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* Rashmi Group Section */
@@ -422,13 +463,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .rashmi-left {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .rashmi-badge {
@@ -436,15 +477,23 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--alert);
+  color: var(--rashmi);
   font-weight: 600;
-  border: 1px solid var(--alert);
+  border: 1px solid var(--rashmi);
   border-radius: 20px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   width: fit-content;
+}
+
+.rashmi-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--rashmi);
+  flex-shrink: 0;
 }
 
 .rashmi-label {
@@ -452,37 +501,36 @@
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted-d);
+  color: var(--rashmi);
   font-weight: 600;
 }
 
 .rashmi-left h2 {
   color: var(--paper);
-  max-width: 500px;
-}
-
-.rashmi-link {
-  color: var(--alert);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  display: inline-block;
-}
-
-.rashmi-link:hover {
-  color: #ff6b6b;
+  font-size: 28px;
+  max-width: 350px;
 }
 
 .rashmi-right {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Label/value rows on a shared ruled baseline */
+.rashmi-facts {
+  width: 100%;
+  border-top: 1px solid var(--rule-d);
+  margin-bottom: 32px;
 }
 
 .rashmi-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-d);
 }
 
 .rashmi-stat .stat-label {
@@ -491,14 +539,29 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-d);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .rashmi-stat .stat-value {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
   color: var(--paper);
+}
+
+.rashmi-link {
+  color: var(--rashmi);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  border-bottom: 1px solid var(--rashmi);
+  padding-bottom: 3px;
+}
+
+.rashmi-link:hover {
+  color: #ff6b6b;
+  border-bottom-color: #ff6b6b;
 }
 
 /* CTA Section */
@@ -548,9 +611,20 @@
 @media (max-width: 1080px) {
   .flow-stages {
     grid-template-columns: repeat(4, 1fr);
+    row-gap: 40px;
+  }
+
+  /* The continuous rail only reads across a single row */
+  .flow-line {
+    display: none;
+  }
+
+  .traceability-footer {
+    flex-direction: column;
     gap: 16px;
   }
 
+  .traceability-header,
   .quality-header,
   .rashmi-content {
     grid-template-columns: 1fr;
@@ -570,7 +644,11 @@
 @media (max-width: 640px) {
   .flow-stages {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    row-gap: 32px;
+  }
+
+  .flow-stage {
+    padding-right: 16px;
   }
 
   .traceability-header {
@@ -594,7 +672,12 @@
     font-size: 32px;
   }
 
-  .rashmi-right {
-    gap: 24px;
+  .rashmi-stat {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .rashmi-left h2 {
+    font-size: 28px;
   }
 }

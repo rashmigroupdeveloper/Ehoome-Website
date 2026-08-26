@@ -92,9 +92,13 @@ export default function Home() {
       <Section variant="dark" className="traceability-section">
         <div className="wrap">
           <div className="traceability-header">
-            <div className="eyebrow">The Line</div>
-            <h2>From CKD kit to dispatch, on one traceable line<span className="flourish-period">.</span></h2>
-            <p className="traceability-intro">Every board carries a serial from the moment the kit is opened. Our in-house MES records the station, the operator and the test result behind each one — so a field failure two years out still has a paper trail.</p>
+            <div className="traceability-left">
+              <div className="eyebrow">The Line</div>
+              <h2>From CKD kit to dispatch, on one traceable line<span className="flourish-period">.</span></h2>
+            </div>
+            <div className="traceability-right">
+              <p className="traceability-intro">Every board carries a serial from the moment the kit is opened. Our in-house MES records the station, the operator and the test result behind each one — so a field failure two years out still has a paper trail.</p>
+            </div>
           </div>
 
           <div className="process-flow">
@@ -102,46 +106,53 @@ export default function Home() {
             <div className="flow-stages">
               <div className="flow-stage">
                 <div className="stage-circle"></div>
+                <div className="stage-index">01</div>
                 <div className="stage-label">Kit in</div>
-                <div className="stage-description">CKD received, packing list check, ORN via SAP</div>
+                <div className="stage-description">CKD received, packing list check, GRN via SAP</div>
               </div>
               <div className="flow-stage">
-                <div className="stage-circle"></div>
+                <div className="stage-circle is-gate"></div>
+                <div className="stage-index">02 · QC</div>
                 <div className="stage-label">IQC</div>
                 <div className="stage-description">Incoming inspection against customer standard</div>
               </div>
               <div className="flow-stage">
                 <div className="stage-circle"></div>
+                <div className="stage-index">03</div>
                 <div className="stage-label">SMT</div>
-                <div className="stage-description">Print, place, reflow, AOI, X-ray, depamel</div>
+                <div className="stage-description">Print, place, reflow, AOI, X-ray, depanel</div>
               </div>
               <div className="flow-stage">
                 <div className="stage-circle"></div>
+                <div className="stage-index">04</div>
                 <div className="stage-label">MI / DIP</div>
-                <div className="stage-description">Through-hole, wave solder, touch up</div>
+                <div className="stage-description">Through-hole, wave solder, touch-up</div>
               </div>
               <div className="flow-stage">
                 <div className="stage-circle"></div>
+                <div className="stage-index">05</div>
                 <div className="stage-label">FATP</div>
-                <div className="stage-description">Box build, flashing, MAC & write, aging</div>
+                <div className="stage-description">Box build, flashing, MAC &amp; SN write, ageing</div>
               </div>
               <div className="flow-stage">
-                <div className="stage-circle"></div>
+                <div className="stage-circle is-gate"></div>
+                <div className="stage-index">06 · QC</div>
                 <div className="stage-label">OQC</div>
                 <div className="stage-description">Functional, RF and PoE test before packing</div>
               </div>
               <div className="flow-stage">
                 <div className="stage-circle"></div>
+                <div className="stage-index">07</div>
                 <div className="stage-label">Dispatch</div>
-                <div className="stage-description">FG warehouse, customs inspection, transport</div>
+                <div className="stage-description">FG warehouse, customer inspection, transport</div>
               </div>
             </div>
           </div>
 
           <div className="traceability-footer">
-            <span>Traceability: IMEI • MEID • MAC • serial written and verified at station</span>
-            <span>Poka-yoke checks driven from BOM at every workstation</span>
-            <span>Quality gates: IQC — FQC — FQC — OQC</span>
+            <span>Traceability: <em>IMEI · MEID · MAC · serial</em> written and verified at station</span>
+            <span>Poka-yoke checks driven from <em>BOM</em> at every workstation</span>
+            <span>Quality gates: <em>IQC → PQC → FQC → OQC</em></span>
           </div>
         </div>
       </Section>
@@ -161,22 +172,33 @@ export default function Home() {
 
           <div className="certifications-grid">
             <div className="cert-card">
-              <div className="cert-icon">📋</div>
-              <div className="cert-title">ISO 9001: 2015</div>
+              <svg className="cert-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8.5" r="5.5" />
+                <path d="M8.4 13.2 6.8 21.5 12 18.7 17.2 21.5 15.6 13.2" />
+              </svg>
+              <div className="cert-title">ISO 9001 : 2015</div>
               <div className="cert-description">Quality management system across design, build and dispatch.</div>
             </div>
             <div className="cert-card">
-              <div className="cert-icon">🌱</div>
-              <div className="cert-title">ISO 14001: 2015</div>
+              <svg className="cert-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3s6.5 6.8 6.5 11.2a6.5 6.5 0 0 1-13 0C5.5 9.8 12 3 12 3Z" />
+              </svg>
+              <div className="cert-title">ISO 14001 : 2015</div>
               <div className="cert-description">Environmental management, including e-waste handling.</div>
             </div>
             <div className="cert-card">
-              <div className="cert-icon">🛡️</div>
-              <div className="cert-title">ISO 45001: 2018</div>
+              <svg className="cert-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.75" />
+                <path d="m8.3 12.2 2.6 2.6 4.8-5.1" />
+              </svg>
+              <div className="cert-title">ISO 45001 : 2018</div>
               <div className="cert-description">Occupational health and safety on the shop floor.</div>
             </div>
             <div className="cert-card">
-              <div className="cert-icon">✓</div>
+              <svg className="cert-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3.75" y="5.25" width="16.5" height="13.5" rx="1.5" />
+                <path d="M7.5 10h9M7.5 13.5h5.5" />
+              </svg>
               <div className="cert-title">TEC · CE · PLI</div>
               <div className="cert-description">Type approvals on shipping SKUs and PLI scheme approval.</div>
             </div>
@@ -189,28 +211,30 @@ export default function Home() {
         <div className="wrap">
           <div className="rashmi-content">
             <div className="rashmi-left">
-              <div className="rashmi-badge">🔴 RASHMI GROUP COMPANY</div>
+              <div className="rashmi-badge"><span className="rashmi-dot"></span>Rashmi Group Company</div>
               <div className="rashmi-label">Parent Company</div>
               <h2>A 29-company group with $4 billion in revenue standing behind every purchase order<span className="flourish-period">.</span></h2>
-              <Link to="/" className="rashmi-link">About the Rashmi Group →</Link>
             </div>
             <div className="rashmi-right">
-              <div className="rashmi-stat">
-                <div className="stat-label">GROUP REVENUE</div>
-                <div className="stat-value">$4 billion</div>
+              <div className="rashmi-facts">
+                <div className="rashmi-stat">
+                  <div className="stat-label">Group revenue</div>
+                  <div className="stat-value">$4 billion</div>
+                </div>
+                <div className="rashmi-stat">
+                  <div className="stat-label">Invested in plants</div>
+                  <div className="stat-value">$0.96 billion</div>
+                </div>
+                <div className="rashmi-stat">
+                  <div className="stat-label">People</div>
+                  <div className="stat-value">Over 20,000 across 10 nations</div>
+                </div>
+                <div className="rashmi-stat">
+                  <div className="stat-label">Reach</div>
+                  <div className="stat-value">25+ countries</div>
+                </div>
               </div>
-              <div className="rashmi-stat">
-                <div className="stat-label">INVESTED IN PLANTS</div>
-                <div className="stat-value">$0.96 billion</div>
-              </div>
-              <div className="rashmi-stat">
-                <div className="stat-label">PEOPLE</div>
-                <div className="stat-value">Over 20,000 across 10 nations</div>
-              </div>
-              <div className="rashmi-stat">
-                <div className="stat-label">REACH</div>
-                <div className="stat-value">25+ countries</div>
-              </div>
+              <Link to="/" className="rashmi-link">About the Rashmi Group →</Link>
             </div>
           </div>
         </div>
