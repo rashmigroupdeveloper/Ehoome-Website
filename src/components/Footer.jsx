@@ -11,7 +11,6 @@ export default function Footer() {
             <div className="footer-column brand-column">
               <div className="footer-logo">
                 <img src="/Logo.png" alt="eHoome IoT" className="logo-mark" />
-                <span className="footer-wordmark">eHoome IoT</span>
               </div>
               <p className="brand-description">Design-led electronics manufacturing for telecom and networking OEMs. A Rashmi Group company.</p>
               <div className="status-pill">● Lines running</div>
@@ -37,6 +36,7 @@ export default function Footer() {
                 <li><a href="#rashmi">Rashmi Group</a></li>
                 <li><a href="#infrastructure">Infrastructure</a></li>
                 <li><Link to="/quality">Quality & Certifications</Link></li>
+                <li><a href="#rma-form">RMA Form</a></li>
               </ul>
             </div>
 
