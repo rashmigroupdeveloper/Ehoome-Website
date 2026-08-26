@@ -1,0 +1,193 @@
+/* Scroll-mouse hint — scoped so it never touches global body/p styles */
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+/* Hero shrinks on smaller breakpoints (see PageHero.css) — hide the
+   decorative hint there so it never pushes into the next section. */
+@media (max-width: 1080px) {
+  .scroll-hint {
+    display: none;
+  }
+}
+
+.scroll-hint-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  color: #ffffff;
+  animation:
+    scrollHint-colorText 5s ease-out infinite,
+    scrollHint-nudgeText 5s ease-out infinite;
+}
+
+.scroll-hint-mouse {
+  position: relative;
+  width: 30px;
+  height: 50px;
+  border-radius: 100px;
+  background:
+    #4e5559
+    linear-gradient(
+      transparent 0%,
+      transparent 50%,
+      #ffffff 50%,
+      #ffffff 100%
+    );
+  background-size: 100% 200%;
+  animation:
+    scrollHint-colorSlide 5s linear infinite,
+    scrollHint-nudgeMouse 5s ease-out infinite;
+}
+
+.scroll-hint-mouse::before,
+.scroll-hint-mouse::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.scroll-hint-mouse::before {
+  width: 26px;
+  height: 46px;
+  background-color: var(--ink);
+  border-radius: 100px;
+}
+
+.scroll-hint-mouse::after {
+  background-color: #ffffff;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  animation: scrollHint-trackBallSlide 5s linear infinite;
+}
+
+@keyframes scrollHint-colorSlide {
+  0% { background-position: 0% 100%; }
+  20% { background-position: 0% 0%; }
+  21% { background-color: #4e5559; }
+  29.99% {
+    background-color: #ffffff;
+    background-position: 0% 0%;
+  }
+  30% {
+    background-color: #4e5559;
+    background-position: 0% 100%;
+  }
+  50% { background-position: 0% 0%; }
+  51% { background-color: #4e5559; }
+  59% {
+    background-color: #ffffff;
+    background-position: 0% 0%;
+  }
+  60% {
+    background-color: #4e5559;
+    background-position: 0% 100%;
+  }
+  80% { background-position: 0% 0%; }
+  81% { background-color: #4e5559; }
+  90%, 100% { background-color: #ffffff; }
+}
+
+@keyframes scrollHint-trackBallSlide {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(0.9) translateY(2.75px);
+  }
+  14% {
+    opacity: 0;
+    transform: scale(0.4) translateY(22px);
+  }
+  15%, 19% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-11px);
+  }
+  28%, 29.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+  36% {
+    opacity: 1;
+    transform: scale(0.9) translateY(2.75px);
+  }
+  44% {
+    opacity: 0;
+    transform: scale(0.4) translateY(22px);
+  }
+  45%, 49% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-11px);
+  }
+  58%, 59.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+  66% {
+    opacity: 1;
+    transform: scale(0.9) translateY(2.75px);
+  }
+  74% {
+    opacity: 0;
+    transform: scale(0.4) translateY(22px);
+  }
+  75%, 79% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-11px);
+  }
+  88%, 100% {
+    opacity: 1;
+    transform: scale(1) translateY(-11px);
+  }
+}
+
+@keyframes scrollHint-nudgeMouse {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(5px); }
+  30% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY(5px); }
+  90% { transform: translateY(0); }
+}
+
+@keyframes scrollHint-nudgeText {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(2px); }
+  30% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY(2px); }
+  90% { transform: translateY(0); }
+}
+
+@keyframes scrollHint-colorText {
+  21% { color: #4e5559; }
+  30% { color: #ffffff; }
+  51% { color: #4e5559; }
+  60% { color: #ffffff; }
+  81% { color: #4e5559; }
+  90% { color: #ffffff; }
+}

@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero';
 import TileCard from '../components/TileCard';
 import EnquiryForm from '../components/EnquiryForm';
 import CTABand from '../components/CTABand';
+import ScrollHint from '../components/ScrollHint';
 import './Home.css';
 
 export default function Home() {
@@ -18,7 +19,9 @@ export default function Home() {
         ctaButtons={[
           { label: 'Start an enquiry', href: '/contact', variant: 'highlight' }
         ]}
-      />
+      >
+        <ScrollHint />
+      </PageHero>
 
       {/* Stat Bar */}
       <Section variant="dark" className="stat-bar-section">

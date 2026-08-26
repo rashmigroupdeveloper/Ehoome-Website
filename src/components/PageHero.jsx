@@ -7,7 +7,8 @@ export default function PageHero({
   image = '/assets/img/floor-smt.jpg',
   eyebrow,
   description,
-  ctaButtons
+  ctaButtons,
+  children
 }) {
   return (
     <div className="page-hero" style={{ backgroundImage: `url(${image})` }}>
@@ -31,6 +32,7 @@ export default function PageHero({
               ))}
             </div>
           )}
+          {children}
         </div>
       </div>
     </div>
