@@ -25,10 +25,10 @@ export default function MegaMenu({ isOpen, onClose }) {
   ];
 
   const cloud = [
-    { label: 'CRM', caption: 'Customer relationship mgmt', image: '/assets/img/CRM.png', link: '/products#crm' },
-    { label: 'EMS', caption: 'Expense management system', image: '/assets/img/EMS.jpg', link: '/products#ems' },
-    { label: 'VBMS', caption: 'Vendor billing mgmt system', image: '/assets/img/VBMS.png', link: '/products#vbms' },
-    { label: 'WEBSITE DEVELOPMENT', caption: 'Design & build', image: '/assets/img/web-development.jpg', link: '/products#web' },
+    { label: 'CRM', caption: 'Customer relationship mgmt', image: '/assets/img/CRM.png', link: '/what-we-do/crm' },
+    { label: 'EMS', caption: 'Expense management system', image: '/assets/img/EMS.jpg', link: '/what-we-do/ems' },
+    { label: 'VBMS', caption: 'Vendor billing mgmt system', image: '/assets/img/VBMS.png', link: '/what-we-do/vbms' },
+    { label: 'WEBSITE DEVELOPMENT', caption: 'Design & build', image: '/assets/img/web-development.jpg', link: '/what-we-do/web-development' },
   ];
 
   const ems = [
