@@ -5,7 +5,18 @@ import TileCard from '../components/TileCard';
 import EnquiryForm from '../components/EnquiryForm';
 import CTABand from '../components/CTABand';
 import ScrollHint from '../components/ScrollHint';
+import Counter from '../components/Counter';
 import './Home.css';
+
+const STATS = [
+  { value: 1, prefix: '#', text: 'PLI-approved networking EMS — Noida' },
+  { value: 50000, text: 'Sq ft production floor' },
+  { value: 450, suffix: 'K', text: 'Units/month capacity' },
+  { value: 9, suffix: 'M', text: 'Components placed/day' },
+  { value: 4, text: 'Quality gates, IQC to OQC' },
+  { value: 3, text: 'ISO management systems' },
+  { value: 29, text: 'Companies in the Rashmi Group' },
+];
 
 export default function Home() {
   return (
@@ -27,34 +38,14 @@ export default function Home() {
       <Section variant="dark" className="stat-bar-section">
         <div className="wrap">
           <div className="stat-bar">
-            <div className="stat-item">
-              <div className="stat-label">#1</div>
-              <div className="stat-text">PLI-approved networking EMS — Noida</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">50,000</div>
-              <div className="stat-text">Sq ft production floor</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">450K</div>
-              <div className="stat-text">Units/month capacity</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">9M</div>
-              <div className="stat-text">Components placed/day</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">4</div>
-              <div className="stat-text">Quality gates, IQC to OQC</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">3</div>
-              <div className="stat-text">ISO management systems</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">29</div>
-              <div className="stat-text">Companies in the Rashmi Group</div>
-            </div>
+            {STATS.map((stat, i) => (
+              <div className="stat-item" key={stat.text}>
+                <div className="stat-label">
+                  <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} delay={i * 100} />
+                </div>
+                <div className="stat-text">{stat.text}</div>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
