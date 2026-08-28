@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
 import WhatWeDo from './pages/WhatWeDo';
 import PCBAssembly from './pages/PCBAssembly';
@@ -21,6 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
+        <CustomCursor />
         <Header />
         <main>
           <Routes>
