@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Section from '../components/Section';
 import PageHero from '../components/PageHero';
@@ -19,6 +20,36 @@ const STATS = [
 ];
 
 export default function Home() {
+  const flowRef = useRef(null);
+  const [flowActive, setFlowActive] = useState(false);
+
+  useEffect(() => {
+    const el = flowRef.current;
+    if (!el) return;
+
+    const reducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion) {
+      setFlowActive(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setFlowActive(true);
+        observer.disconnect();
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
@@ -98,8 +129,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="process-flow">
+          <div className={`process-flow${flowActive ? ' in-view' : ''}`} ref={flowRef}>
             <div className="flow-line"></div>
+            <div className="flow-line-fill"></div>
             <div className="flow-stages">
               <div className="flow-stage">
                 <div className="stage-circle"></div>
