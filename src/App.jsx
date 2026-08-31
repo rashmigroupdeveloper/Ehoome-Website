@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import ScrollToTop from './components/ScrollToTop';
 import RouteFallback from './components/RouteFallback';
 import PageTransition from './components/PageTransition';
@@ -22,7 +21,6 @@ function App() {
       <a href="#main" className="skip-link">Skip to content</a>
       <div className="grain" aria-hidden="true" />
       <div className="app">
-        <CustomCursor />
         <Header />
         <ScrollToTop />
         <PageTransition />
