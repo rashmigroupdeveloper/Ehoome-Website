@@ -1,0 +1,214 @@
+/* ── Clean, light hero. No video, no scrim: the text sits on paper. ── */
+.hero-stage {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 132px 0 72px;
+  background: var(--paper);
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* A very faint grid, so the ground reads as a stage rather than a blank page. */
+.hero-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(22, 22, 22, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 22, 22, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 70% at 62% 50%, #000 20%, transparent 78%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 56px;
+  align-items: center;
+}
+
+/* ── Copy column ── */
+.hero-copyblock {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-ticks {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--signal-ink);
+}
+
+.hero-tick {
+  transition: opacity var(--t-base);
+}
+
+/* The three beats are stacked, so swapping one never shifts the buttons. */
+.hero-beats {
+  position: relative;
+  min-height: 340px;
+}
+
+.hero-beat {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-beat-0 { position: relative; }
+
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.hero-stage h1 {
+  color: var(--text);
+  font-size: clamp(38px, 4.4vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 15ch;
+}
+
+.hero-word-clip {
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 0.26em;
+  padding-bottom: 0.08em;
+  vertical-align: bottom;
+}
+
+.hero-word { display: inline-block; }
+
+.hero-copy {
+  margin-top: 20px;
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+/* ── The rack ── */
+.hero-stage-3d {
+  position: relative;
+  height: min(74dvh, 660px);
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+}
+
+.hero-scene-tilt,
+.hero-scene-depth {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+/* Fits the assembled rack inside the fold. `scale`/`translate` are separate
+   properties from `transform`, so they compose with GSAP's z animation. */
+.hero-scene-depth {
+  translate: 0 -34px;
+  scale: 0.86;
+}
+
+.hero-unit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  /* GSAP writes x/y/z on top of this centring translate. */
+  translate: -50% -50%;
+}
+
+.hero-unit img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 26px 34px rgba(22, 22, 22, 0.24));
+}
+
+/* Ground shadow under the assembled stack. */
+.hero-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: 68%;
+  height: 26px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(22, 22, 22, 0.3), transparent 70%);
+  filter: blur(9px);
+}
+
+/* ── Mobile: single column, rack under the copy, no pin. ── */
+@media (max-width: 900px) {
+  .hero-stage {
+    min-height: auto;
+    padding: 116px 0 56px;
+    align-items: flex-start;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-beats {
+    min-height: 0;
+  }
+
+  .hero-beat {
+    position: relative;
+    inset: auto;
+  }
+
+  .hero-stage h1 {
+    max-width: none;
+  }
+
+  .hero-stage-3d {
+    height: 58dvh;
+    perspective: 1000px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word,
+  .hero-copy,
+  .hero-actions,
+  .hero-ticks {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-beat-1,
+  .hero-beat-2 {
+    display: none;
+  }
+}

@@ -1,23 +1,27 @@
 import Section from '../components/Section';
+import CinematicHero from '../components/CinematicHero';
 import './About.css';
 
 export default function About() {
   return (
     <div className="about-page">
       {/* Hero */}
-      <section className="about-hero">
-        <div className="wrap">
-          <div className="about-breadcrumb">Home / About</div>
-          <h1 className="about-hero-title">
-            An electronics manufacturer built to make India&apos;s networks in India.
-          </h1>
-          <p className="about-hero-sub">
-            eHoome IoT Pvt. Ltd. builds telecom devices, FTTH equipment, CPE, Wi-Fi access
-            points and networking switches under the Government of India PLI scheme — part
-            of the Rashmi Group.
-          </p>
-        </div>
-
+      <CinematicHero
+        layout="hud"
+        breadcrumb="Home / About"
+        title="India's networks, built in India."
+        support="eHoome IoT Pvt. Ltd. builds telecom devices, FTTH equipment, CPE, Wi-Fi access points and networking switches under the Government of India PLI scheme — part of the Rashmi Group."
+        media={{
+          video: '/assets/cinematic/heroes/about.mp4',
+          poster: '/assets/cinematic/heroes/about-poster.jpg',
+        }}
+        hud={[
+          { label: 'Floor', value: '50,000 sq ft' },
+          { label: 'People', value: '350+' },
+          { label: 'Scheme', value: 'PLI' },
+          { label: 'Plant', value: 'Noida, UP' },
+        ]}
+      >
         <nav className="about-subnav">
           <div className="wrap about-subnav-inner">
             <a href="#company">The Company</a>
@@ -26,7 +30,7 @@ export default function About() {
             <a href="#where-we-are">Where We Are</a>
           </div>
         </nav>
-      </section>
+      </CinematicHero>
 
       {/* What We Are */}
       <Section id="company">

@@ -1,52 +1,51 @@
-import { Link } from 'react-router-dom';
-import Section from '../components/Section';
-import PageHero from '../components/PageHero';
+import CinematicHero from '../components/CinematicHero';
+import ProductIndex from '../components/ProductIndex';
+import FamilyChapter from '../components/FamilyChapter';
+import ProofMarquee from '../components/ProofMarquee';
 import CTABand from '../components/CTABand';
+import { CATALOG_CHAPTERS, CATALOG_INDEX, CATALOG_SKU_COUNT } from '../data/productCatalog';
+import './Products.css';
 
 export default function Products() {
   return (
-    <div>
-      <PageHero title="Products" subtitle="Networking and IoT solutions" breadcrumb="Home / Products" />
+    <div className="products-page">
+      <CinematicHero
+        layout="hud"
+        breadcrumb="Home / Products"
+        title="Hardware the OEM puts its name on."
+        support="Networking and device lines manufactured in Noida — chassis, firmware and QC under one roof, branded for the OEM."
+        media={{
+          video: '/assets/stock/products/hero-ports.mp4',
+          poster: '/assets/stock/products/hero-poster.jpg',
+        }}
+        hud={[
+          { label: 'Lines', value: String(CATALOG_SKU_COUNT) },
+          { label: 'Floor', value: 'Noida' },
+          { label: 'Capacity', value: '450K / mo' },
+          { label: 'Chapters', value: String(CATALOG_CHAPTERS.length) },
+        ]}
+        ctaButtons={[
+          { label: 'Browse the floor', href: '#switching', variant: 'highlight' },
+          { label: 'Configure a SKU', href: '/configure', variant: 'ghost' },
+        ]}
+      />
 
-      <Section id="switches">
-        <div className="wrap">
-          <h2>Networking Switches</h2>
-          <p>Managed and unmanaged switches for enterprise networking.</p>
-          <Link to="/products/managed-switches" style={{ marginTop: '16px', display: 'inline-block', color: '#92E812' }}>
-            View Managed Switches →
-          </Link>
-        </div>
-      </Section>
+      <ProductIndex items={CATALOG_INDEX} />
 
-      <Section id="ftth" variant="tint">
-        <div className="wrap">
-          <h2>FTTH Solutions</h2>
-          <p>OLT and ONT equipment for fiber-to-the-home networks.</p>
-        </div>
-      </Section>
+      <div className="products-chapters">
+        {CATALOG_CHAPTERS.map((chapter, i) => (
+          <FamilyChapter key={chapter.id} chapter={chapter} index={i} />
+        ))}
+      </div>
 
-      <Section id="cpe">
-        <div className="wrap">
-          <h2>Routers & CPE</h2>
-          <p>Customer Premises Equipment for residential and business use.</p>
-        </div>
-      </Section>
+      <ProofMarquee />
 
-      <Section id="ap" variant="tint">
-        <div className="wrap">
-          <h2>Wi-Fi Access Points</h2>
-          <p>Enterprise-grade wireless access points for indoor and outdoor coverage.</p>
-        </div>
-      </Section>
-
-      <Section id="power">
-        <div className="wrap">
-          <h2>PD Chargers</h2>
-          <p>USB Power Delivery and Quick Charge solutions.</p>
-        </div>
-      </Section>
-
-      <CTABand heading="Interested in Our Products" buttonText="Get in Touch" />
+      <CTABand
+        heading="Specify a branded SKU on this floor"
+        subheading="Pick a family, set ports and volume, and a manufacturing engineer replies within two working days."
+        buttonText="Open the configurator"
+        buttonLink="/configure"
+      />
     </div>
   );
 }

@@ -31,9 +31,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(11, 16, 13, 0) 25%,
-    rgba(11, 16, 13, 0.55) 60%,
-    rgba(11, 16, 13, 0.92) 100%
+    rgba(12, 13, 14, 0) 35%,
+    rgba(12, 13, 14, 0.35) 65%,
+    rgba(12, 13, 14, 0.62) 100%
   );
   transition: opacity var(--transition-base);
 }
@@ -76,8 +76,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: rgba(var(--signal-rgb), 0.35);
+  border: 1px solid rgba(var(--signal-bright-rgb), 0.55);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -87,14 +87,14 @@
 }
 
 .tile-card:hover .tile-arrow {
-  background-color: var(--signal);
-  border-color: var(--signal);
+  background-color: var(--paper);
+  border-color: var(--paper);
   color: var(--ink);
 }
 
 .accent-tile {
   background-color: var(--signal);
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .accent-tile .tile-label {
@@ -102,22 +102,23 @@
   font-weight: 700;
   text-transform: none;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .accent-tile .tile-explore {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .accent-tile .tile-arrow {
-  background-color: rgba(11, 16, 13, 0.12);
-  border-color: rgba(11, 16, 13, 0.32);
+  background-color: rgba(var(--rashmi-rgb), 0.95);
+  border-color: var(--rashmi);
+  color: var(--paper);
 }
 
 .accent-tile:hover .tile-arrow {
-  background-color: var(--ink);
-  border-color: var(--ink);
-  color: var(--signal);
+  background-color: var(--rashmi-deep);
+  border-color: var(--rashmi-deep);
+  color: var(--paper);
 }
 
 @media (max-width: 640px) {

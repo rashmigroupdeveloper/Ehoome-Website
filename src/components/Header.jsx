@@ -1,195 +1,202 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { CaretDown, List, X } from '@phosphor-icons/react';
 import MegaMenu from './MegaMenu';
+import MagneticButton from './MagneticButton';
 import { tabs, hardware, cloud, ems } from '../data/whatWeDoMenu';
 import './Header.css';
+
+const NAV = [
+  { label: 'What We Do', path: '/what-we-do', mega: true },
+  { label: 'Capabilities', path: '/capabilities' },
+  { label: 'Products', path: '/products' },
+  { label: 'Configure', path: '/configure' },
+  { label: 'Quality', path: '/quality' },
+  { label: 'About', path: '/about' },
+];
 
 const tabContent = { 0: hardware, 1: cloud, 2: ems };
 
 export default function Header() {
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
-  const [mobileActiveTab, setMobileActiveTab] = useState(null);
-  const closeTimerRef = useRef(null);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [workOpen, setWorkOpen] = useState(false);
+  const [workTab, setWorkTab] = useState(null);
+  const megaCloseTimer = useRef(null);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 0;
-      setIsScrolled(scrolled);
-      const navHeight = window.innerWidth <= 1080 ? 64 : 74;
-      document.documentElement.style.paddingTop = scrolled ? `${navHeight}px` : '0';
-    };
+  const openMega = () => {
+    clearTimeout(megaCloseTimer.current);
+    setMegaOpen(true);
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.documentElement.style.paddingTop = '0';
-    };
+  const scheduleCloseMega = () => {
+    clearTimeout(megaCloseTimer.current);
+    megaCloseTimer.current = setTimeout(() => setMegaOpen(false), 140);
+  };
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setMegaOpen(false);
+    setWorkOpen(false);
+    setWorkTab(null);
+    clearTimeout(megaCloseTimer.current);
+  }, [location.pathname]);
+
+  useEffect(() => () => clearTimeout(megaCloseTimer.current), []);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0, rootMargin: '-8px 0px 0px 0px' }
+    );
+    const sentinel = document.getElementById('nav-sentinel');
+    if (sentinel) io.observe(sentinel);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
-    setMobileNavOpen(false);
-    setMobileWhatWeDoOpen(false);
-    setMobileActiveTab(null);
-    setMegaMenuOpen(false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    document.documentElement.style.overflow = mobileNavOpen ? 'hidden' : '';
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => {
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     };
-  }, [mobileNavOpen]);
+  }, [menuOpen]);
 
-  const isActive = (path) => location.pathname === path;
-
-  const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'What We Do', path: '/what-we-do' },
-    { label: 'Capabilities', path: '/capabilities' },
-    { label: 'Quality', path: '/quality' },
-    { label: 'About', path: '/about' },
-  ];
-
-  const handleMenuEnter = () => {
-    clearTimeout(closeTimerRef.current);
-    setMegaMenuOpen(true);
-  };
-
-  const handleMenuLeave = () => {
-    closeTimerRef.current = setTimeout(() => {
-      setMegaMenuOpen(false);
-    }, 150);
-  };
-
-  const toggleMobileTab = (id) => {
-    setMobileActiveTab(mobileActiveTab === id ? null : id);
-  };
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(`${path}/`);
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <nav className="header-nav">
-        <div className="wrap">
-          <div className="nav-content">
-            <Link to="/" className="logo-section">
-              <img src="/Logo.png" alt="eHoome IoT" className="logo-mark" />
-            </Link>
+    <>
+      <div id="nav-sentinel" aria-hidden="true" />
+      <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-open' : ''}`}>
+        <nav className="site-nav" aria-label="Primary">
+          <Link to="/" className="nav-logo" aria-label="eHoome IoT home">
+            <img src="/Logo.png" alt="" className="logo-mark" />
+          </Link>
 
-            <div className="nav-links">
-              {navLinks.map(link => (
-                <div
-                  key={link.path}
-                  className="nav-link-wrapper"
-                  onMouseEnter={() => link.label === 'What We Do' && handleMenuEnter()}
-                  onMouseLeave={() => link.label === 'What We Do' && handleMenuLeave()}
-                >
-                  <Link
-                    to={link.path}
-                    className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
-                  >
-                    {link.label}
-                  </Link>
-                </div>
-              ))}
-            </div>
-
-            {megaMenuOpen && (
+          <div className="nav-links">
+            {NAV.map((link) => (
               <div
-                className="mega-menu-wrapper"
-                onMouseEnter={handleMenuEnter}
-                onMouseLeave={handleMenuLeave}
+                key={link.path}
+                className="nav-item"
+                onMouseEnter={() => link.mega && openMega()}
+                onMouseLeave={() => link.mega && scheduleCloseMega()}
               >
-                <MegaMenu isOpen={megaMenuOpen} onClose={() => setMegaMenuOpen(false)} />
+                <Link
+                  to={link.path}
+                  className={`nav-link ${isActive(link.path) ? 'is-active' : ''}`}
+                >
+                  {link.label}
+                </Link>
               </div>
-            )}
+            ))}
+          </div>
 
-            <Link to="/contact" className="nav-cta-button">
-              <span>Start an Enquiry</span>
-              <span className="nav-cta-arrow">→</span>
-            </Link>
-
+          <div className="nav-end">
+            <MagneticButton to="/contact" variant="ghost" className="nav-cta">
+              Start an enquiry
+            </MagneticButton>
             <button
               type="button"
-              className={`nav-burger ${mobileNavOpen ? 'is-open' : ''}`}
-              aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileNavOpen}
-              onClick={() => setMobileNavOpen(open => !open)}
+              className="nav-burger"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
             >
-              <span></span>
-              <span></span>
-              <span></span>
+              <span className="burger-lines" data-open={menuOpen}>
+                {menuOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
+              </span>
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <div className={`mobile-nav ${mobileNavOpen ? 'is-open' : ''}`}>
-        <div className="mobile-nav-scroll">
-          {navLinks.map(link => (
-            link.label === 'What We Do' ? (
-              <div key={link.path} className="mobile-nav-item">
-                <div className="mobile-nav-row">
-                  <Link to={link.path} className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}>
+        {megaOpen && (
+          <div
+            className="mega-slot"
+            onMouseEnter={openMega}
+            onMouseLeave={scheduleCloseMega}
+          >
+            <MegaMenu isOpen={megaOpen} onClose={() => setMegaOpen(false)} />
+          </div>
+        )}
+      </header>
+
+      <div className={`nav-overlay ${menuOpen ? 'is-open' : ''}`} hidden={!menuOpen}>
+        <div className="nav-overlay-inner">
+          {NAV.map((link, i) => (
+            link.mega ? (
+              <div key={link.path} className="overlay-work">
+                <div className="overlay-row">
+                  <Link
+                    to={link.path}
+                    className="overlay-link"
+                    style={{ animationDelay: `${120 + i * 60}ms` }}
+                    onClick={() => setMenuOpen(false)}
+                  >
                     {link.label}
                   </Link>
                   <button
                     type="button"
-                    className={`mobile-accordion-toggle ${mobileWhatWeDoOpen ? 'is-open' : ''}`}
+                    className={`overlay-caret${workOpen ? ' is-open' : ''}`}
                     aria-label="Toggle What We Do submenu"
-                    aria-expanded={mobileWhatWeDoOpen}
-                    onClick={() => setMobileWhatWeDoOpen(o => !o)}
+                    aria-expanded={workOpen}
+                    onClick={() => setWorkOpen((open) => !open)}
                   >
-                    <span></span>
+                    <CaretDown size={20} weight="bold" />
                   </button>
                 </div>
-
-                <div className={`mobile-accordion-panel ${mobileWhatWeDoOpen ? 'is-open' : ''}`}>
-                  {tabs.map(tab => (
-                    <div key={tab.id} className="mobile-category">
-                      <button
-                        type="button"
-                        className={`mobile-category-toggle ${mobileActiveTab === tab.id ? 'is-open' : ''}`}
-                        onClick={() => toggleMobileTab(tab.id)}
-                      >
-                        <span>{tab.label}</span>
-                        <span className="mobile-category-caret">{mobileActiveTab === tab.id ? '−' : '+'}</span>
-                      </button>
-                      <div className={`mobile-category-panel ${mobileActiveTab === tab.id ? 'is-open' : ''}`}>
-                        {tabContent[tab.id].map((item, idx) => (
-                          <Link key={idx} to={item.link || '#'} className="mobile-product-row">
-                            <span className="mobile-product-thumb">
-                              <img src={item.image} alt={item.label} loading="lazy" />
-                            </span>
-                            <span className="mobile-product-label">{item.label}</span>
-                          </Link>
-                        ))}
+                {workOpen && (
+                  <div className="overlay-accordion">
+                    {tabs.map((tab) => (
+                      <div key={tab.id} className="overlay-category">
+                        <button
+                          type="button"
+                          className={`overlay-category-toggle${workTab === tab.id ? ' is-open' : ''}`}
+                          onClick={() => setWorkTab(workTab === tab.id ? null : tab.id)}
+                        >
+                          <span>{tab.label}</span>
+                          <span aria-hidden="true">{workTab === tab.id ? '−' : '+'}</span>
+                        </button>
+                        {workTab === tab.id && (
+                          <div className="overlay-products">
+                            {tabContent[tab.id].map((item) => (
+                              <Link
+                                key={item.label}
+                                to={item.link || '#'}
+                                className="overlay-product"
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                <span className="overlay-thumb">
+                                  <img src={item.image} alt="" />
+                                </span>
+                                <span>{item.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ) : (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}
+                className="overlay-link"
+                style={{ animationDelay: `${120 + i * 60}ms` }}
+                onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </Link>
             )
           ))}
-
-          <Link to="/contact" className="mobile-nav-cta">
-            <span>Start an Enquiry</span>
-            <span>→</span>
+          <Link to="/contact" className="overlay-cta" onClick={() => setMenuOpen(false)}>
+            Start an enquiry
           </Link>
         </div>
       </div>
-
-      {mobileNavOpen && <div className="mobile-nav-backdrop" onClick={() => setMobileNavOpen(false)}></div>}
-    </header>
+    </>
   );
 }

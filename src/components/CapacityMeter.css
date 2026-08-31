@@ -1,0 +1,177 @@
+.cm {
+  margin-top: 8px;
+}
+
+.cm-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cm-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.cm-modes {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+}
+
+.cm-mode {
+  padding: 7px 14px;
+  border-radius: 1px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: background-color var(--t-fast), color var(--t-fast);
+}
+
+.cm-mode:hover {
+  color: var(--text);
+}
+
+.cm-mode.is-on {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.cm-rows {
+  list-style: none;
+}
+
+/* Four-column grid so the bars share one baseline across every row — the whole
+   point is comparing areas at a glance. */
+.cm-row {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) 104px;
+  align-items: center;
+  column-gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: opacity var(--t-base);
+}
+
+.cm-row:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
+}
+
+.cm-row.is-dim {
+  opacity: 0.36;
+}
+
+.cm-area {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.cm-lines {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal-ink);
+}
+
+.cm-bar {
+  display: block;
+  height: 12px;
+  background: var(--paper-3);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.cm-bar-fill {
+  display: block;
+  height: 100%;
+  transform-origin: left center;
+  background: var(--ink);
+  will-change: transform;
+}
+
+.cm-row:hover .cm-bar-fill,
+.cm-row:focus-visible .cm-bar-fill {
+  background: var(--signal-ink);
+}
+
+.cm-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cm-note {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--t-base), opacity var(--t-base);
+}
+
+.cm-row:hover .cm-note,
+.cm-row:focus-visible .cm-note {
+  max-height: 40px;
+  opacity: 1;
+}
+
+.cm-foot {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+@media (max-width: 860px) {
+  .cm-row {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    row-gap: 8px;
+  }
+
+  .cm-bar {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .cm-note {
+    order: 4;
+  }
+}
+
+@media (max-width: 640px) {
+  .cm-area {
+    font-size: 15px;
+  }
+
+  .cm-value {
+    font-size: 20px;
+  }
+
+  /* No hover on touch, so the note has to be there from the start. */
+  .cm-note {
+    max-height: 40px;
+    opacity: 1;
+  }
+}

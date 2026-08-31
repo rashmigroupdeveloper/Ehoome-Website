@@ -1,0 +1,392 @@
+/* ---- field shell ------------------------------------------------------- */
+
+.fld {
+  padding: 20px 0 22px;
+  border-top: 1px solid var(--rule-d);
+}
+
+.fld-head {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0 10px;
+  margin-bottom: 14px;
+}
+
+.fld-index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fld-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--paper);
+}
+
+.fld-tag {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+  padding: 2px 6px;
+  border: 1px solid rgba(var(--signal-bright-rgb), 0.35);
+}
+
+.fld-note {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---- segmented --------------------------------------------------------- */
+
+.seg {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  border: 1px solid var(--rule-d);
+  background: rgba(0, 0, 0, 0.24);
+  isolation: isolate;
+}
+
+.seg-thumb {
+  position: absolute;
+  z-index: 0;
+  inset: 0 auto 0 0;
+  width: calc(100% / var(--n));
+  transform: translateX(calc(var(--i) * 100%));
+  background: rgba(var(--signal-bright-rgb), 0.13);
+  box-shadow: inset 0 -2px 0 var(--signal-bright);
+  transition: transform 420ms var(--ease);
+}
+
+.seg-opt {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  padding: 11px 12px 12px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-left: 1px solid var(--rule-d);
+  color: var(--muted-d);
+  transition: color var(--t-fast);
+}
+
+.seg-opt:first-of-type {
+  border-left: 0;
+}
+
+.seg-opt-label {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.seg-opt-note {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+.seg-opt:hover {
+  color: var(--paper);
+}
+
+.seg-opt.is-on {
+  color: var(--paper);
+}
+
+.seg-opt.is-on .seg-opt-note {
+  color: var(--signal-bright);
+}
+
+/* ---- notch scale ------------------------------------------------------- */
+
+.notch {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+}
+
+.notch-value {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.2ch;
+}
+
+.notch-value span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+}
+
+.notch-rail {
+  position: relative;
+  min-width: 0;
+  padding-top: 6px;
+}
+
+.notch-input {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.notch-input::-webkit-slider-runnable-track {
+  height: 22px;
+  background: transparent;
+}
+
+.notch-input::-moz-range-track {
+  height: 22px;
+  background: transparent;
+}
+
+.notch-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 22px;
+  border-radius: 0;
+  border: 0;
+  background:
+    linear-gradient(var(--paper), var(--paper)) center / 2px 22px no-repeat,
+    linear-gradient(var(--signal-bright), var(--signal-bright)) center / 12px 2px no-repeat;
+}
+
+.notch-input::-moz-range-thumb {
+  width: 12px;
+  height: 22px;
+  border-radius: 0;
+  border: 0;
+  background:
+    linear-gradient(var(--paper), var(--paper)) center / 2px 22px no-repeat,
+    linear-gradient(var(--signal-bright), var(--signal-bright)) center / 12px 2px no-repeat;
+}
+
+/* The rail itself sits behind the input, drawn once so the fill and the
+   detents share exactly one geometry. */
+.notch-ticks {
+  position: absolute;
+  z-index: 1;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notch-ticks::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--signal-bright) 0 var(--fill, 0%),
+    var(--rule-d) var(--fill, 0%) 100%
+  );
+}
+
+.notch-tick {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notch-tick i {
+  display: block;
+  width: 1px;
+  height: 22px;
+  background: rgba(243, 243, 241, 0.16);
+}
+
+.notch-tick.is-past i {
+  background: rgba(var(--signal-bright-rgb), 0.75);
+}
+
+.notch-tick span {
+  position: absolute;
+  top: 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color var(--t-fast);
+  font-variant-numeric: tabular-nums;
+}
+
+.notch-tick.is-on span {
+  color: var(--signal-bright);
+}
+
+.notch-tick:hover span {
+  color: var(--paper);
+}
+
+.notch-rail {
+  padding-bottom: 22px;
+}
+
+/* ---- chips ------------------------------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 13px 8px 10px;
+  border: 1px solid var(--rule-d);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--muted-d);
+  transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast);
+}
+
+.chip-box {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule-d);
+  color: var(--ink);
+  transition: background-color var(--t-fast), border-color var(--t-fast);
+}
+
+.chip-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+.chip-text em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chip:hover {
+  color: var(--paper);
+  border-color: rgba(243, 243, 241, 0.28);
+}
+
+.chip.is-on {
+  color: var(--paper);
+  border-color: rgba(var(--signal-bright-rgb), 0.5);
+  background: rgba(var(--signal-bright-rgb), 0.1);
+}
+
+.chip.is-on .chip-box {
+  background: var(--signal-bright);
+  border-color: var(--signal-bright);
+}
+
+.chip.is-on .chip-text em {
+  color: var(--signal-bright);
+}
+
+@media (max-width: 640px) {
+  .seg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Two columns means the single sliding thumb can no longer describe the
+     selection, so the selected cell paints its own state instead. */
+  .seg-thumb {
+    display: none;
+  }
+
+  .seg-opt.is-on {
+    background: rgba(var(--signal-bright-rgb), 0.13);
+    box-shadow: inset 0 -2px 0 var(--signal-bright);
+  }
+
+  .seg-opt:nth-of-type(odd) {
+    border-left: 0;
+  }
+
+  .seg-opt:nth-of-type(n + 3) {
+    border-top: 1px solid var(--rule-d);
+  }
+
+  .notch {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .notch-value {
+    font-size: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg-thumb {
+    transition: none;
+  }
+}

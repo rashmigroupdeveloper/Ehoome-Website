@@ -1,0 +1,114 @@
+.work-acc {
+  background: var(--paper);
+  color: var(--text);
+  padding: 120px 0 0;
+}
+
+.work-acc-head {
+  margin-bottom: 40px;
+}
+
+.work-acc-head h2 {
+  color: var(--text);
+  font-size: clamp(32px, 4.4vw, 56px);
+  max-width: 14ch;
+  line-height: 1.05;
+}
+
+.work-acc-head p {
+  margin-top: 16px;
+  max-width: 42ch;
+  color: var(--muted);
+}
+
+.work-acc-track {
+  display: flex;
+  height: min(52dvh, 460px);
+  overflow: hidden;
+}
+
+.work-panel {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: flex var(--t-slow), filter var(--t-slow);
+  filter: saturate(0.8) contrast(1) brightness(1);
+}
+
+.work-panel:first-child,
+.work-panel:hover,
+.work-panel:focus-visible {
+  flex: 2.2;
+  filter: saturate(1) contrast(1.05) brightness(1.06);
+}
+
+.work-acc-track:has(.work-panel:hover) .work-panel:first-child:not(:hover):not(:focus-visible) {
+  flex: 1;
+  filter: saturate(0.8) contrast(1) brightness(1);
+}
+
+.work-panel.is-product {
+  background-color: var(--ink-3);
+  background-size: auto 48%;
+  background-repeat: no-repeat;
+  background-position: center 38%;
+}
+
+.work-panel-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(12, 13, 14, 0.55) 100%);
+  transition: opacity var(--t-base);
+}
+
+.work-panel-title {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  z-index: 1;
+}
+
+.work-panel:hover .work-panel-title svg,
+.work-panel:focus-visible .work-panel-title svg {
+  transform: translate(2px, -2px);
+}
+
+.work-panel-title svg {
+  transition: transform var(--t-base);
+}
+
+@media (max-width: 768px) {
+  .work-acc {
+    padding-top: 72px;
+  }
+
+  .work-acc-track {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .work-panel {
+    min-height: 180px;
+    flex: none;
+  }
+
+  .work-panel:first-child,
+  .work-panel:hover,
+  .work-panel:focus-visible {
+    flex: none;
+  }
+}

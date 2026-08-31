@@ -1,5 +1,5 @@
 import Section from '../components/Section';
-import PageHero from '../components/PageHero';
+import CinematicHero from '../components/CinematicHero';
 import './Quality.css';
 
 const TIMELINE = [
@@ -59,6 +59,7 @@ const GATES = [
     title: 'In-process',
     text: 'SPI, AOI and X-ray on the board; CCP checks at assembly and test.',
     checks: ['3D SPI on every pad', 'AOI pre/post reflow', 'X-ray on hidden joints'],
+    lead: true,
   },
   {
     n: '03',
@@ -75,12 +76,12 @@ const GATES = [
 ];
 
 const CERTS = [
-  { image: '/assets/img/cert-iso2.jpg', label: 'ISO 9001 : 2015', sub: 'quality management' },
-  { image: '/assets/img/cert-iso1.jpg', label: 'ISO 14001 : 2015', sub: 'environmental management' },
-  { image: '/assets/img/cert-iso3.jpg', label: 'ESD S20.20 : 2014', sub: 'electrostatic discharge control' },
-  { image: '/assets/img/cert-tec.jpg', label: 'TEC type approval', sub: 'Government of India' },
-  { image: '/assets/img/cert-ce.jpg', label: 'CE declaration', sub: 'conformity assessment' },
-  { image: '/assets/img/cert-pli.jpg', label: 'PLI scheme approval', sub: 'telecom & networking' },
+  { image: '/assets/img/cert-iso2.jpg', label: 'ISO 9001 : 2015', sub: 'Named owners on every station, not a wall certificate.' },
+  { image: '/assets/img/cert-iso1.jpg', label: 'ISO 14001 : 2015', sub: 'E-waste handling written into the plant procedure.' },
+  { image: '/assets/img/cert-iso3.jpg', label: 'ESD S20.20 : 2014', sub: 'Grounded floor from kit-open to pack.' },
+  { image: '/assets/img/cert-tec.jpg', label: 'TEC type approval', sub: 'Held per shipping SKU, issued on request with NDA.' },
+  { image: '/assets/img/cert-ce.jpg', label: 'CE declaration', sub: 'Conformity file travels with the lot, not after it.' },
+  { image: '/assets/img/cert-pli.jpg', label: 'PLI scheme approval', sub: 'Telecom and networking production in this building.' },
 ];
 
 const AFTER_SALES = [
@@ -93,10 +94,15 @@ const AFTER_SALES = [
 export default function Quality() {
   return (
     <div>
-      <PageHero
+      <CinematicHero
+        layout="iris"
         breadcrumb="Home / Quality"
-        title="Four gates, one standard: the one written into your agreement."
-        subtitle="Quality here is a documented flow with named owners — SQE on the supply side, PQE in process, CQE facing the customer — not a slogan on the wall."
+        title="Four gates. One written standard."
+        support="Quality here is a documented flow with named owners — SQE on the supply side, PQE in process, CQE facing the customer — not a slogan on the wall."
+        media={{
+          video: '/assets/cinematic/heroes/quality.mp4',
+          poster: '/assets/cinematic/heroes/quality-poster.jpg',
+        }}
       />
 
       <nav className="qual-subnav">
@@ -147,7 +153,7 @@ export default function Quality() {
 
           <div className="qual-gates-grid">
             {GATES.map((gate) => (
-              <div className="qual-gate-card" key={gate.n}>
+              <div className={`qual-gate-card${gate.lead ? ' is-lead' : ''}`} key={gate.n}>
                 <span className="qual-gate-tag">Gate {gate.n}</span>
                 <h3>{gate.title}</h3>
                 <p>{gate.text}</p>
@@ -205,7 +211,7 @@ export default function Quality() {
             <div className="qual-relationship-image">
               <div
                 className="qual-relationship-visual"
-                style={{ backgroundImage: 'url(/assets/ehome-iot-img/Factory View/img_11.jpeg)' }}
+                style={{ backgroundImage: 'url("/assets/ehome-iot-img/Factory View/img_11.jpeg")' }}
               >
                 <span className="qual-relationship-tag">Test &amp; repair bench</span>
               </div>

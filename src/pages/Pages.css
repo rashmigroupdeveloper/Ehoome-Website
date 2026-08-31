@@ -1,107 +1,169 @@
-.cards-grid {
+.model-bento {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 32px;
-}
-
-.service-card {
-  padding: 32px;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 16px;
+  margin-top: 36px;
+  grid-auto-flow: dense;
 }
 
-.service-card h3 {
-  color: var(--text);
+.model-cell {
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.service-card p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
+.model-cell.is-lead {
+  grid-row: 1 / span 2;
+  min-height: 520px;
+  box-shadow: inset 3px 0 0 var(--signal);
 }
 
-.service-row {
+.model-cell.is-lead .model-copy h3::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  background: var(--rashmi);
+  vertical-align: middle;
+}
+
+.model-visual {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.model-cell.is-product .model-visual {
+  background-color: var(--ink-3);
+  background-size: auto 55%;
+  background-repeat: no-repeat;
+  background-position: center 30%;
+}
+
+.model-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(12, 13, 14, 0.55) 100%);
+}
+
+.model-copy {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1;
+}
+
+.model-copy h3 {
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+
+.model-copy p {
+  color: var(--muted-d);
+  max-width: 36ch;
+}
+
+.service-stack h2 {
+  margin-bottom: 8px;
+}
+
+.service-block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
   align-items: center;
-  margin-top: 56px;
-  padding-top: 56px;
+  padding: 56px 0;
   border-top: 1px solid var(--rule);
 }
 
-.service-row.reversed {
-  grid-template-columns: 1fr 1fr;
+.service-block.is-flip {
+  grid-template-columns: 1.1fr 1fr;
 }
 
-.service-row.reversed .service-image {
-  order: -1;
+.service-block.is-flip .service-copy {
+  order: 2;
 }
 
-.service-content h3 {
-  margin-bottom: 16px;
-}
-
-.spec-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.spec-list li {
-  font-size: 14px;
-  color: var(--text);
-  padding-left: 16px;
-  position: relative;
-}
-
-.spec-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--signal);
-}
-
-.read-more {
-  color: var(--signal);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  color: var(--signal-ink);
-}
-
-.service-image {
+.service-block img {
   width: 100%;
-  border-radius: var(--radius);
-  overflow: hidden;
+  height: 360px;
+  object-fit: cover;
 }
 
-.service-image img {
-  width: 100%;
-  height: auto;
+.service-index {
   display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
 
-@media (max-width: 1080px) {
-  .cards-grid {
+.service-block.is-lead .service-copy h3 {
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+.service-block.is-product img {
+  object-fit: contain;
+  background: var(--ink-3);
+  padding: 40px;
+}
+
+.service-copy h3 {
+  margin-bottom: 12px;
+}
+
+.service-copy p {
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-bottom: 1px solid var(--ink);
+}
+
+.text-link:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .model-bento {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
   }
 
-  .service-row {
-    grid-template-columns: 1fr;
+  .model-cell.is-lead {
+    grid-row: auto;
+    min-height: 320px;
   }
 
-  .service-row.reversed .service-image {
+  .service-block,
+  .service-block.is-flip {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0;
+  }
+
+  .service-block.is-flip .service-copy {
     order: 0;
+  }
+
+  .service-block img {
+    height: 220px;
   }
 }

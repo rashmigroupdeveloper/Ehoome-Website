@@ -1,0 +1,346 @@
+/* ── Shared shell ─────────────────────────────────────────────────── */
+.cine-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--ink);
+  color: var(--text-on-dark);
+  overflow: hidden;
+}
+
+.cine-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cine-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cine-hero-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 auto;
+  width: 100%;
+  display: flex;
+}
+
+.cine-hero-crumb {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+  margin-bottom: 18px;
+}
+
+.cine-word-clip {
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 0.26em;
+  padding-bottom: 0.1em;
+  vertical-align: bottom;
+}
+
+.cine-word {
+  display: inline-block;
+}
+
+.cine-hero-title {
+  color: var(--text-on-dark);
+  font-size: clamp(38px, 5.6vw, 74px);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  text-shadow: 0 2px 28px rgba(12, 13, 14, 0.45);
+}
+
+.cine-hero-support {
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(236, 236, 232, 0.88);
+  max-width: 50ch;
+  text-shadow: 0 1px 16px rgba(12, 13, 14, 0.4);
+}
+
+.cine-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* ── BLEED (Capabilities) ─────────────────────────────────────────── */
+/* Soft legibility wash only — video stays the hero, not the tint. */
+.cine-hero-bleed .cine-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(12, 13, 14, 0.28) 0%, rgba(12, 13, 14, 0.08) 38%, transparent 68%),
+    linear-gradient(180deg, transparent 55%, rgba(12, 13, 14, 0.28) 100%);
+}
+
+.cine-hero-bleed .cine-hero-video {
+  filter: brightness(1.08) contrast(1.02) saturate(0.95);
+}
+
+.cine-hero-bleed .cine-hero-inner {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 132px 0 88px;
+}
+
+.cine-hero-bleed .cine-hero-copy {
+  max-width: 640px;
+}
+
+.cine-hero-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  list-style: none;
+  flex-shrink: 0;
+  padding-left: 22px;
+  border-left: 1px solid rgba(var(--signal-bright-rgb), 0.35);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(236, 236, 232, 0.72);
+  text-shadow: 0 1px 12px rgba(12, 13, 14, 0.35);
+}
+
+.cine-hero-rail li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cine-rail-index {
+  color: var(--signal-bright);
+  font-size: 10px;
+}
+
+/* ── SPLIT (Products) ─────────────────────────────────────────────── */
+.cine-hero-split {
+  background: var(--ink);
+}
+
+.cine-hero-split .cine-hero-inner {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) auto minmax(0, 1.05fr);
+  gap: 44px;
+  padding: 148px 0 84px;
+}
+
+.cine-hero-split .cine-hero-copy {
+  max-width: 46ch;
+}
+
+.cine-hero-rail-split {
+  border-left: 1px solid rgba(var(--signal-bright-rgb), 0.35);
+  padding-left: 20px;
+}
+
+.cine-hero-rail-split li {
+  color: var(--signal-bright);
+}
+
+.cine-split-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* Double-bezel: outer shell (hairline + recessed fill), inner core (video). */
+.cine-split-shell {
+  background: rgba(243, 243, 241, 0.04);
+  border: 1px solid rgba(243, 243, 241, 0.09);
+  border-radius: 28px;
+  padding: 10px;
+  box-shadow: var(--shadow-ink);
+}
+
+.cine-split-core {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.cine-split-core .cine-hero-video {
+  transform: scale(1.02);
+}
+
+.cine-split-core .cine-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(12, 13, 14, 0.28) 100%);
+}
+
+/* ── IRIS (Quality) ────────────────────────────────────────────────── */
+.cine-hero-iris {
+  background: var(--ink);
+}
+
+.cine-hero-iris .cine-hero-inner {
+  position: relative;
+  align-items: center;
+  min-height: min(76dvh, 660px);
+  padding: 140px 0 80px;
+}
+
+.cine-hero-iris .cine-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 44ch;
+}
+
+.cine-iris-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(var(--gut) * -1);
+  width: 56%;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ink);
+}
+
+.cine-iris-window .cine-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(200deg, transparent 50%, rgba(12, 13, 14, 0.22) 100%);
+}
+
+/* ── HUD (About) ───────────────────────────────────────────────────── */
+.cine-hero-hud .cine-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(12, 13, 14, 0.52) 0%, rgba(12, 13, 14, 0.22) 48%, rgba(12, 13, 14, 0.06) 78%),
+    linear-gradient(180deg, transparent 40%, rgba(12, 13, 14, 0.5) 100%);
+}
+
+.cine-hero-hud .cine-hero-video {
+  filter: brightness(1.02) contrast(1.02) saturate(0.95);
+}
+
+.cine-hero-hud .cine-hero-inner {
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 132px 0 44px;
+  gap: 40px;
+}
+
+.cine-hero-hud .cine-hero-copy {
+  max-width: 680px;
+}
+
+.cine-hero-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  list-style: none;
+  padding-top: 22px;
+  border-top: 1px solid rgba(var(--signal-bright-rgb), 0.35);
+  margin: 0;
+}
+
+.cine-hud-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cine-hud-stat dt {
+  order: 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+}
+
+.cine-hud-stat dd {
+  order: 1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-on-dark);
+}
+
+/* ── Mobile: single column, media stays full-bleed but decorations drop ── */
+@media (max-width: 900px) {
+  .cine-hero {
+    min-height: 82dvh;
+  }
+
+  .cine-hero-bleed .cine-hero-inner,
+  .cine-hero-split .cine-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 108px 0 48px;
+    gap: 32px;
+  }
+
+  .cine-hero-rail {
+    display: none;
+  }
+
+  .cine-split-frame {
+    order: 2;
+  }
+
+  .cine-split-core {
+    aspect-ratio: 16 / 10;
+  }
+
+  .cine-hero-iris .cine-hero-inner {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: auto;
+    padding: 108px 0 48px;
+    gap: 28px;
+  }
+
+  .cine-iris-window {
+    position: relative;
+    inset: auto;
+    right: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    clip-path: none !important;
+  }
+
+  .cine-hero-hud .cine-hero-inner {
+    padding: 108px 0 32px;
+  }
+
+  .cine-hero-hud {
+    gap: 20px 28px;
+  }
+
+  .cine-hero-title {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-iris-window {
+    clip-path: inset(6% 8% round 28px) !important;
+  }
+}

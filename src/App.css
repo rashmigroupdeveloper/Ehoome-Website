@@ -1,7 +1,10 @@
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
 }
 
 main {
@@ -13,25 +16,73 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: 72px;
-  font-weight: 700;
+  font-size: clamp(40px, 6vw, 72px);
   letter-spacing: -0.04em;
 }
 
 h2 {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: clamp(28px, 4vw, 48px);
   letter-spacing: -0.02em;
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
 }
 
 .flourish-period {
   color: var(--rashmi);
+  opacity: 1;
+}
+
+.not-found {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  padding: 140px var(--gut) 80px;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.not-found::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/cinematic/pcb-macro.jpg') center / cover;
+  filter: saturate(0.38) contrast(0.9) brightness(0.62);
+}
+
+.not-found::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 13, 14, 0.15), var(--ink) 78%);
+}
+
+.not-found .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.not-found h1 {
+  max-width: 12ch;
+}
+
+.not-found p {
+  margin: 16px 0 28px;
+  max-width: 40ch;
+  color: var(--muted-d);
+}
+
+/* The route transition parks focus here so keyboard users land on the new page
+   rather than on a link that no longer exists. It is not an interactive target,
+   so it must not draw a ring. */
+#main:focus {
+  outline: none;
 }

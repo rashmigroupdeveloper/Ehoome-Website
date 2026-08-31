@@ -1,0 +1,112 @@
+.prod-index {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: calc(var(--z-nav) - 1);
+  background: rgba(12, 13, 14, 0.92);
+  border-bottom: 1px solid var(--rule-d);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.prod-index-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 52px;
+  padding-block: 10px;
+}
+
+.prod-index-meta {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-d);
+  white-space: nowrap;
+}
+
+.prod-index-track {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.prod-index-track::-webkit-scrollbar {
+  display: none;
+}
+
+.prod-index-ind {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 40px;
+  background: var(--signal-bright);
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+.prod-index-btn {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--muted-d);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--t-fast);
+  white-space: nowrap;
+}
+
+.prod-index-btn:hover,
+.prod-index-btn.is-active {
+  color: var(--text-on-dark);
+}
+
+.prod-index-count {
+  font-size: 10px;
+  color: var(--signal-bright);
+  opacity: 0.7;
+}
+
+.prod-index-btn.is-active .prod-index-count {
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .prod-index-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding-block: 8px;
+  }
+
+  .prod-index-meta {
+    padding-inline: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prod-index {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--ink);
+  }
+}

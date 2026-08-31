@@ -83,8 +83,8 @@ textarea:focus {
 .enquiry-dark input:focus,
 .enquiry-dark select:focus,
 .enquiry-dark textarea:focus {
-  background-color: rgba(146, 232, 18, 0.05);
-  border-color: var(--signal);
+  background-color: rgba(243, 243, 241, 0.06);
+  border-color: var(--paper);
 }
 
 input.error,
@@ -156,13 +156,13 @@ textarea.error {
 }
 
 .captcha-refresh:hover {
-  background-color: rgba(146, 232, 18, 0.1);
-  border-color: var(--signal);
-  color: var(--signal);
+  background-color: rgba(243, 243, 241, 0.08);
+  border-color: var(--paper);
+  color: var(--paper);
 }
 
 .form-submit {
-  background-color: var(--signal);
+  background-color: var(--paper);
   color: var(--ink);
   padding: 12px 32px;
   border-radius: var(--radius);
@@ -173,14 +173,25 @@ textarea.error {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid var(--signal);
+  border: 1px solid var(--paper);
   width: fit-content;
 }
 
 .form-submit:hover {
-  background-color: var(--signal-ink);
-  border-color: var(--signal-ink);
+  background-color: #ffffff;
+  border-color: #ffffff;
   transform: translateY(-2px);
+}
+
+.enquiry-light .form-submit {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.enquiry-light .form-submit:hover {
+  background-color: var(--ink-2);
+  border-color: var(--ink-2);
 }
 
 @media (max-width: 640px) {

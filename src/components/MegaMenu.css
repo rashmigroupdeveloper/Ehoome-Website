@@ -11,11 +11,10 @@
 
 .mega-menu {
   position: relative;
-  background-color: var(--paper-2);
-  border-top: 1px solid var(--rule);
-  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.12);
+  background-color: #151617;
+  border-top: none;
   width: 100%;
-  animation: slideDownFade 0.3s ease-out forwards;
+  animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .mega-menu-inner {
@@ -45,11 +44,11 @@
 }
 
 .tab-button:hover {
-  background-color: var(--paper-3);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .tab-button.active {
-  background-color: var(--paper-3);
+  background-color: rgba(243, 243, 241, 0.08);
 }
 
 .tab-label {
@@ -58,7 +57,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--text);
+  color: var(--paper);
 }
 
 @keyframes fadeIn {
@@ -106,7 +105,7 @@
 
 .image-tile {
   aspect-ratio: 1 / 1;
-  background-color: var(--paper);
+  background-color: var(--ink-3);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -149,7 +148,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text);
+  color: var(--muted-d);
 }
 
 @media (max-width: 1080px) {

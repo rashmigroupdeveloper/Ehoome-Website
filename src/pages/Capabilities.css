@@ -40,7 +40,7 @@
 }
 
 .cap-section-label.is-dark {
-  color: var(--signal);
+  color: var(--signal-bright);
 }
 
 /* Lines */
@@ -66,8 +66,33 @@
 
 .cap-flow-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1.45fr 1fr 1fr;
   gap: 24px;
+}
+
+.cap-flow-card:first-child {
+  grid-row: span 2;
+  background-color: var(--paper);
+  border-color: var(--rule);
+  border-left: 3px solid var(--signal);
+  color: var(--text);
+}
+
+.cap-flow-card:first-child .cap-flow-tag {
+  color: var(--signal-ink);
+}
+
+.cap-flow-card:first-child p {
+  color: var(--muted);
+}
+
+.cap-flow-card:first-child .cap-flow-checks li {
+  color: var(--text);
+  border-top-color: var(--rule);
+}
+
+.cap-flow-card:first-child .cap-flow-count {
+  color: var(--signal-ink);
 }
 
 .cap-flow-card {
@@ -91,7 +116,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--signal-ink);
   font-weight: 600;
 }
 
@@ -169,11 +194,11 @@
 }
 
 .cap-table thead {
-  background-color: var(--ink);
+  background-color: rgba(var(--signal-rgb), 0.12);
 }
 
 .cap-table th {
-  color: var(--paper);
+  color: var(--signal-ink);
   padding: 16px;
   text-align: center;
   font-family: var(--font-mono);
@@ -181,6 +206,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 600;
+  border-bottom: 1px solid rgba(var(--signal-rgb), 0.35);
 }
 
 .cap-table th:first-child {
@@ -223,7 +249,8 @@
 }
 
 .cap-stat-highlight {
-  background-color: var(--ink);
+  background-color: rgba(var(--signal-rgb), 0.1);
+  box-shadow: inset 0 3px 0 var(--signal);
 }
 
 .cap-stat-label-top {
@@ -236,7 +263,7 @@
 }
 
 .cap-stat-highlight .cap-stat-label-top {
-  color: var(--muted-d);
+  color: var(--signal-ink);
 }
 
 .cap-stat-value {
@@ -248,7 +275,7 @@
 }
 
 .cap-stat-highlight .cap-stat-value {
-  color: var(--paper);
+  color: var(--signal-ink);
 }
 
 .cap-stat-unit {
@@ -260,7 +287,7 @@
 }
 
 .cap-stat-highlight .cap-stat-unit {
-  color: var(--signal);
+  color: var(--signal-ink);
 }
 
 .cap-stat-item p {
@@ -269,7 +296,7 @@
 }
 
 .cap-stat-highlight p {
-  color: var(--muted-d);
+  color: var(--muted);
 }
 
 /* Equipment */
@@ -403,7 +430,7 @@
 .cap-mes-tag {
   margin: 16px;
   padding: 8px 14px;
-  background-color: rgba(11, 16, 13, 0.75);
+  background-color: rgba(var(--signal-rgb), 0.85);
   backdrop-filter: blur(4px);
   color: var(--paper);
   font-family: var(--font-mono);
@@ -460,10 +487,11 @@
   line-height: 1.5;
 }
 
-/* Green CTA */
+/* Closing enquiry band — olive wash, not a black slab */
 .cap-green-cta {
-  background-color: var(--signal);
+  background-color: rgba(var(--signal-rgb), 0.08);
   padding: 64px 0;
+  border-top: 1px solid rgba(var(--signal-rgb), 0.28);
 }
 
 .cap-green-cta-inner {
@@ -474,18 +502,18 @@
 }
 
 .cap-green-cta h2 {
-  color: var(--ink);
+  color: var(--text);
   font-size: 32px;
   margin-bottom: 8px;
 }
 
 .cap-green-cta p {
-  color: var(--moss);
+  color: var(--muted);
   font-size: 15px;
 }
 
 .cap-cta-button {
-  background-color: var(--ink);
+  background-color: var(--rashmi);
   color: var(--paper);
   padding: 14px 26px;
   font-family: var(--font-display);
@@ -499,7 +527,7 @@
 }
 
 .cap-cta-button:hover {
-  background-color: var(--ink-2);
+  background-color: var(--rashmi-deep);
   color: var(--paper);
   transform: translateY(-2px);
 }
@@ -548,6 +576,10 @@
 @media (max-width: 768px) {
   .cap-flow-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cap-flow-card:first-child {
+    grid-row: auto;
   }
 
   .cap-stats-row {

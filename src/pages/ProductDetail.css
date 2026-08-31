@@ -1,5 +1,6 @@
 .pd-hero {
-  height: 520px;
+  min-height: min(68dvh, 640px);
+  height: auto;
   background-color: var(--ink);
   background-size: cover;
   background-position: center;
@@ -7,12 +8,13 @@
   position: relative;
   display: flex;
   align-items: flex-end;
+  padding: 140px 0 56px;
 }
 
 .pd-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(11, 16, 13, 0.92) 0%, rgba(11, 16, 13, 0.55) 45%, rgba(11, 16, 13, 0.15) 75%, rgba(11, 16, 13, 0.35) 100%);
+  background: linear-gradient(0deg, rgba(12, 13, 14, 0.55) 0%, rgba(12, 13, 14, 0.2) 45%, transparent 75%, rgba(12, 13, 14, 0.18) 100%);
 }
 
 .pd-hero-content {
@@ -129,7 +131,7 @@
 }
 
 .pd-tile-moss {
-  background-color: var(--moss);
+  background-color: var(--signal);
 }
 
 .pd-scale {
@@ -161,7 +163,7 @@
 .pd-scale-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(11, 16, 13, 0.85) 0%, rgba(11, 16, 13, 0.15) 60%, rgba(11, 16, 13, 0.35) 100%);
+  background: linear-gradient(0deg, rgba(12, 13, 14, 0.85) 0%, rgba(12, 13, 14, 0.15) 60%, rgba(12, 13, 14, 0.35) 100%);
 }
 
 .pd-scale-body {

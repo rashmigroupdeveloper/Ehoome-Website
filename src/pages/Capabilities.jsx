@@ -1,5 +1,6 @@
 import Section from '../components/Section';
-import PageHero from '../components/PageHero';
+import CapacityMeter from '../components/CapacityMeter';
+import CinematicHero from '../components/CinematicHero';
 import './Capabilities.css';
 
 const LINES = [
@@ -29,13 +30,6 @@ const LINES = [
   },
 ];
 
-const CAPACITY_COLUMNS = ['SMT', 'MI', 'Assembly', 'Switch testing', 'Packing'];
-const CAPACITY_ROWS = [
-  { label: 'Lines available', values: ['2', '2', '1', '1', '1'] },
-  { label: 'Production per day', values: ['4,500', '4,500', '3,000', '2,500', '2,500'] },
-  { label: 'Production per month', values: ['117,000', '117,000', '78,000', '65,000', '65,000'] },
-];
-
 const CAPACITY_STATS = [
   { label: 'Floor area', value: '50,000', unit: 'sq ft', text: 'Single production building' },
   { label: 'Workforce', value: '350', unit: '+', text: 'Across shifts' },
@@ -45,12 +39,12 @@ const CAPACITY_STATS = [
 ];
 
 const MACHINERY = [
-  { image: '/assets/img/mach-mounter.jpg', label: 'Fuji NXT III high-speed mounters' },
-  { image: '/assets/img/mach-printer.jpg', label: 'GKG PCB paste printer' },
-  { image: '/assets/img/mach-reflow.jpg', label: 'JT-1040 13-zone nitrogen reflow' },
-  { image: '/assets/img/mach-aoi.jpg', label: '3D AOI appearance inspection' },
-  { image: '/assets/img/mach-xray.jpg', label: 'X-ray inspection system' },
-  { image: '/assets/img/mach-router.jpg', label: 'PCB routing machine' },
+  { image: '/assets/generated/smt-placement-line.webp', label: 'Fuji NXT III high-speed mounters' },
+  { image: '/assets/generated/paste-printer.webp', label: 'GKG PCB paste printer' },
+  { image: '/assets/generated/reflow-oven.webp', label: 'JT-1040 13-zone nitrogen reflow' },
+  { image: '/assets/generated/aoi-inspection.webp', label: '3D AOI appearance inspection' },
+  { image: '/assets/generated/xray-inspection.webp', label: 'X-ray inspection system' },
+  { image: '/assets/generated/pcb-router.webp', label: 'PCB routing machine' },
   { image: '/assets/img/floor-line.jpg', label: 'FATP assembly line' },
   { image: '/assets/ehome-iot-img/Factory View/img_1.jpeg', label: 'Plant, Sector 83, Noida' },
 ];
@@ -59,19 +53,19 @@ const TESTING = [
   {
     title: 'Electrical & functional',
     checks: ['Functional test benches', 'Intelligent first-piece test', 'PoE load testing, all ports', 'Throughput and traffic test'],
-    image: '/assets/img/test-rf.jpg',
+    image: '/assets/generated/rf-test-bench.webp',
     caption: 'RF calibration bench',
   },
   {
     title: 'RF & optical',
     checks: ['Fully automated RF testing', 'RF calibration', 'BOSA calibration for PON', 'Two-dimensional detection'],
-    image: '/assets/img/test-bosa.jpg',
+    image: '/assets/generated/optical-bosa-test.webp',
     caption: 'BOSA calibration',
   },
   {
     title: 'Environmental & structural',
     checks: ['High and low temperature', 'Waterproof and airtight test', '2D/3D AOI, SPI, 3D X-ray', 'ROI/IS analysis'],
-    image: '/assets/img/test-poe.jpg',
+    image: '/assets/generated/poe-load-test.webp',
     caption: 'PoE load tester',
   },
 ];
@@ -87,10 +81,16 @@ const MES_ROWS = [
 export default function Capabilities() {
   return (
     <div>
-      <PageHero
+      <CinematicHero
+        layout="bleed"
         breadcrumb="Home / Capabilities"
-        title="50,000 sq ft in Noida, laid out for one job: telecom hardware at volume."
-        subtitle="Eleven production lines, an in-house MES, a full test laboratory and 350 people across shifts. Here is what is in the building and what it can produce."
+        title="Eleven lines. One Noida floor."
+        support="Eleven production lines, an in-house MES, a full test laboratory and 350 people across shifts. Here is what is in the building and what it can produce."
+        media={{
+          video: '/assets/cinematic/heroes/capabilities.mp4',
+          poster: '/assets/cinematic/heroes/capabilities-poster.jpg',
+        }}
+        rail={['SMT', 'MI', 'FATP', 'TEST']}
       />
 
       <nav className="cap-subnav">
@@ -142,33 +142,11 @@ export default function Capabilities() {
               <h2>Planning numbers, not marketing numbers.</h2>
             </div>
             <div>
-              <p>The table below is calculated on L2 networking switches, our densest current product. Simpler products run higher; chassis products run lower.</p>
+              <p>These figures are calculated on L2 networking switches, our densest current product. Simpler products run higher; chassis products run lower.</p>
             </div>
           </div>
 
-          <span className="cap-table-caption">Monthly capacity by area — basis: L2 networking switches</span>
-          <div className="cap-table-container">
-            <table className="cap-table">
-              <thead>
-                <tr>
-                  <th>Area</th>
-                  {CAPACITY_COLUMNS.map((col) => (
-                    <th key={col}>{col}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {CAPACITY_ROWS.map((row) => (
-                  <tr key={row.label}>
-                    <td>{row.label}</td>
-                    {row.values.map((v, i) => (
-                      <td key={i}>{v}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <CapacityMeter />
 
           <div className="cap-stats-row">
             {CAPACITY_STATS.map((stat) => (
@@ -192,7 +170,7 @@ export default function Capabilities() {
           <div className="cap-machinery-grid">
             {MACHINERY.map((item) => (
               <div className="cap-machinery-card" key={item.label}>
-                <div className="cap-machinery-image" style={{ backgroundImage: `url(${item.image})` }}></div>
+                <div className="cap-machinery-image" style={{ backgroundImage: `url("${item.image}")` }}></div>
                 <span className="cap-machinery-label">{item.label}</span>
               </div>
             ))}
@@ -235,7 +213,7 @@ export default function Capabilities() {
         <div className="wrap">
           <div className="cap-mes-content">
             <div className="cap-mes-image">
-              <div className="cap-mes-visual" style={{ backgroundImage: 'url(/assets/img/floor-assembly.jpg)' }}>
+              <div className="cap-mes-visual" style={{ backgroundImage: 'url("/assets/generated/final-assembly-line.webp")' }}>
                 <span className="cap-mes-tag">In-house MES</span>
               </div>
             </div>

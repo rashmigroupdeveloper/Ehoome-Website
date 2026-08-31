@@ -1,40 +1,49 @@
+import MagneticButton from './MagneticButton';
 import './PageHero.css';
 
 export default function PageHero({
   title,
   subtitle,
   breadcrumb,
-  image = '/assets/img/floor-smt.jpg',
-  eyebrow,
+  image = '/assets/generated/smt-placement-line.webp',
   description,
   ctaButtons,
-  children
+  recede = false,
+  children,
 }) {
+  const showFlourish = !/[.!?]$/.test(String(title).trim());
+
   return (
-    <div className="page-hero" style={{ backgroundImage: `url(${image})` }}>
-      <div className="page-hero-overlay"></div>
-      <div className="page-hero-content">
-        <div className="wrap">
-          {breadcrumb && <div className="breadcrumb">{breadcrumb}</div>}
-          {eyebrow && <div className="page-hero-eyebrow">{eyebrow}</div>}
-          <h1 className="page-hero-title">
-            {title}
-            <span className="flourish-period">.</span>
-          </h1>
-          {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
-          {description && <p className="page-hero-description">{description}</p>}
-          {ctaButtons && (
-            <div className="page-hero-buttons">
-              {ctaButtons.map((btn, idx) => (
-                <a key={idx} href={btn.href} className={`${btn.variant || 'outline'}-button`}>
-                  {btn.label} →
-                </a>
-              ))}
-            </div>
-          )}
-          {children}
-        </div>
+    <header
+      className={`page-hero${recede ? ' is-recede' : ''}`}
+      style={{ backgroundImage: `url("${image}")` }}
+    >
+      <div className="page-hero-overlay" />
+      <div className="wrap page-hero-inner">
+        {breadcrumb && <p className="page-hero-crumb">{breadcrumb}</p>}
+        <h1>
+          {title}
+          {showFlourish && <span className="flourish-period">.</span>}
+        </h1>
+        {(subtitle || description) && (
+          <p className="page-hero-copy">{subtitle || description}</p>
+        )}
+        {ctaButtons && (
+          <div className="page-hero-actions">
+            {ctaButtons.map((btn) => (
+              <MagneticButton
+                key={btn.href}
+                to={btn.href.startsWith('/') ? btn.href : undefined}
+                href={btn.href.startsWith('/') ? undefined : btn.href}
+                variant={btn.variant === 'highlight' ? 'signal' : 'ghost'}
+              >
+                {btn.label}
+              </MagneticButton>
+            ))}
+          </div>
+        )}
+        {children}
       </div>
-    </div>
+    </header>
   );
 }

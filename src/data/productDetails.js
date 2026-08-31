@@ -119,7 +119,7 @@ export const productDetails = {
   display: {
     name: 'Display',
     tagline: 'From panel to product',
-    heroImage: '/assets/img/Display.jpg',
+    heroImage: '/assets/generated/display-panel.webp',
     introHeading: ['Bright Ideas,', 'Engineered to Scale'],
     processSteps: [
       { title: 'Panel Integration', description: 'Panels mated to driver boards under clean-room conditions.', image: FACTORY.process[0] },

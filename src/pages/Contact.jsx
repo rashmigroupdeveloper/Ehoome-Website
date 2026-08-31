@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Section from '../components/Section';
 import PageHero from '../components/PageHero';
 import './Contact.css';
@@ -28,18 +30,41 @@ const NEXT_STEPS = [
 ];
 
 export default function Contact() {
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [params] = useSearchParams();
+
+  // Arriving from the configurator. Everything is checked against the option
+  // lists this form already owns, so a hand-edited URL can only ever fall back
+  // to the default rather than inject a value the form does not offer.
+  const pickPreset = (key, allowed) => {
+    const value = params.get(key);
+    return allowed.includes(value) ? value : allowed[0];
+  };
+  const presetNeed = pickPreset('need', NEED_OPTIONS);
+  const presetVolume = pickPreset('volume', VOLUME_OPTIONS);
+  const presetSpec = (params.get('spec') ?? '').slice(0, 2000);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your enquiry. A manufacturing engineer will reply within two working days.');
-    e.target.reset();
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setSending(true);
+    window.setTimeout(() => {
+      setSending(false);
+      setSent(true);
+    }, 600);
   };
 
   return (
     <div>
       <PageHero
         breadcrumb="Home / Start an Enquiry"
-        title="Tell us what you need built."
-        subtitle="A manufacturing engineer reads every enquiry and replies within two working days. If you already have a BOM, Gerbers or a specification, say so and we will ask for them."
+        title="Tell us what you need built"
+        subtitle="A manufacturing engineer replies within two working days."
       />
 
       <Section>
@@ -50,7 +75,13 @@ export default function Contact() {
               <h2>Project details</h2>
               <p className="enq-form-intro">Fields marked with an asterisk are needed to route your enquiry to the right team.</p>
 
-              <form className="enq-form" onSubmit={handleSubmit}>
+              {sent ? (
+                <div className="enq-success" role="status">
+                  <h3>Enquiry received</h3>
+                  <p>A manufacturing engineer will reply within two working days. Do not send files until we share the secure upload link.</p>
+                </div>
+              ) : (
+              <form className="enq-form" onSubmit={handleSubmit} noValidate={false} aria-busy={sending}>
                 <div className="enq-form-row">
                   <div className="enq-field">
                     <label htmlFor="enq-name">Your name *</label>
@@ -76,7 +107,7 @@ export default function Contact() {
                 <div className="enq-form-row">
                   <div className="enq-field">
                     <label htmlFor="enq-need">What do you need? *</label>
-                    <select id="enq-need" name="need" defaultValue={NEED_OPTIONS[0]} required>
+                    <select id="enq-need" name="need" defaultValue={presetNeed} required>
                       {NEED_OPTIONS.map((opt) => (
                         <option key={opt} value={opt}>{opt}</option>
                       ))}
@@ -84,7 +115,7 @@ export default function Contact() {
                   </div>
                   <div className="enq-field">
                     <label htmlFor="enq-volume">Annual volume *</label>
-                    <select id="enq-volume" name="volume" defaultValue={VOLUME_OPTIONS[0]} required>
+                    <select id="enq-volume" name="volume" defaultValue={presetVolume} required>
                       {VOLUME_OPTIONS.map((opt) => (
                         <option key={opt} value={opt}>{opt}</option>
                       ))}
@@ -99,8 +130,14 @@ export default function Contact() {
                     name="description"
                     rows="4"
                     placeholder="Product type, board complexity, target price, timeline, and anything already decided."
+                    defaultValue={presetSpec}
                     required
                   ></textarea>
+                  {presetSpec && (
+                    <p className="enq-field-note">
+                      Loaded from the configurator. Edit anything that is not right before sending.
+                    </p>
+                  )}
                 </div>
 
                 <div className="enq-attachments">
@@ -108,8 +145,11 @@ export default function Contact() {
                   <p>Do not attach files here. Once we reply, we will send an NDA and a secure upload link for BOM, Gerbers and drawings.</p>
                 </div>
 
-                <button type="submit" className="enq-submit">Send enquiry →</button>
+                <button type="submit" className="enq-submit" disabled={sending}>
+                  {sending ? 'Sending' : 'Send enquiry'}
+                </button>
               </form>
+              )}
             </div>
 
             <div className="enq-side-col">

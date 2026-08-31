@@ -1,0 +1,453 @@
+/* The docket. Paper on a dark page, so it reads as a printed sheet that has
+   just come off the scheduler's desk rather than another panel. */
+.jt {
+  position: relative;
+  margin-top: 64px;
+  background: var(--paper);
+  color: var(--text);
+  padding: 34px 38px 30px;
+  box-shadow: var(--shadow-ink);
+}
+
+/* Perforated top edge — the only decorative flourish, and it is doing work:
+   it says this sheet was torn off a run of them. */
+.jt::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  background: radial-gradient(circle at 6px -1px, var(--ink) 0 5px, transparent 5.5px) repeat-x;
+  background-size: 12px 6px;
+}
+
+.jt-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)) auto;
+  gap: 24px 32px;
+  align-items: end;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.jt-head-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.jt-code {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 2vw, 22px);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.jt-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  background: var(--signal);
+  animation: jt-blink 1.1s steps(1, end) infinite;
+}
+
+@keyframes jt-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.jt-fig {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.jt-fig span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-ink);
+}
+
+.jt-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+
+.jt-copy:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.jt-sku {
+  margin: 20px 0 18px;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 68ch;
+  text-wrap: balance;
+}
+
+.jt-sku em {
+  font-style: normal;
+  color: var(--signal-ink);
+}
+
+/* ---- capacity meter ---------------------------------------------------- */
+
+.jt-meter {
+  margin-bottom: 30px;
+}
+
+.jt-meter-rail {
+  position: relative;
+  height: 8px;
+  background: var(--paper-3);
+}
+
+.jt-meter-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--pct, 0%);
+  background: var(--signal);
+  transition: width 620ms var(--ease);
+}
+
+.jt-meter-mark {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0.35;
+}
+
+.jt-meter-note {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---- columns ----------------------------------------------------------- */
+
+.jt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.jt-col {
+  min-width: 0;
+  padding: 20px 26px 4px;
+  border-right: 1px solid var(--rule);
+}
+
+.jt-col:first-child {
+  padding-left: 0;
+}
+
+.jt-col:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.jt-col-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.jt-col-head span {
+  color: var(--signal-ink);
+}
+
+/* route */
+
+.jt-route {
+  list-style: none;
+}
+
+.jt-route li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  gap: 2px 10px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.jt-route-n {
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--signal-ink);
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.jt-route-line {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.jt-route-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.jt-route-note {
+  grid-column: 2 / -1;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* gates */
+
+.jt-checks,
+.jt-inputs {
+  list-style: none;
+}
+
+.jt-checks li {
+  position: relative;
+  padding: 9px 0 9px 20px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.jt-checks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--rule);
+}
+
+.jt-checks li.is-locked::before {
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.jt-check-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.jt-check-why {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* inputs */
+
+.jt-inputs li {
+  position: relative;
+  padding: 9px 0 9px 20px;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.jt-inputs li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 17px;
+  width: 9px;
+  height: 1px;
+  background: var(--signal);
+}
+
+/* ---- flags ------------------------------------------------------------- */
+
+.jt-flags {
+  list-style: none;
+  margin-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+
+.jt-flags li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 92ch;
+}
+
+.jt-flags svg {
+  margin-top: 3px;
+  color: var(--rashmi-deep);
+  flex: 0 0 auto;
+}
+
+/* ---- foot -------------------------------------------------------------- */
+
+.jt-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 2px solid var(--ink);
+}
+
+.jt-foot p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 46ch;
+}
+
+.jt-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 5px 5px 5px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: background-color var(--t-base);
+}
+
+.jt-send-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rashmi);
+  color: var(--paper);
+  transition: transform var(--t-base);
+}
+
+.jt-send:hover {
+  background: #000;
+}
+
+.jt-send:hover .jt-send-icon {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 1080px) {
+  .jt-head {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jt-head-code {
+    grid-column: 1 / -1;
+  }
+
+  .jt-copy {
+    justify-self: start;
+  }
+
+  .jt-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .jt-col {
+    padding: 20px 0 4px;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .jt-col:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .jt {
+    padding: 26px 20px 24px;
+  }
+
+  .jt-head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .jt-send {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jt-caret {
+    animation: none;
+  }
+
+  .jt-meter-fill {
+    transition: none;
+  }
+}

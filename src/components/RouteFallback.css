@@ -1,0 +1,31 @@
+.route-fallback {
+  min-height: 100dvh;
+  background: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  justify-content: stretch;
+}
+
+.route-fallback-bar {
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--signal), var(--signal-ink));
+  animation: route-fallback-sweep 1.1s var(--ease) infinite;
+  /* Held back so a fast chunk resolves before anything is drawn at all. */
+  opacity: 0;
+  animation-delay: 220ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes route-fallback-sweep {
+  0%   { opacity: 1; transform: scaleX(0); }
+  60%  { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fallback-bar {
+    animation: none;
+  }
+}

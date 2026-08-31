@@ -1,0 +1,232 @@
+/* ─── WhatWeMake — Awwwards-style editorial section ─────────────── */
+
+.wm {
+  position: relative;
+  isolation: isolate;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+  overflow: clip;
+}
+
+/* ── Floating cursor image — stays inside this section, never over the ticker ── */
+.wm-float-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 168px;
+  border-radius: var(--radius);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.94;
+  transform-origin: top left;
+  z-index: 2;
+  box-shadow:
+    0 12px 40px -8px rgba(12, 13, 14, 0.35),
+    0 2px 8px -2px rgba(12, 13, 14, 0.18);
+  will-change: transform, opacity;
+}
+
+/* ── Header ── */
+.wm-header {
+  padding-top: 100px;
+  padding-bottom: 64px;
+}
+
+.wm-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.wm-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.wm-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 52ch;
+}
+
+/* ── List container ── */
+.wm-list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+  padding: 0;
+}
+
+.wm-row-wrap {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Each row ── */
+.wm-row {
+  display: grid;
+  grid-template-columns: 52px 1fr minmax(0, 280px) 44px;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 26px var(--gut);
+  max-width: var(--wrap);
+  margin: 0 auto;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background-color 240ms var(--ease),
+    color 240ms var(--ease),
+    padding-left 240ms var(--ease);
+  cursor: pointer;
+  /* no pointer events interference with fixed float-img */
+}
+
+.wm-row:hover {
+  background: var(--ink);
+  color: var(--text-on-dark);
+  padding-left: calc(var(--gut) + 8px);
+}
+
+/* ── Number ── */
+.wm-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 240ms var(--ease);
+  flex-shrink: 0;
+}
+
+.wm-row:hover .wm-num {
+  color: var(--signal);
+}
+
+/* ── Body: cat + title ── */
+.wm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wm-cat {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 240ms var(--ease);
+}
+
+.wm-row:hover .wm-cat {
+  color: var(--muted-d);
+}
+
+.wm-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* ── Brief — right column ── */
+.wm-brief {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  transition: color 240ms var(--ease);
+}
+
+.wm-row:hover .wm-brief {
+  color: var(--muted-d);
+}
+
+/* ── Arrow icon ── */
+.wm-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  flex-shrink: 0;
+  justify-self: end;
+  transition:
+    transform 300ms var(--ease-out),
+    border-color 240ms var(--ease),
+    color 240ms var(--ease);
+}
+
+.wm-row:hover .wm-arrow {
+  transform: translate(4px, -4px);
+  border-color: rgba(236, 236, 232, 0.3);
+  color: var(--text-on-dark);
+}
+
+/* ── Footer ── */
+.wm-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+.wm-btn-ghost {
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.wm-btn-ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .wm-row {
+    grid-template-columns: 44px 1fr 40px;
+  }
+
+  .wm-brief {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .wm-header {
+    padding-top: 64px;
+    padding-bottom: 40px;
+  }
+
+  .wm-float-img {
+    display: none;
+  }
+
+  .wm-row {
+    grid-template-columns: 36px 1fr 36px;
+    gap: 12px 16px;
+    padding: 20px var(--gut);
+  }
+
+  .wm-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

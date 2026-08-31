@@ -1,0 +1,138 @@
+.line-pan {
+  background: var(--paper);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.line-track {
+  display: flex;
+  align-items: stretch;
+  height: 100dvh;
+  width: max-content;
+}
+
+.line-intro,
+.line-card {
+  position: relative;
+  flex: 0 0 min(46vw, 560px);
+  height: 100%;
+  display: grid;
+  grid-template-rows: 52% 1fr;
+  border-right: 1px solid var(--rule);
+}
+
+/* The intro panel stays dark and stays wider — it is the cinematic entry. */
+.line-intro {
+  flex: 0 0 min(60vw, 720px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 56px 64px;
+  background: var(--ink);
+}
+
+.line-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/ehome-iot-img/Factory View/img_9.jpeg') center / cover;
+  filter: saturate(0.45) contrast(0.92) brightness(0.72);
+}
+
+.line-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 13, 14, 0.2), var(--ink));
+}
+
+.line-intro h2,
+.line-intro p {
+  position: relative;
+  z-index: 1;
+}
+
+.line-intro h2 {
+  color: var(--paper);
+  font-size: clamp(36px, 4.6vw, 64px);
+  max-width: 12ch;
+  line-height: 1.05;
+}
+
+.line-intro p {
+  margin-top: 20px;
+  max-width: 40ch;
+  color: var(--muted-d);
+}
+
+.line-card-media {
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.88) contrast(1.02) brightness(1.04);
+}
+
+.line-card.is-gate .line-card-media {
+  filter: saturate(1) contrast(1.06) brightness(1.06);
+}
+
+.line-card-body {
+  padding: 28px 32px 36px;
+  background: var(--paper);
+}
+
+.line-card-body span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.line-card.is-gate .line-card-body span {
+  color: var(--signal-ink);
+}
+
+.line-card-body h3 {
+  color: var(--text);
+  font-size: 28px;
+  margin: 8px 0 10px;
+}
+
+.line-card-body p {
+  color: var(--muted);
+  max-width: 42ch;
+}
+
+.line-card.is-gate .line-card-body {
+  background: rgba(var(--signal-rgb), 0.14);
+  box-shadow: inset 0 2px 0 var(--signal);
+}
+
+@media (max-width: 767px) {
+  .line-pan {
+    overflow: visible;
+  }
+
+  .line-track {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .line-intro,
+  .line-card {
+    width: 100%;
+    height: auto;
+    min-height: 70dvh;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .line-intro {
+    padding: 80px var(--gut) 48px;
+  }
+
+  .line-card-media {
+    min-height: 280px;
+  }
+}

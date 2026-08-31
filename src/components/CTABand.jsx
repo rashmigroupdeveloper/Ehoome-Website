@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom';
+import MagneticButton from './MagneticButton';
 import Section from './Section';
 import './CTABand.css';
 
-export default function CTABand({ heading, subheading, buttonText = 'Get Started', buttonLink = '/contact' }) {
+export default function CTABand({
+  heading,
+  subheading,
+  buttonText = 'Start an enquiry',
+  buttonLink = '/contact',
+}) {
   return (
-    <Section variant="dark">
-      <div className="wrap">
-        <div className="cta-band">
-          <div className="cta-content">
-            <h2>{heading}<span className="flourish-period">.</span></h2>
-            {subheading && <p className="cta-subheading">{subheading}</p>}
-          </div>
-          <Link to={buttonLink} className="cta-btn">
-            {buttonText} →
-          </Link>
+    <Section variant="dark" className="cta-band-section">
+      <div className="wrap cta-band">
+        <div>
+          <h2>
+            {heading}
+            <span className="flourish-period">.</span>
+          </h2>
+          {subheading && <p>{subheading}</p>}
         </div>
+        <MagneticButton to={buttonLink} variant="signal">
+          {buttonText}
+        </MagneticButton>
       </div>
     </Section>
   );

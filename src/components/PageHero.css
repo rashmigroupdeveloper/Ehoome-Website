@@ -1,160 +1,118 @@
 .page-hero {
-  min-height: 560px;
+  min-height: min(72dvh, 720px);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0;
+  align-items: flex-end;
+  padding: 120px 0 72px;
 }
 
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(11, 16, 13, 0.96) 0%, rgba(11, 16, 13, 0.92) 38%, rgba(11, 16, 13, 0.3) 78%, rgba(11, 16, 13, 0.55) 100%);
-  z-index: 1;
+  background:
+    linear-gradient(105deg, rgba(12, 13, 14, 0.32) 0%, rgba(12, 13, 14, 0.1) 45%, transparent 75%),
+    linear-gradient(180deg, transparent 48%, rgba(12, 13, 14, 0.32) 100%);
 }
 
-.page-hero-content {
+.page-hero-inner {
   position: relative;
-  z-index: 2;
-  width: 100%;
-  text-align: center;
+  z-index: 1;
+  max-width: 920px;
+  margin-left: max(var(--gut), calc((100% - var(--wrap)) / 2 + var(--gut)));
+  margin-right: auto;
+  padding-left: 0;
 }
 
-.breadcrumb {
+.page-hero-crumb {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted-d);
-  margin-bottom: 24px;
+  color: var(--signal-bright);
+  margin-bottom: 18px;
 }
 
-.page-hero-title {
+.page-hero h1 {
   color: var(--paper);
-  margin-bottom: 16px;
+  font-size: clamp(36px, 5.4vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  max-width: 16ch;
+  text-shadow: 0 2px 28px rgba(12, 13, 14, 0.45);
 }
 
-.page-hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: white;
-  font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  margin-bottom: 24px;
-}
-
-.page-hero-subtitle {
-  font-size: 18px;
-  color: var(--muted-d);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.page-hero-description {
-  font-size: 16px;
-  color: var(--muted-d);
-  max-width: 700px;
-  margin: 24px auto 0;
+.page-hero-copy {
+  margin-top: 18px;
+  font-size: 17px;
   line-height: 1.6;
+  color: rgba(236, 236, 232, 0.88);
+  max-width: 52ch;
+  text-shadow: 0 1px 16px rgba(12, 13, 14, 0.4);
 }
 
-.page-hero-buttons {
+.page-hero-actions {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 32px;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
 }
 
-.highlight-button {
-  background: var(--signal);
-  color: var(--ink);
-  padding: 12px 24px;
-  border-radius: 0;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s;
+.page-hero.is-recede {
+  background-size: 118% auto;
+  animation: page-hero-pan 32s ease-in-out infinite alternate;
 }
 
-.highlight-button:hover {
-  background: var(--signal-alt);
+@keyframes page-hero-pan {
+  from { background-position: 18% 50%; }
+  to { background-position: 82% 50%; }
 }
 
-.outline-button {
-  border: 1px solid var(--signal);
-  color: var(--signal);
-  padding: 12px 24px;
-  border-radius: 0;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s;
+@media (prefers-reduced-motion: reduce) {
+  .page-hero.is-recede {
+    animation: none;
+    background-size: cover;
+    background-position: center;
+  }
 }
 
-.outline-button:hover {
-  background: var(--signal);
-  color: var(--ink);
-}
-
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
   .page-hero {
-    min-height: 420px;
+    min-height: 70dvh;
+    padding: 108px 0 48px;
+    align-items: flex-end;
     background-attachment: scroll;
   }
 
-  .page-hero-title {
-    font-size: 48px;
+  .page-hero-inner {
+    margin-left: var(--gut);
+    padding-right: var(--gut);
   }
 
-  .page-hero-subtitle {
-    font-size: 16px;
-  }
-
-  .page-hero-description {
-    font-size: 15px;
-  }
-
-  .page-hero-buttons {
-    gap: 12px;
+  .page-hero h1 {
+    max-width: none;
   }
 }
 
 @media (max-width: 640px) {
   .page-hero {
-    min-height: 360px;
-    padding: 48px 0;
+    min-height: 62dvh;
+    padding: 96px 0 40px;
   }
 
-  .page-hero-title {
-    font-size: 32px;
+  .page-hero-copy {
+    font-size: 15px;
   }
 
-  .page-hero-subtitle {
-    font-size: 14px;
-  }
-
-  .page-hero-description {
-    font-size: 14px;
-    margin-top: 16px;
-  }
-
-  .page-hero-buttons {
+  .page-hero-actions {
     flex-direction: column;
     gap: 8px;
   }
 
-  .highlight-button,
-  .outline-button {
+  .page-hero-actions .btn {
     width: 100%;
-    text-align: center;
+    justify-content: space-between;
   }
 }

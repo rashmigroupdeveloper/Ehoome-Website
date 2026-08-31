@@ -1,41 +1,13 @@
 /* Hero */
-.about-hero {
-  background-color: var(--ink);
-  background-image:
-    linear-gradient(90deg, var(--ink) 0%, rgba(11, 16, 13, 0.75) 55%, rgba(11, 16, 13, 0.35) 100%),
-    url("/assets/ehome-iot-img/Factory View/img_1.jpeg");
-  background-size: cover;
-  background-position: right center;
-  padding-top: 56px;
-}
-
-.about-breadcrumb {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted-d);
-  margin-bottom: 28px;
-}
-
-.about-hero-title {
-  color: var(--paper);
-  font-size: 46px;
-  line-height: 1.25;
-  max-width: 640px;
-  margin-bottom: 20px;
-}
-
-.about-hero-sub {
-  color: var(--muted-d);
-  font-size: 16px;
-  line-height: 1.7;
-  max-width: 560px;
-  padding-bottom: 56px;
-}
-
+/* Subnav rides inside CinematicHero's hud layout, as a glass bar pinned
+   over the video rather than a flat dark strip. */
 .about-subnav {
-  border-top: 1px solid var(--rule-d);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(243, 243, 241, 0.14);
+  background: rgba(12, 13, 14, 0.28);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
 }
 
 .about-subnav-inner {
@@ -56,7 +28,7 @@
 }
 
 .about-subnav a:hover {
-  color: var(--signal);
+  color: var(--signal-bright);
 }
 
 .about-section-label {
@@ -134,24 +106,25 @@
 }
 
 .about-stat-box.is-dark {
-  background-color: var(--ink);
-  border-color: var(--ink);
+  background-color: rgba(var(--signal-rgb), 0.1);
+  border-color: rgba(var(--signal-rgb), 0.28);
+  box-shadow: inset 0 3px 0 var(--rashmi);
 }
 
 .about-stat-box.is-dark .about-stat-label {
-  color: var(--muted-d);
+  color: var(--signal-ink);
 }
 
 .about-stat-box.is-dark .about-stat-value {
-  color: var(--paper);
+  color: var(--text);
 }
 
 .about-stat-box.is-dark .is-signal {
-  color: var(--signal);
+  color: var(--rashmi);
 }
 
 .about-stat-box.is-dark p {
-  color: var(--muted-d);
+  color: var(--muted);
 }
 
 /* Rashmi Group */
@@ -233,6 +206,7 @@
 /* Why We Exist */
 .about-why-section {
   background-color: var(--ink);
+  border-top: 1px solid rgba(var(--signal-rgb), 0.28);
 }
 
 .about-why-content {
@@ -246,6 +220,10 @@
   color: var(--paper);
   font-size: 32px;
   line-height: 1.3;
+}
+
+.about-why-text .about-section-label {
+  color: var(--signal-bright);
 }
 
 .about-why-right p {
@@ -265,11 +243,15 @@
   grid-template-columns: 160px 1fr;
   gap: 24px;
   padding: 18px 0;
-  border-top: 1px solid var(--rule-d);
+  border-top: 1px solid rgba(var(--signal-rgb), 0.22);
 }
 
 .about-why-row:last-child {
-  border-bottom: 1px solid var(--rule-d);
+  border-bottom: 1px solid rgba(var(--signal-rgb), 0.22);
+}
+
+.about-why-row:first-child dt {
+  color: var(--rashmi);
 }
 
 .about-why-row dt {
@@ -278,7 +260,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--signal);
+  color: var(--signal-bright);
 }
 
 .about-why-row dd {
@@ -311,7 +293,7 @@
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--muted);
+  color: var(--signal-ink);
   font-weight: 600;
 }
 
@@ -331,10 +313,10 @@
 .about-address-meta {
   font-family: var(--font-mono);
   font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--rashmi-deep);
   font-weight: 600;
-  color: var(--signal-ink);
   display: block;
 }
 
@@ -352,7 +334,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: var(--ink);
+  background-color: var(--signal);
   color: var(--paper);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -362,10 +344,11 @@
   padding: 10px 16px;
 }
 
-/* Green CTA */
+/* Closing enquiry band — olive wash + Rashmi CTA */
 .about-green-cta {
-  background-color: var(--signal);
+  background-color: rgba(var(--signal-rgb), 0.08);
   padding: 64px 0;
+  border-top: 1px solid rgba(var(--signal-rgb), 0.28);
 }
 
 .about-green-cta-inner {
@@ -376,18 +359,18 @@
 }
 
 .about-green-cta h2 {
-  color: var(--ink);
+  color: var(--text);
   font-size: 32px;
   margin-bottom: 8px;
 }
 
 .about-green-cta p {
-  color: var(--moss);
+  color: var(--muted);
   font-size: 15px;
 }
 
 .about-cta-button {
-  background-color: var(--ink);
+  background-color: var(--rashmi);
   color: var(--paper);
   padding: 14px 26px;
   font-family: var(--font-display);
@@ -399,7 +382,8 @@
 }
 
 .about-cta-button:hover {
-  background-color: var(--ink-2);
+  background-color: var(--rashmi-deep);
+  color: var(--paper);
   transform: translateY(-2px);
 }
 
@@ -431,10 +415,6 @@
 }
 
 @media (max-width: 768px) {
-  .about-hero-title {
-    font-size: 34px;
-  }
-
   .about-subnav-inner {
     gap: 20px;
     overflow-x: auto;
@@ -447,10 +427,6 @@
 }
 
 @media (max-width: 640px) {
-  .about-hero-title {
-    font-size: 28px;
-  }
-
   .about-what-stats {
     grid-template-columns: 1fr;
   }

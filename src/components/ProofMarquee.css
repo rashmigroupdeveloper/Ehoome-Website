@@ -1,0 +1,60 @@
+.proof-marquee {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--ink-2);
+  border-bottom: 1px solid rgba(var(--signal-rgb), 0.28);
+  padding: 22px 0;
+}
+
+.proof-track {
+  display: flex;
+  gap: 56px;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.proof-track span {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-d);
+  white-space: nowrap;
+}
+
+.proof-track span::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 56px;
+  border-radius: 50%;
+  background: var(--signal);
+  vertical-align: middle;
+}
+
+.proof-track span:nth-child(odd)::after {
+  background: var(--rashmi);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 16px 28px;
+    padding: 0 var(--gut);
+  }
+
+  .proof-track span::after {
+    display: none;
+  }
+}

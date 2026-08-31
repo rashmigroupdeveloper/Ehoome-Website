@@ -1,0 +1,110 @@
+/* Route curtain. Seven slats close top-down, the readout names the incoming
+   page, then the slats retract downward so the curtain passes through rather
+   than bouncing back the way it came. */
+.pt {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-transition);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pt-slats {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.pt-slat {
+  flex: 1 1 0;
+  /* Vertical hairlines only: they survive scaleY without distorting, so the
+     slat keeps its machined texture at every point in the sweep. */
+  background-image:
+    repeating-linear-gradient(90deg, rgba(243, 243, 241, 0.045) 0 1px, transparent 1px 34px),
+    linear-gradient(180deg, var(--ink-3), var(--ink) 62%);
+  will-change: transform;
+  transform: scaleY(0);
+  backface-visibility: hidden;
+}
+
+.pt-slat + .pt-slat {
+  border-left: 1px solid rgba(243, 243, 241, 0.05);
+}
+
+.pt-readout {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0 var(--gut) clamp(36px, 7vh, 72px);
+  opacity: 0;
+}
+
+.pt-readout-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+  margin-bottom: 10px;
+}
+
+.pt-readout-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(38px, 7vw, 86px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--paper);
+  min-height: 1em;
+}
+
+/* Caret sits on the typed-in label so an empty first frame still reads as a
+   readout waiting for its line rather than a blank screen. */
+.pt-readout-label::after {
+  content: '';
+  display: inline-block;
+  width: 0.06em;
+  height: 0.74em;
+  margin-left: 0.1em;
+  background: var(--signal-bright);
+  vertical-align: baseline;
+  animation: pt-blink 0.9s steps(1, end) infinite;
+}
+
+.pt.is-revealing .pt-readout-label::after {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes pt-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.pt-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@media (max-width: 640px) {
+  .pt-readout-kicker {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt {
+    display: none;
+  }
+}

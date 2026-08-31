@@ -1,0 +1,12 @@
+.products-page {
+  background: var(--ink);
+}
+
+.products-chapters {
+  position: relative;
+}
+
+/* Anchor offset for in-hero CTA that jumps to first chapter */
+#switching {
+  scroll-margin-top: calc(var(--nav-h) + 56px);
+}
