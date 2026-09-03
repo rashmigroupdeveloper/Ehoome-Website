@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useRef } from 'react';
 import { Check } from '@phosphor-icons/react';
 import './ConfigControls.css';
 
@@ -14,18 +14,15 @@ import './ConfigControls.css';
 
 /* ---- shared shell ------------------------------------------------------ */
 
-export function Field({ index, label, note, tag, children }) {
+export function Field({ label, note, tag, children }) {
   return (
     <div className="fld">
       <div className="fld-head">
-        <span className="fld-index" aria-hidden="true">
-          {String(index).padStart(2, '0')}
-        </span>
         <span className="fld-label">
           {label}
           {tag ? <em className="fld-tag">{tag}</em> : null}
         </span>
-        <span className="fld-note">{note}</span>
+        {note ? <span className="fld-note">{note}</span> : null}
       </div>
       {children}
     </div>
@@ -35,24 +32,55 @@ export function Field({ index, label, note, tag, children }) {
 /* ---- segmented --------------------------------------------------------- */
 
 export function Segmented({ label, options, value, onChange }) {
+  const groupRef = useRef(null);
+  const optionRefs = useRef([]);
   const index = Math.max(0, options.findIndex((o) => o.id === value));
+
+  const chooseFromKeyboard = (nextIndex) => {
+    const next = (nextIndex + options.length) % options.length;
+    groupRef.current?.classList.add('is-keyboard');
+    onChange(options[next].id);
+    optionRefs.current[next]?.focus();
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => groupRef.current?.classList.remove('is-keyboard'));
+    });
+  };
+
+  const onKeyDown = (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === 'Home') return chooseFromKeyboard(0);
+    if (event.key === 'End') return chooseFromKeyboard(options.length - 1);
+    const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+    chooseFromKeyboard(index + step);
+  };
 
   return (
     <div
+      ref={groupRef}
       className="seg"
       role="radiogroup"
       aria-label={label}
-      style={{ '--n': options.length, '--i': index }}
+      style={{ '--n': options.length }}
+      onKeyDown={onKeyDown}
     >
-      <span className="seg-thumb" aria-hidden="true" />
-      {options.map((o) => {
+      <span
+        className="seg-thumb"
+        aria-hidden="true"
+        style={{ transform: `translateX(${index * 100}%)` }}
+      />
+      {options.map((o, optionIndex) => {
         const on = o.id === value;
         return (
           <button
+            ref={(node) => {
+              optionRefs.current[optionIndex] = node;
+            }}
             key={o.id}
             type="button"
             role="radio"
             aria-checked={on}
+            tabIndex={on ? 0 : -1}
             className={`seg-opt${on ? ' is-on' : ''}`}
             onClick={() => onChange(o.id)}
           >
@@ -74,15 +102,16 @@ export function NotchScale({ label, steps, suffix = '', value, onChange, format,
   const index = Math.max(0, steps.indexOf(value));
   const fill = steps.length > 1 ? index / (steps.length - 1) : 0;
   const print = format ?? ((v) => String(v));
+  const valueChars = Math.max(...steps.map((s) => print(s).length));
   // Ten volume detents cannot all carry a label without turning the rail into
-  // a ruler, so a sparse run prints only the ends and wherever the knob is.
+  // a ruler, so a sparse run fades in only the ends and the active detent.
   const labelled = (i) => !sparse || i === 0 || i === steps.length - 1 || i === index;
 
   return (
-    <div className="notch" style={{ '--fill': `${fill * 100}%` }}>
+    <div className={`notch${sparse ? ' is-sparse' : ''}`} style={{ '--fill': `${fill * 100}%`, '--value-ch': valueChars }}>
       <output className="notch-value" htmlFor={id}>
-        {print(value)}
-        {suffix ? <span>{suffix}</span> : null}
+        <span className="notch-value-number">{print(value)}</span>
+        {suffix ? <span className="notch-value-suffix">{suffix}</span> : null}
       </output>
 
       <div className="notch-rail">
@@ -99,16 +128,19 @@ export function NotchScale({ label, steps, suffix = '', value, onChange, format,
           onChange={(e) => onChange(steps[Number(e.target.value)])}
         />
         <div className="notch-ticks" aria-hidden="true">
+          <span className="notch-track">
+            <span className="notch-fill" style={{ transform: `scaleX(${fill})` }} />
+          </span>
           {steps.map((s, i) => (
             <button
               key={s}
               type="button"
               tabIndex={-1}
-              className={`notch-tick${i <= index ? ' is-past' : ''}${i === index ? ' is-on' : ''}`}
+              className={`notch-tick${i <= index ? ' is-past' : ''}${i === index ? ' is-on' : ''}${labelled(i) ? ' is-labelled' : ''}`}
               onClick={() => onChange(s)}
             >
               <i />
-              {labelled(i) ? <span>{print(s)}</span> : null}
+              <span className="notch-tick-label">{print(s)}</span>
             </button>
           ))}
         </div>
@@ -120,13 +152,14 @@ export function NotchScale({ label, steps, suffix = '', value, onChange, format,
 /* ---- chip set ---------------------------------------------------------- */
 
 export function ChipSet({ label, options, value, onChange }) {
+  const selected = new Set(value);
   const toggle = (id) =>
-    onChange(value.includes(id) ? value.filter((x) => x !== id) : [...value, id]);
+    onChange(selected.has(id) ? value.filter((x) => x !== id) : [...value, id]);
 
   return (
     <div className="chips" role="group" aria-label={label}>
       {options.map((o) => {
-        const on = value.includes(o.id);
+        const on = selected.has(o.id);
         return (
           <button
             key={o.id}

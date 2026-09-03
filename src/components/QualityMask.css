@@ -1,101 +1,168 @@
 .qm {
   position: relative;
-  min-height: 100dvh;
   background: var(--ink);
-  display: flex;
-  align-items: flex-end;
+  color: var(--paper);
+  padding: 88px 0 104px;
 }
 
-.qm-photo {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: saturate(0.7) contrast(1.05);
-}
-
-.qm-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 35%, rgba(12, 13, 14, 0.55) 100%);
+.qm-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+  grid-template-areas:
+    'copy still'
+    'ledger still'
+    'cta still';
+  column-gap: 64px;
+  row-gap: 24px;
+  align-items: start;
 }
 
 .qm-copy {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 64px;
-  padding-top: 120px;
+  grid-area: copy;
 }
 
 .qm-copy h2 {
   color: var(--paper);
-  font-size: clamp(32px, 4.2vw, 56px);
-  max-width: 16ch;
-  line-height: 1.05;
+  font-size: clamp(32px, 3.8vw, 50px);
+  max-width: 14ch;
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .qm-copy p {
-  margin: 16px 0 32px;
-  max-width: 48ch;
+  margin-top: 14px;
+  max-width: 46ch;
   color: var(--muted-d);
+  line-height: 1.55;
 }
 
-.qm-copy ul {
+.qm-ledger {
+  grid-area: ledger;
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 32px;
-  max-width: 720px;
+  border-top: 1px solid var(--rule-d);
 }
 
-.qm-copy li {
+.qm-row {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 16px 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule-d);
+}
+
+.qm-code {
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.6vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+
+.qm-code.is-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.qm-code small {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--signal-bright);
+  border: 1px solid rgba(var(--signal-bright-rgb), 0.4);
+  padding: 5px 7px 4px;
+  line-height: 1;
+}
+
+.qm-row-body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
-.qm-copy strong {
+.qm-row-body strong {
   font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
   color: var(--paper);
-  font-size: 16px;
 }
 
-.qm-copy span {
+.qm-row-body span {
   color: var(--muted-d);
   font-size: 14px;
+  line-height: 1.5;
+  max-width: 42ch;
 }
 
-.qm-link {
-  display: inline-block;
-  margin-top: 32px;
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-weight: 600;
-  border-bottom: 1px solid var(--paper);
-  padding-bottom: 2px;
+.qm-cta {
+  grid-area: cta;
 }
 
-.qm-link:hover {
-  color: var(--paper);
-  border-bottom-color: var(--paper);
+.qm-still {
+  grid-area: still;
+  align-self: stretch;
+  margin: 0;
+  padding: 5px;
+  background: var(--ink-2);
+  border: 1px solid var(--rule-d);
+  border-radius: var(--radius);
+}
+
+.qm-still-core {
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--ink-3);
+}
+
+.qm-still img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 38% 55%;
+  filter: saturate(0.78) contrast(1.04) brightness(0.92);
+  transform-origin: center;
 }
 
 @media (max-width: 767px) {
   .qm {
-    min-height: auto;
+    padding: 56px 0 72px;
   }
 
-  .qm-photo {
-    position: relative;
-    min-height: 280px;
-  }
-
-  .qm-copy {
-    padding: 40px 0 64px;
-  }
-
-  .qm-copy ul {
+  .qm-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'copy'
+      'still'
+      'ledger'
+      'cta';
+    row-gap: 22px;
+  }
+
+  .qm-still {
+    min-height: 220px;
+    height: 240px;
+  }
+
+  .qm-copy h2 {
+    max-width: none;
+  }
+
+  .qm-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qm-still img {
+    transform: none;
   }
 }

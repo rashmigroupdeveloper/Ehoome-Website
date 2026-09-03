@@ -463,5 +463,5 @@ export function describeSku(family, sel) {
     }
     return [g.options.find((o) => o.id === value)?.label ?? value];
   });
-  return `${family.label} — ${parts.join(', ')}`;
+  return `${family.label}: ${parts.join(', ')}`;
 }

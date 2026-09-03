@@ -5,182 +5,85 @@
 /* ---- masthead ----------------------------------------------------------- */
 
 .cfg-mast {
-  position: relative;
-  background: var(--ink);
-  color: var(--text-on-dark);
-  padding: calc(var(--nav-h) + 46px) 0 0;
-  overflow: hidden;
+  background: var(--paper);
+  color: var(--text);
+  padding: calc(var(--nav-h) + 20px) 0 0;
 }
 
-/* Drawing-sheet ground: a 44px grid, dead quiet, so the type has something to
-   sit on without a photograph fighting it. */
-.cfg-mast-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(243, 243, 241, 0.032) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(243, 243, 241, 0.032) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
-}
-
-.cfg-mast-inner {
-  position: relative;
+.cfg-mast-pair {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
-  gap: 56px;
-  align-items: end;
-  padding-top: 34px;
-  padding-bottom: 44px;
-}
-
-/* Sheet header: the rule that says everything below it belongs to one drawing. */
-.cfg-mast-kicker {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule-d);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted-d);
-}
-
-.cfg-mast-kicker span {
-  color: var(--signal-bright);
-}
-
-.cfg-mast-kicker em {
-  margin-left: auto;
-  font-style: normal;
-  color: var(--muted);
+  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 1.08fr);
+  gap: 40px 56px;
+  align-items: center;
+  padding: 4px 0 32px;
 }
 
 .cfg-mast-copy h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6.4vw, 92px);
+  font-size: clamp(32px, 4.6vw, 58px);
   font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
-  color: var(--paper);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 .cfg-mast-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.04em;
+  padding-bottom: 0.06em;
 }
 
 .cfg-mast-line > span {
   display: block;
 }
 
-.cfg-mast-line em {
-  font-style: normal;
-}
-
 .cfg-mast-lead {
-  margin-top: 26px;
-  max-width: 56ch;
-  font-size: 15.5px;
-  line-height: 1.62;
-  color: var(--muted-d);
+  margin-top: 14px;
+  max-width: 40ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 
-.cfg-mast-cue {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 30px;
-  padding-bottom: 6px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--paper);
-  box-shadow: inset 0 -1px 0 rgba(var(--signal-bright-rgb), 0.6);
-  transition: box-shadow var(--t-base);
+.cfg-mast-cta {
+  margin-top: 24px;
 }
 
-.cfg-mast-cue span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border: 1px solid rgba(var(--signal-bright-rgb), 0.5);
-  border-radius: 50%;
-  color: var(--signal-bright);
-  transition: transform var(--t-base);
+.cfg-mast-still {
+  margin: 0;
+  padding: 5px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
 }
 
-.cfg-mast-cue:hover {
-  box-shadow: inset 0 -1px 0 var(--signal-bright);
-}
-
-.cfg-mast-cue:hover span {
-  transform: translateY(3px);
-}
-
-.cfg-mast-frame {
-  position: relative;
-  aspect-ratio: 1 / 1;
+.cfg-mast-still-core {
+  height: min(48vh, 440px);
   overflow: hidden;
-  border: 1px solid var(--rule-d);
-  background: #0a0b0c;
+  border-radius: var(--radius-sm);
+  background: var(--paper-3);
 }
 
-.cfg-mast-frame img,
-.cfg-mast-frame video {
+.cfg-mast-still img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.62) contrast(1.12) brightness(0.72);
+  object-position: 20% 55%;
+  filter: saturate(0.92) contrast(1.02);
 }
-
-.cfg-mast-frame-tag {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 10px;
-  background: rgba(12, 13, 14, 0.78);
-  border: 1px solid var(--rule-d);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--paper);
-}
-
-.cfg-mast-frame-tag::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--signal-bright);
-  box-shadow: 0 0 8px rgba(var(--signal-bright-rgb), 0.9);
-}
-
-/* title block */
 
 .cfg-tb {
-  position: relative;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-top: 1px solid var(--rule-d);
-  border-bottom: 1px solid var(--rule-d);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--rule);
 }
 
 .cfg-tb-cell {
   min-width: 0;
-  padding: 16px 20px 18px;
-  border-left: 1px solid var(--rule-d);
+  padding: 18px 20px 22px;
+  border-left: 1px solid var(--rule);
 }
 
 .cfg-tb-cell:first-child {
@@ -199,10 +102,10 @@
 
 .cfg-tb dd {
   font-family: var(--font-display);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--paper);
+  color: var(--ink);
   line-height: 1.25;
 }
 
@@ -483,21 +386,21 @@
 /* ---- responsive --------------------------------------------------------- */
 
 @media (max-width: 1080px) {
-  .cfg-mast-inner {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
+  .cfg-mast-pair {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 8px 0 20px;
   }
 
-  .cfg-mast-frame {
-    aspect-ratio: 16 / 9;
-    order: -1;
+  .cfg-mast-still-core {
+    height: 260px;
   }
 
   .cfg-tb {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .cfg-tb-cell:nth-child(3n + 1) {
+  .cfg-tb-cell:nth-child(odd) {
     padding-left: 0;
     border-left: 0;
   }
@@ -525,26 +428,16 @@
 
 @media (max-width: 640px) {
   .cfg-mast {
-    padding-top: calc(var(--nav-h) + 36px);
+    padding-top: calc(var(--nav-h) + 16px);
   }
 
-  .cfg-tb {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cfg-mast-still-core {
+    height: 210px;
   }
 
   .cfg-tb-cell {
-    padding: 14px 14px 15px;
-    border-top: 1px solid var(--rule-d);
-  }
-
-  .cfg-tb-cell:nth-child(3n + 1) {
-    padding-left: 14px;
-    border-left: 1px solid var(--rule-d);
-  }
-
-  .cfg-tb-cell:nth-child(2n + 1) {
-    padding-left: 0;
-    border-left: 0;
+    padding: 14px 14px 16px;
+    border-top: 1px solid var(--rule);
   }
 
   .cfg-tb-cell:nth-child(-n + 2) {
@@ -590,9 +483,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cfg-shot img,
-  .cfg-mast-cue span,
-  .cfg-close-link span {
+  .cfg-close-link span,
+  .cfg-mast-still img {
     transition: none;
+    transform: none;
   }
 
   .cfg-shot:hover img {

@@ -1,20 +1,16 @@
-import { useEffect, useRef } from 'react';
-import { ArrowDown, ArrowUpRight } from '@phosphor-icons/react';
+import { useRef } from 'react';
+import { ArrowUpRight } from '@phosphor-icons/react';
+import MagneticButton from '../components/MagneticButton';
 import SpecBuilder from '../components/SpecBuilder';
-import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
+import { gsap, useGSAP } from '../lib/gsap';
 import { useReducedMotion } from '../lib/useReducedMotion';
 import './Configure.css';
 
-// The page is laid out like a drawing sheet: a title block up top, the bench in
-// the middle, then the plant that answers it. Every band is numbered so a buyer
-// scrolling fast still knows where they are in the argument.
-
 const TITLE_BLOCK = [
-  { field: 'Plant', value: 'Noida · Sector 83' },
+  { field: 'Plant', value: 'Noida, Sector 83' },
   { field: 'Capacity', value: '450,000 / month' },
-  { field: 'Lines', value: '11 across SMT, MI/DIP, FATP' },
+  { field: 'Lines', value: '11 SMT, MI/DIP, FATP' },
   { field: 'Reply', value: '2 working days' },
-  { field: 'Sheet', value: '01 of 01' },
 ];
 
 const PLANT = [
@@ -35,89 +31,84 @@ const FLOOR = [
     note: 'Two lines, back to back, Sector 83',
     span: 'lead',
   },
-  { src: '/assets/img/mach-printer.jpg', caption: 'Paste print', note: 'GKG printer, then SPI in 3D' },
-  { src: '/assets/img/mach-mounter.jpg', caption: 'Placement', note: 'Fuji NXT III, 13 modules a line' },
-  { src: '/assets/img/mach-reflow.jpg', caption: 'Reflow', note: 'Nitrogen, thirteen zones' },
-  { src: '/assets/img/mach-aoi.jpg', caption: 'AOI', note: 'Pre and post reflow, every board' },
-  { src: '/assets/img/mach-xray.jpg', caption: 'X-ray', note: 'The joints no camera can see' },
-  { src: '/assets/img/mach-router.jpg', caption: 'Depanel', note: 'Boards singulated for the next stage' },
-  { src: '/assets/img/test-rf.jpg', caption: 'RF bench', note: 'Calibrated per SKU before packing' },
-  { src: '/assets/img/floor-assembly.jpg', caption: 'FATP', note: 'Board to sealed carton' },
+  { src: '/assets/generated/paste-printer.webp', caption: 'Paste print', note: 'GKG printer, then SPI in 3D' },
+  { src: '/assets/generated/smt-placement-line.webp', caption: 'Placement', note: 'Fuji NXT III, 13 modules a line' },
+  { src: '/assets/generated/reflow-oven.webp', caption: 'Reflow', note: 'Nitrogen, thirteen zones' },
+  { src: '/assets/generated/aoi-inspection.webp', caption: 'AOI', note: 'Pre and post reflow, every board' },
+  { src: '/assets/generated/xray-inspection.webp', caption: 'X-ray', note: 'The joints no camera can see' },
+  { src: '/assets/generated/pcb-router.webp', caption: 'Depanel', note: 'Boards singulated for the next stage' },
+  { src: '/assets/generated/rf-test-bench.webp', caption: 'RF bench', note: 'Calibrated per SKU before packing' },
+  { src: '/assets/generated/final-assembly-line.webp', caption: 'FATP', note: 'Board to sealed carton' },
 ];
 
 /* ---- masthead ----------------------------------------------------------- */
 
-function Masthead({ reduce, videoRef }) {
+function Masthead({ reduce }) {
   const scope = useRef(null);
 
   useGSAP(
     () => {
       if (reduce) return;
-      gsap
-        .timeline({ defaults: { ease: 'power3.out' } })
-        .from('.cfg-mast-line span', { yPercent: 118, duration: 1.05, stagger: 0.08 })
-        .from('.cfg-mast-kicker, .cfg-mast-lead, .cfg-mast-cue', { opacity: 0, y: 14, duration: 0.7, stagger: 0.1 }, 0.35)
-        .from('.cfg-mast-frame', { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.2 }, 0.1)
-        .from('.cfg-tb-cell', { opacity: 0, y: 10, duration: 0.5, stagger: 0.06 }, 0.6);
+
+      const lines = scope.current?.querySelectorAll('.cfg-mast-line > span');
+      const still = scope.current?.querySelector('.cfg-mast-still img');
+      if (!lines?.length) return;
+
+      gsap.set(lines, { yPercent: 108 });
+      if (still) gsap.set(still, { scale: 1.05 });
+
+      const play = () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } }).to(lines, {
+          yPercent: 0,
+          duration: 0.85,
+          stagger: 0.07,
+        });
+        if (still) tl.to(still, { scale: 1, duration: 1.05 }, 0.05);
+      };
+
+      // Incoming route: the curtain is still closed. Hold the type clipped
+      // until the slats retract, otherwise ScrollTrigger.refresh() on reveal
+      // rewinds a from() tween and the heading fights the shutter.
+      if (document.querySelector('.pt.is-covering')) {
+        window.addEventListener('ehoome:pagereveal', play, { once: true });
+        return () => window.removeEventListener('ehoome:pagereveal', play);
+      }
+
+      play();
     },
     { scope, dependencies: [reduce] }
   );
 
   return (
     <section className="cfg-mast" ref={scope}>
-      <div className="cfg-mast-grid" aria-hidden="true" />
-
-      <div className="wrap">
-        <p className="cfg-mast-kicker">
-          <span>01</span> Configure a build
-          <em>Ehoome IoT · drawing sheet</em>
-        </p>
-      </div>
-
-      <div className="wrap cfg-mast-inner">
+      <div className="wrap cfg-mast-pair">
         <div className="cfg-mast-copy">
           <h1>
             <span className="cfg-mast-line">
               <span>Specify the chassis.</span>
             </span>
             <span className="cfg-mast-line">
-              <span>
-                The floor answers
-                <em className="flourish-period">.</em>
-              </span>
+              <span>The floor answers.</span>
             </span>
           </h1>
-
           <p className="cfg-mast-lead">
-            Choose a product, set the run, and the page prints the job traveller our schedulers
-            would print — the route through the building, the gates your spec forces, and the files
-            we need back. No price, because an honest one needs your BOM.
+            Pick a product and a run size. The page writes the job traveller our schedulers would print.
           </p>
-
-          <a className="cfg-mast-cue" href="#configure">
-            Open the bench
-            <span aria-hidden="true">
-              <ArrowDown size={14} weight="bold" />
-            </span>
-          </a>
+          <div className="cfg-mast-cta">
+            <MagneticButton href="#configure" variant="ink">
+              Start a spec
+            </MagneticButton>
+          </div>
         </div>
 
-        <div className="cfg-mast-frame">
-          {reduce ? (
-            <img src="/assets/cinematic/switch-line-poster.jpg" alt="" />
-          ) : (
-            <video
-              ref={videoRef}
-              src="/assets/cinematic/switch-line.mp4"
-              poster="/assets/cinematic/switch-line-poster.jpg"
-              muted
-              loop
-              playsInline
-              preload="metadata"
+        <figure className="cfg-mast-still">
+          <div className="cfg-mast-still-core">
+            <img
+              src="/assets/generated/smt-placement-line.webp"
+              alt="Fuji NXT placement modules on the Noida SMT line, operator in the aisle"
             />
-          )}
-          <span className="cfg-mast-frame-tag">Live · SMT line 2</span>
-        </div>
+          </div>
+        </figure>
       </div>
 
       <div className="wrap">
@@ -178,7 +169,6 @@ function FloorSheet({ reduce }) {
         stagger: 0.05,
         scrollTrigger: { trigger: '.cfg-sheet', start: 'top 82%', once: true },
       });
-      return () => ScrollTrigger.getAll().forEach((t) => t.kill());
     },
     { scope, dependencies: [reduce] }
   );
@@ -196,8 +186,8 @@ function FloorSheet({ reduce }) {
           </h2>
         </div>
         <p className="cfg-floor-lead">
-          Not a render. This is the floor your spec is routed across — the same printers, mounters
-          and benches the traveller names, photographed where they stand.
+          The route your spec follows across print, placement, inspection, test and assembly —
+          shown through representative production visuals alongside the Noida floor.
         </p>
       </div>
 
@@ -251,25 +241,10 @@ function CloseBand() {
 
 export default function Configure() {
   const reduce = useReducedMotion();
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return undefined;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(video);
-    return () => io.disconnect();
-  }, [reduce]);
 
   return (
     <div className="configure-page">
-      <Masthead reduce={reduce} videoRef={videoRef} />
+      <Masthead reduce={reduce} />
       <SpecBuilder />
       <PlantBand />
       <FloorSheet reduce={reduce} />

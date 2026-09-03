@@ -51,14 +51,15 @@ export default function PageTransition() {
         const text = routeLabel(to) || 'Loading';
         const counter = { n: 0 };
 
+        overlay.current.classList.remove('is-revealing');
+        overlay.current.classList.add('is-covering');
+        gsap.set(overlay.current, { autoAlpha: 1, pointerEvents: 'auto' });
+
         active.current = gsap
           .timeline({ onComplete: resolve })
           .add(() => {
-            overlay.current.classList.remove('is-revealing');
-            overlay.current.classList.add('is-covering');
-            label.current.textContent = '';
+            if (label.current) label.current.textContent = '';
           })
-          .set(overlay.current, { autoAlpha: 1, pointerEvents: 'auto' })
           .set(readout.current, { opacity: 0, y: 10 })
           .set(progress.current, { scaleX: 0 })
           .set(slatEls(), { transformOrigin: 'top center', scaleY: 0 })
@@ -94,6 +95,7 @@ export default function PageTransition() {
           .add(() => {
             overlay.current.classList.remove('is-covering');
             overlay.current.classList.add('is-revealing');
+            window.dispatchEvent(new Event('ehoome:pagereveal'));
           })
           .to(readout.current, { opacity: 0, y: -8, duration: 0.22, ease: 'power2.in' })
           .to(progress.current, { scaleX: 0, duration: 0.22, ease: 'none' }, '<')
@@ -124,15 +126,20 @@ export default function PageTransition() {
       }
 
       busy.current = true;
-      // Both start now. Whichever finishes last gates the navigation.
-      const warm = preloadRoute(to);
+      const dest = (() => {
+        try {
+          return new URL(to, window.location.origin);
+        } catch {
+          return null;
+        }
+      })();
+      const pathname = dest?.pathname ?? to;
+      const href = dest ? dest.pathname + dest.search + dest.hash : to;
+      const warm = preloadRoute(pathname);
 
-      Promise.all([cover(to), warm])
+      Promise.all([cover(pathname), warm])
         .then(() => {
-          navigate(to);
-          // Two frames for React to commit the new tree and for ScrollToTop to
-          // reset scroll, then a beat so pinned sections re-measure against the
-          // new page height before any of it becomes visible.
+          navigate(href);
           return new Promise((r) => {
             requestAnimationFrame(() =>
               requestAnimationFrame(() => {
@@ -151,7 +158,9 @@ export default function PageTransition() {
           return reveal();
         })
         .catch(() => {
+          if (!overlay.current) return;
           gsap.set(overlay.current, { autoAlpha: 0, pointerEvents: 'none' });
+          overlay.current.classList.remove('is-covering', 'is-revealing');
         })
         .finally(() => {
           busy.current = false;
